@@ -1,0 +1,46 @@
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.user-image {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  width: 500px;
+  height: 300px;
+}
+
+.page-content {
+  display: flex;
+  height: 100%;
+}
+
+.sidenav {
+  padding: 20px;
+  height: 100%;
+  background-color: #3f51b5;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 116px);
+}
+
+.bottom-icons {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 20px;
+}
