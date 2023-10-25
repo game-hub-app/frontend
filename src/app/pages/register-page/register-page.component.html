@@ -1,0 +1,37 @@
+<div class="content">
+  <mat-card class="landing-card">
+    <mat-card-title>Register</mat-card-title>
+    <mat-card-content>
+      <!-- form -->
+      <form [formGroup]="registerForm">
+        <!-- username -->
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error *ngIf="registerForm.controls['username'].invalid">{{getErrorMessage('username')}}</mat-error>
+        </mat-form-field>
+        <!-- email -->
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="registerForm.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+        </mat-form-field>
+        <!-- password -->
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" formControlName="password">
+          <mat-error *ngIf="registerForm.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+        </mat-form-field>
+        <!-- confirm password -->
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+          <mat-error *ngIf="registerForm.controls['confirmPassword'].invalid">{{getErrorMessage('confirmPassword')}}</mat-error>
+        </mat-form-field>
+        <!-- submit -->
+        <br>
+        <button mat-raised-button color="primary" (click)="registerUser()" [disabled]="registerForm.invalid">Register</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

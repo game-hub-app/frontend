@@ -1,4 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Dark Mode Colors */
+:root {
+  --primary-color: #2196f3; /* Define your primary color */
+  --accent-color: #ffc107; /* Define your accent color */
+  --warn-color: #f44336; /* Define your warning color */
+  --background-color: #121212; /* Define your background color */
+  --lighter-background-color: #1e1e1e; /* Define your lighter background color */
+  --lighter-background-color-alpha: #1e1e1e55; /* Define your lighter background color with alpha */
+  --text-color: #ffffff; /* Define your text color */
+  --dark-text-color: #000000; /* Define your dark text color */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  opacity: 1;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      var(--background-color) 40px
+    ),
+    repeating-linear-gradient(
+      var(--lighter-background-color-alpha),
+      var(--lighter-background-color)
+    );
+}
