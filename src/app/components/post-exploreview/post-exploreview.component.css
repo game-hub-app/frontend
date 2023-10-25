@@ -1,0 +1,20 @@
+p{
+    margin-top:auto;
+    margin-right:3rem;
+    text-align:justify;
+}
+
+.userAt{
+    margin-left: 1rem;
+    color:gray;
+}
+
+.userInfo{
+    display:flex; 
+    flex-direction:column; 
+    margin-top:auto;
+}
+
+.username{
+    margin-left: 1rem;
+}

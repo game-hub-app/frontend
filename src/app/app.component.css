@@ -39,8 +39,17 @@
   height: calc(100% - 116px);
 }
 
+.mat-icon {
+  vertical-align: middle;
+}
+
 .bottom-icons {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
+  left:0;
+  right:0;
+  margin:auto;
   bottom: 0;
-  padding-bottom: 20px;
 }

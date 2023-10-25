@@ -12,9 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { CommIconComponent } from './components/comm-icon/comm-icon.component';
+import { CommunityComponent } from './pages/community/community.component';
+import { PostExploreviewComponent } from './components/post-exploreview/post-exploreview.component';
 
 @NgModule({
-  declarations: [AppComponent, StartPageComponent],
+  declarations: [AppComponent, StartPageComponent, CommIconComponent, CommunityComponent, PostExploreviewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
