@@ -10,17 +10,32 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { CommIconComponent } from './components/comm-icon/comm-icon.component';
 import { CommunityComponent } from './pages/community/community.component';
 import { PostExploreviewComponent } from './components/post-exploreview/post-exploreview.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
-  declarations: [AppComponent, StartPageComponent, CommIconComponent, CommunityComponent, PostExploreviewComponent],
+  declarations: [
+    AppComponent,
+    StartPageComponent,
+    LandingPageComponent,
+    RegisterPageComponent,
+    LoginPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
