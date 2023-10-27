@@ -29,6 +29,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     LandingPageComponent,
     RegisterPageComponent,
     LoginPageComponent,
+    CommIconComponent,
+    CommunityComponent,
+    PostExploreviewComponent,
   ],
   imports: [
     BrowserModule,
