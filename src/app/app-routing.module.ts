@@ -12,7 +12,7 @@ const routes: Routes = [
     component: CommunityComponent
   },
     {
-    path: "",
+    path: "land-page",
     component: LandingPageComponent
   },
   {

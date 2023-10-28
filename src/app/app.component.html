@@ -1,35 +1,61 @@
-<!-- material sidenav, header and page content
-
+<!--material sidenav, header and page content-->
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <mat-sidenav id="sidenav" #drawer class="sidenav" fixedInViewport
     [attr.role]="'navigation'"
-    [mode]="'side'"
-    [opened]="true">
+    [mode]="this.isMobile ? 'push' : 'side'"
+    [opened]="!this.isMobile">
     <mat-nav-list>
       <div class="icons">
       <app-comm-icon></app-comm-icon>
-      </div>
-      <div class="bottom-icons">
-        <a mat-list-item routerLink="/login" routerLinkActive="active">
-          <mat-icon aria-label="Logout icon" style="color: #ffffff;">home</mat-icon>
-        </a>
-        <a mat-list-item routerLink="/login" routerLinkActive="active">
-          <mat-icon aria-label="Logout icon" style="color: #ffffff;">chat</mat-icon>
+    </div>
+    <div class="bottom-icons" *ngIf="!isMobile">
+      <a routerLink="/messages" routerLinkActive="active">
+          <mat-divider></mat-divider>
+          <mat-icon aria-label="Messaging icon" style="color: #ffffff; margin-bottom:1rem; font-size:1.5rem;  ">chat</mat-icon>
         </a>
       </div> 
     </mat-nav-list>
+
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <span>GameHub</span>
+    <div #page class="page-content">
+      <router-outlet style="margin-top:var(--mat-toolbar-standard-height);"></router-outlet>
+      <mat-toolbar color="primary" style="left:0;display:flex; position:fixed; ;top:0;">
         <span class="spacer"></span>
-        <div class="user-info">
-            <img class="user-image" src="https://picsum.photos/200" alt="user profile picture">
-            <span class="user-name">John Doe</span>
+        <a mat-icon-button routerLink="/**" routerLinkActive="active">
+          <mat-icon>videogame_asset</mat-icon>
+        </a>
+        <a *ngIf="!isMobile" routerLink="/**" routerLinkActive="active" style="text-decoration: none; color:white;">
+          <span>GameHub</span>
+        </a>
+        <span class="spacer"></span>
+        <div class="user-info"> 
+          <span class="user-name" *ngIf="!isMobile" >John Doe</span>
+          <img class="user-image" src="https://picsum.photos/200" alt="user profile picture">
         </div>
-    </mat-toolbar>
-    <div class="page-content"> -->
-      <router-outlet></router-outlet>
-    <!-- </div>
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
+      </mat-toolbar>
+    </div>
+        <!-- footer navbar only for mobile-->
+      <div class="bottom-nav" *ngIf="isMobile">
+        <!--add button for posting on mobile-->
+        <button id="post" mat-fab style="margin:1rem; float: right;" color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+          <mat-toolbar color="accent" style="border-top:1px black solid;">
+            <span class="spacer"></span>
+            <a mat-icon-button routerLink="/messages" routerLinkActive="active">
+                <mat-icon>chat</mat-icon>
+              </a>
+              <span class="spacer"></span>
+              <a mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>people</mat-icon>
+              </a>
+              <span class="spacer"></span>
+              <a mat-icon-button routerLink="/settings" routerLinkActive="active">
+                <mat-icon>settings</mat-icon>
+              </a>
+              <span class="spacer"></span>
+          </mat-toolbar>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

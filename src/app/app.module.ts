@@ -21,6 +21,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { NewPostExploreviewComponent } from './components/new-post-exploreview/new-post-exploreview.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     CommIconComponent,
     CommunityComponent,
     PostExploreviewComponent,
+    NewPostExploreviewComponent,
   ],
   imports: [
     BrowserModule,

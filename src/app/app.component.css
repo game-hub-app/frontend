@@ -1,14 +1,22 @@
 .user-info {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+}
+
+.user-name{
+  padding-right:1rem;
+}
+
+.bottom-nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .user-image {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  margin-right: 10px;
 }
 
 .spacer {
@@ -22,6 +30,8 @@
 
 .page-content {
   display: flex;
+  flex-direction: column;
+  align-items:start;
   height: 100%;
 }
 
@@ -39,8 +49,10 @@
   height: calc(100% - 116px);
 }
 
-.mat-icon {
-  vertical-align: middle;
+.bottom-nav{
+  position:fixed; 
+  bottom:0; 
+  width:100%;
 }
 
 .bottom-icons {

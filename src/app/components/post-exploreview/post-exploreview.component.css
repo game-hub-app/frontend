@@ -1,6 +1,8 @@
+*{
+    background-color: transparent;
+}
 p{
     margin-top:auto;
-    margin-right:3rem;
     text-align:justify;
 }
 
