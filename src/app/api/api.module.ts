@@ -7,6 +7,7 @@ import {
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
+import { AuthService } from './api/auth.service';
 import { CommunityService } from './api/community.service';
 import { FollowerService } from './api/follower.service';
 import { LikeService } from './api/like.service';
@@ -19,6 +20,7 @@ import { UserCommunitiesService } from './api/userCommunities.service';
   declarations: [],
   exports: [],
   providers: [
+    AuthService,
     CommunityService,
     FollowerService,
     LikeService,

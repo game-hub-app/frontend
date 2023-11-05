@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface Community {
-  id: string;
-  name: string;
-  bannerURL?: string;
-  creationDate: Date;
+export interface UserRegister {
+  username?: string;
+  displayName?: string;
+  email?: string;
+  password?: string;
 }

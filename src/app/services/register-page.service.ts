@@ -9,6 +9,7 @@ export class RegisterPageService {
 
   buildForm() {
     return new FormGroup({
+      displayName: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),

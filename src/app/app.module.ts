@@ -22,6 +22,8 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewPostExploreviewComponent } from './components/new-post-exploreview/new-post-exploreview.component';
+import { ApiModule, Configuration } from './api';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,12 @@ import { NewPostExploreviewComponent } from './components/new-post-exploreview/n
     MatSidenavModule,
     MatCardModule,
     MatListModule,
+    HttpClientModule,
+    ApiModule.forRoot(() => {
+      return new Configuration({
+        basePath: 'http://game-hub-api.azurewebsites.net',
+      });
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

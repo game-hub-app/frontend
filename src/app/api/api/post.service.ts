@@ -120,22 +120,22 @@ export class PostService {
    * @param reportProgress flag to report request and response progress.
    */
   public postIdDelete(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public postIdDelete(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public postIdDelete(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public postIdDelete(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -178,22 +178,22 @@ export class PostService {
    * @param reportProgress flag to report request and response progress.
    */
   public postIdGet(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<Post>;
   public postIdGet(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<Post>>;
   public postIdGet(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<Post>>;
   public postIdGet(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -241,25 +241,25 @@ export class PostService {
    * @param reportProgress flag to report request and response progress.
    */
   public postIdPut(
-    id: number,
+    id: string,
     body?: Post,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public postIdPut(
-    id: number,
+    id: string,
     body?: Post,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public postIdPut(
-    id: number,
+    id: string,
     body?: Post,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public postIdPut(
-    id: number,
+    id: string,
     body?: Post,
     observe: any = 'body',
     reportProgress: boolean = false

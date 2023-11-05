@@ -120,22 +120,22 @@ export class LikeService {
    * @param reportProgress flag to report request and response progress.
    */
   public likeIdDelete(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public likeIdDelete(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public likeIdDelete(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public likeIdDelete(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -178,22 +178,22 @@ export class LikeService {
    * @param reportProgress flag to report request and response progress.
    */
   public likeIdGet(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<Like>;
   public likeIdGet(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<Like>>;
   public likeIdGet(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<Like>>;
   public likeIdGet(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -241,25 +241,25 @@ export class LikeService {
    * @param reportProgress flag to report request and response progress.
    */
   public likeIdPut(
-    id: number,
+    id: string,
     body?: Like,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public likeIdPut(
-    id: number,
+    id: string,
     body?: Like,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public likeIdPut(
-    id: number,
+    id: string,
     body?: Like,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public likeIdPut(
-    id: number,
+    id: string,
     body?: Like,
     observe: any = 'body',
     reportProgress: boolean = false

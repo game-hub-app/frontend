@@ -11,7 +11,7 @@
  */
 
 export interface UserCommunities {
-  id: number;
+  id: string;
   communityId: number;
   userId: number;
   creationDate: Date;
