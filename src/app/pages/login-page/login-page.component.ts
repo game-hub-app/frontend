@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/api';
 import { LoginPageService } from 'src/app/services/login-page.service';
@@ -14,7 +15,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private loginPageService: LoginPageService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class LoginPageComponent implements OnInit {
   
       alert('Login success');
       localStorage.setItem('token', login);
+      this.router.navigate(['/', 'feed']);
     } catch (error: any) {
       this.loginForm.enable();
       alert(error.error);

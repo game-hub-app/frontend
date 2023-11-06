@@ -17,8 +17,8 @@ const routes: Routes = [
     component: CommunityComponent
   },
     {
-    path: "land-page",
-    component: LandingPageComponent,
+    path: "feed",
+    component: StartPageComponent,
   },
   {
     path: "register",
@@ -29,8 +29,8 @@ const routes: Routes = [
     component: LoginPageComponent,
   },
   {
-    path: "**",
-    component: StartPageComponent
+    path: "",
+    component: LandingPageComponent
   }
   
 ];
