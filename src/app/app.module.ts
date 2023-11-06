@@ -28,6 +28,8 @@ import { NavigationComponent } from './components/general/navigation/navigation.
 import { SidenavComponent } from './components/navigation/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/navigation/toolbar/toolbar.component';
 import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.component';
+import { ApiModule, Configuration } from './api';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,12 @@ import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.
     MatSidenavModule,
     MatCardModule,
     MatListModule,
+    HttpClientModule,
+    ApiModule.forRoot(() => {
+      return new Configuration({
+        basePath: 'http://game-hub-api.azurewebsites.net',
+      });
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

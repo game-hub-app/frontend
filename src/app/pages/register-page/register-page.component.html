@@ -4,6 +4,12 @@
     <mat-card-content>
       <!-- form -->
       <form [formGroup]="registerForm">
+        <!-- display name -->
+        <mat-form-field>
+          <mat-label>Display Name</mat-label>
+          <input matInput placeholder="Display Name" formControlName="displayName">
+          <mat-error *ngIf="registerForm.controls['displayName'].invalid">{{getErrorMessage('displayName')}}</mat-error>
+        </mat-form-field>
         <!-- username -->
         <mat-form-field>
           <mat-label>Username</mat-label>

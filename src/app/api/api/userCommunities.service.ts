@@ -120,22 +120,22 @@ export class UserCommunitiesService {
    * @param reportProgress flag to report request and response progress.
    */
   public userCommunitiesIdDelete(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public userCommunitiesIdDelete(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public userCommunitiesIdDelete(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public userCommunitiesIdDelete(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -178,22 +178,22 @@ export class UserCommunitiesService {
    * @param reportProgress flag to report request and response progress.
    */
   public userCommunitiesIdGet(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<UserCommunities>;
   public userCommunitiesIdGet(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<UserCommunities>>;
   public userCommunitiesIdGet(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<UserCommunities>>;
   public userCommunitiesIdGet(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -241,25 +241,25 @@ export class UserCommunitiesService {
    * @param reportProgress flag to report request and response progress.
    */
   public userCommunitiesIdPut(
-    id: number,
+    id: string,
     body?: UserCommunities,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public userCommunitiesIdPut(
-    id: number,
+    id: string,
     body?: UserCommunities,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public userCommunitiesIdPut(
-    id: number,
+    id: string,
     body?: UserCommunities,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public userCommunitiesIdPut(
-    id: number,
+    id: string,
     body?: UserCommunities,
     observe: any = 'body',
     reportProgress: boolean = false

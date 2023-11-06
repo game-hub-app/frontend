@@ -11,7 +11,7 @@
  */
 
 export interface Like {
-  id: number;
+  id: string;
   userId: string;
   postId: string;
   creationDate: Date;

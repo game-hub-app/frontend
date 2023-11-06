@@ -120,22 +120,22 @@ export class FollowerService {
    * @param reportProgress flag to report request and response progress.
    */
   public followerIdDelete(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public followerIdDelete(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public followerIdDelete(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public followerIdDelete(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -178,22 +178,22 @@ export class FollowerService {
    * @param reportProgress flag to report request and response progress.
    */
   public followerIdGet(
-    id: number,
+    id: string,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<Follower>;
   public followerIdGet(
-    id: number,
+    id: string,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<Follower>>;
   public followerIdGet(
-    id: number,
+    id: string,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<Follower>>;
   public followerIdGet(
-    id: number,
+    id: string,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
@@ -241,25 +241,25 @@ export class FollowerService {
    * @param reportProgress flag to report request and response progress.
    */
   public followerIdPut(
-    id: number,
+    id: string,
     body?: Follower,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
   public followerIdPut(
-    id: number,
+    id: string,
     body?: Follower,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
   public followerIdPut(
-    id: number,
+    id: string,
     body?: Follower,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
   public followerIdPut(
-    id: number,
+    id: string,
     body?: Follower,
     observe: any = 'body',
     reportProgress: boolean = false
