@@ -1,0 +1,34 @@
+.user-image {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-info {
+    margin:0;
+    display: flex;
+    align-items: center;
+}
+
+.center-icons{
+  padding-left: 42px;
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: center;
+  margin:0 auto;
+}
+
+.user-name{
+  padding-right:1rem;
+}  
+
+@media (max-width: 980px) {
+  *{
+    max-width:100%;
+  }
+}

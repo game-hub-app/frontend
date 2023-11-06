@@ -1,0 +1,19 @@
+.bottom-nav{
+    background-color: transparent;
+    position:fixed; 
+    bottom:0; 
+    width:100%;
+  }
+
+.spacer {
+    flex: 1 1 auto;
+} 
+
+mat-icon{
+  color:#fff;
+}
+.bottom-nav-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

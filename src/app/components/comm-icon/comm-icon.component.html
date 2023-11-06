@@ -1,2 +1,6 @@
-<!-- FILEPATH: /Users/alyzor/frontend/src/app/comm-icon/comm-icon.component.html -->
-    <img [src]="CommImage || 'https://static.vecteezy.com/system/resources/thumbnails/007/126/481/small/gaming-controller-icon-vector.jpg'" margin="0" padding="0" width="30" height="30"style="border: 2px solid black; border-radius: 50%;" (click)="commRedirect()">
+<!-- FILEPATH: /Users/alyzor/frontend/src/app/components/comm-icon/comm-icon.component.html -->
+<div class="button" style="padding:0.5rem 0 0.5rem 0;max-width:50px; max-height:50px; align-items: center; display:flex; flex-direction: column;">
+    <img [src]="CommImage || 'https://static.vecteezy.com/system/resources/thumbnails/007/126/481/small/gaming-controller-icon-vector.jpg'" margin="0" padding="0" width="30" height="30" style="border: 2px solid black; border-radius: 50%;">
+    <p style="font-size: 0.5rem; margin: 0; padding: 0;">{{'Community'}}</p>
+    <mat-divider></mat-divider>
+</div>

@@ -1,7 +1,8 @@
-<app-new-post-exploreview *ngIf="!isMobile"></app-new-post-exploreview>
-<mat-divider *ngIf="!isMobile"></mat-divider>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
+<mat-sidenav-container>
+    <app-sidenav></app-sidenav>
+</mat-sidenav-container>
+    <div #page class="nav-page-content">
+        <app-feed></app-feed> /* This is the main page */
+    </div>
+    <app-toolbar></app-toolbar>
+<app-mobilenav></app-mobilenav>

@@ -1,29 +1,21 @@
-import { Component, Host, Input, OnInit } from '@angular/core';
-import { HostListener } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { Component, HostListener, OnInit,  } from '@angular/core';
+import { MobilenavComponent } from '../../navigation/mobilenav/mobilenav.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.css']
 })
-export class AppComponent implements OnInit {
-  routeData: Data | undefined;
-
-  @Input() needsNavibar:boolean = true;
-
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.routeData = this.activatedRoute.snapshot.data;
-  }
-
+export class NavigationComponent implements OnInit {
+  isMobile = false;
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot)
     if(window.innerWidth < 980) {
       this.isMobile = true;
     }
   }
 
-  isMobile = false;
+  //receive toggle status from mobilenav
+
   title = 'game-hub';
   distanceScrolled = 0;
   @HostListener('window:scroll', ['$event'])

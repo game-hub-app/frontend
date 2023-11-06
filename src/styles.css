@@ -1,5 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
+.nav-page-content{
+  top:4rem;
+  margin-left:75px;
+  position:absolute;
+  left:0;
+  width:calc(100% - 75px);   
+}
+
+@media (max-width:920px) {
+  .nav-page-content{
+      margin-left:0;
+      width:100%;
+  }
+}
+
+@media (max-width:599px){
+  .nav-page-content{
+      top:3.5rem;
+  }
+}
+
+
 html,
 body {
   height: 100%;

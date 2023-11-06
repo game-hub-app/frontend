@@ -1,0 +1,22 @@
+<mat-sidenav id="sidenav" #drawer class="sidenav" fixedInViewport
+    [attr.role]="'navigation'"
+    [mode]="this.isMobile ? 'push' : 'side'"
+    [opened]="!this.isMobile">
+    <mat-nav-list>
+      <div class="icons">
+      <app-comm-icon></app-comm-icon>
+      <app-comm-icon></app-comm-icon>
+      <app-comm-icon></app-comm-icon>
+      <app-comm-icon></app-comm-icon>
+    </div>  
+    <div class="bottom-icons" *ngIf="!isMobile">
+      <mat-divider></mat-divider>
+      <div class="message-icon">
+        <a routerLink="/messages" routerLinkActive="active">
+          <mat-icon aria-label="Messaging icon" style="color: #ffffff; margin-bottom:1rem; width:auto;">chat</mat-icon>
+        </a>
+      </div>
+      </div> 
+    </mat-nav-list>
+
+  </mat-sidenav>

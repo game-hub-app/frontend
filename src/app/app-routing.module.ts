@@ -5,23 +5,28 @@ import { CommunityComponent } from './pages/community/community.component'
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-mobile.component';
 
 const routes: Routes = [
+  {
+    path: 'new-post-mobile',
+    component: NewPostMobileComponent
+  },
   {
     path: 'community',
     component: CommunityComponent
   },
     {
     path: "land-page",
-    component: LandingPageComponent
+    component: LandingPageComponent,
   },
   {
     path: "register",
-    component: RegisterPageComponent
+    component: RegisterPageComponent,
   },
   {
     path: "login",
-    component: LoginPageComponent
+    component: LoginPageComponent,
   },
   {
     path: "**",

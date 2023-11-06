@@ -1,0 +1,22 @@
+.sidenav {
+  height: 100%;
+  background-color: #3f51b5;
+  width:75px;
+  display:flex;
+}
+  
+.icons{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.bottom-icons{
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 75px;
+  background-color: #3f51b5
+}
+.message-icon{
+  margin-top: 1.5rem;
+}

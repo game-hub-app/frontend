@@ -1,0 +1,20 @@
+<div class="bottom-nav" *ngIf="isMobile">
+    <button id="post" mat-fab style="margin:1rem; float: right;" color="primary" routerLink="/new-post-mobile">
+      <mat-icon>add</mat-icon>
+    </button>
+      <mat-toolbar color="accent" style="border-top:1px black solid;">
+        <span class="spacer"></span>
+        <a mat-icon-button routerLink="/messages" routerLinkActive="active">
+            <mat-icon>chat</mat-icon>
+          </a>
+          <span class="spacer"></span>
+          <a mat-icon-button (click)="toggleNav()">
+            <mat-icon>people</mat-icon>
+          </a>
+          <span class="spacer"></span>
+          <a mat-icon-button routerLink="/search" routerLinkActive="active">
+            <mat-icon>search</mat-icon>
+          </a>
+          <span class="spacer"></span>
+      </mat-toolbar>
+    </div>

@@ -22,6 +22,12 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewPostExploreviewComponent } from './components/new-post-exploreview/new-post-exploreview.component';
+import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-mobile.component';
+import { FeedComponent } from './pages/general/feed/feed.component';
+import { NavigationComponent } from './components/general/navigation/navigation.component';
+import { SidenavComponent } from './components/navigation/sidenav/sidenav.component';
+import { ToolbarComponent } from './components/navigation/toolbar/toolbar.component';
+import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,12 @@ import { NewPostExploreviewComponent } from './components/new-post-exploreview/n
     CommunityComponent,
     PostExploreviewComponent,
     NewPostExploreviewComponent,
+    NewPostMobileComponent,
+    FeedComponent,
+    NavigationComponent,
+    SidenavComponent,
+    ToolbarComponent,
+    MobilenavComponent,
   ],
   imports: [
     BrowserModule,
