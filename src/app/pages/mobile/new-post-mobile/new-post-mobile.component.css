@@ -1,0 +1,14 @@
+.header{
+    display:flex;
+    flex-direction:row;
+    gap:1rem;
+    align-items:center;
+}
+
+.userInfo{
+    margin-top:1rem;
+    display:flex;
+    flex-direction:row;
+    gap:1rem;
+    margin-bottom:1rem;
+}

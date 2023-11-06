@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-new-post-mobile',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class NewPostMobileComponent {
 
+  @Input() communityId?: string;
+
+  constructor(private _location: Location) {
+  }
+
+  goBack() {
+    this._location.back();
+  }
 }

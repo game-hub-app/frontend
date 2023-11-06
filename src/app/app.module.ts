@@ -24,7 +24,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewPostExploreviewComponent } from './components/new-post-exploreview/new-post-exploreview.component';
 import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-mobile.component';
 import { FeedComponent } from './pages/general/feed/feed.component';
-import { NavigationComponent } from './components/general/navigation/navigation.component';
 import { SidenavComponent } from './components/navigation/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/navigation/toolbar/toolbar.component';
 import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.component';
@@ -44,7 +43,6 @@ import { HttpClientModule } from '@angular/common/http';
     NewPostExploreviewComponent,
     NewPostMobileComponent,
     FeedComponent,
-    NavigationComponent,
     SidenavComponent,
     ToolbarComponent,
     MobilenavComponent,
