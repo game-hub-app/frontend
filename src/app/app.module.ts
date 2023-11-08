@@ -29,6 +29,7 @@ import { ToolbarComponent } from './components/navigation/toolbar/toolbar.compon
 import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.component';
 import { ApiModule, Configuration } from './api';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     SidenavComponent,
     ToolbarComponent,
     MobilenavComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

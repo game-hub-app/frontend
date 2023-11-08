@@ -10,14 +10,14 @@ export class ToolbarComponent implements OnInit{
   isMobile = false;
 
   ngOnInit() {
-    if(window.innerWidth < 980) {
+    if(window.innerWidth < 650) {
       this.isMobile = true;
     }
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any): void {
-    if (window.innerWidth < 980) {
+    if (window.innerWidth < 650) {
       this.isMobile = true;
     } else {
       this.isMobile = false;

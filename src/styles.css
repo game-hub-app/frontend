@@ -8,13 +8,12 @@
   width:calc(100% - 75px);   
 }
 
-@media (max-width:920px) {
+@media (max-width:650px) {
   .nav-page-content{
       margin-left:0;
       width:100%;
   }
 }
-
 @media (max-width:599px){
   .nav-page-content{
       top:3.5rem;

@@ -10,7 +10,7 @@ export class MobilenavComponent implements OnInit{
   isMobile = false;
 
   ngOnInit() {
-    if(window.innerWidth < 980) {
+    if(window.innerWidth < 650) {
       this.isMobile = true;
     }
   }
@@ -24,7 +24,7 @@ export class MobilenavComponent implements OnInit{
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any): void {
-    if (window.innerWidth < 980) {
+    if (window.innerWidth < 650) {
       this.isMobile = true;
     } else {
       this.isMobile = false;

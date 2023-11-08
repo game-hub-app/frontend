@@ -16,7 +16,7 @@ export class StartPageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any) {
-    if (window.innerWidth < 980) {
+    if (window.innerWidth < 650) {
       this.isMobile = true;
     } else {
       this.isMobile = false;

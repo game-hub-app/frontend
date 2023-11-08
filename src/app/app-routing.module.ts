@@ -6,8 +6,13 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-mobile.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
   {
     path: 'new-post-mobile',
     component: NewPostMobileComponent

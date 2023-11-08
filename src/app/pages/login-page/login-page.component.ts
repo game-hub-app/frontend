@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
         })
       );
   
-      alert('Login success');
+      // alert('Login success');
       localStorage.setItem('token', login);
       this.router.navigate(['/', 'feed']);
     } catch (error: any) {

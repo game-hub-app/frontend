@@ -10,15 +10,12 @@ import { ActivatedRoute, Data } from '@angular/router';
 export class AppComponent implements OnInit {
   routeData: Data | undefined;
 
-  @Input() needsNavibar:boolean = true;
-
   constructor(private activatedRoute: ActivatedRoute) {
     this.routeData = this.activatedRoute.snapshot.data;
   }
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot)
-    if(window.innerWidth < 980) {
+    if(window.innerWidth < 650) {
       this.isMobile = true;
     }
   }
@@ -48,7 +45,7 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any) {
-    if (window.innerWidth < 980) {
+    if (window.innerWidth < 650) {
       this.isMobile = true;
     } else {
       this.isMobile = false;
