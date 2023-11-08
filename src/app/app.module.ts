@@ -65,7 +65,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HttpClientModule,
     ApiModule.forRoot(() => {
       return new Configuration({
-        basePath: 'http://game-hub-api.azurewebsites.net',
+        basePath: 'https://game-hub-api.azurewebsites.net',
       });
     }),
   ],
