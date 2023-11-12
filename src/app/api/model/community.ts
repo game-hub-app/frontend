@@ -13,6 +13,9 @@
 export interface Community {
   id: string;
   name: string;
+  description?: string;
+  iconURL?: string;
   bannerURL?: string;
+  communityOwnerId: string;
   creationDate: Date;
 }

@@ -9,7 +9,7 @@
   </div>
     <div class="user-info"> 
       <span class="user-name" *ngIf="!isMobile" >{{loggedUser.displayName}}</span>
-      <a [routerLink]="'/users/' + loggedUser.id"  style="height:42px;">
+      <a [routerLink]="'/users/' + loggedUser.username"  style="height:42px;">
       <img class="user-image" src="{{loggedUser.profilePictureURL || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="user profile picture">
       </a>
     </div>

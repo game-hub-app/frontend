@@ -10,7 +10,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: 'users/:id',
+    path: 'users/:username',
     component: ProfileComponent
   },
   {

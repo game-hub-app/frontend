@@ -18,7 +18,7 @@ export class ProfileComponent {
   followButtonText:String = "Follow";
   followButtonIcon:String = "person_add"
 
-  userID: string = this.route.snapshot.paramMap.get('id')!;
+  username: string = this.route.snapshot.paramMap.get('username')!;
 
   constructor(
     private _location: Location,
@@ -29,7 +29,7 @@ export class ProfileComponent {
 
   async ngOnInit(): Promise<void> {
     try{
-      this.shownUser = await firstValueFrom(this.userService.userIdGet(this.userID));
+      this.shownUser = await firstValueFrom(this.userService.userProfileUsernameGet(this.username));
     }
     catch(err){
       this.router.navigate(['/']);
