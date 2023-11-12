@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { UserService } from 'src/app/api';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { TokenVerificationService } from 'src/app/services/token-verification.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -16,21 +17,14 @@ export class LandingPageComponent implements OnInit {
   constructor(
     private userService: UserService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private tokenVerify: TokenVerificationService
   ) {}
-  async ngOnInit(): Promise<void> { 
-    try {
-      if (localStorage.getItem("token") !== null) { 
-        this.userService.defaultHeaders = this.userService.defaultHeaders
-        .set('Authorization', 'Bearer ' + localStorage.getItem("token"));
-      };
-      
-      const user = await firstValueFrom(this.userService.userProfileGet());
-
-      this.router.navigate(['/', 'feed']);
-      // user is logged in when true
-    } catch (err) {
-      // user has no valid session or is not logged in
-    }
+  ngOnInit(){
+    this.tokenVerify.verifyToken().then((res) => {
+      if(res){
+        this.router.navigate(['/feed']);
+      }
+    });
   }
 }

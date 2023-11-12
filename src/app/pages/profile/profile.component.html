@@ -1,34 +1,36 @@
-<div class="container">
-        <div class="user-profile">
-            <img class="banner" src="https://picsum.photos/920/400/?blur=2" alt="Profile Banner">
-            <div class="user-info">
-                <div class="pfp-actions">
-                    <img class="profile-picture" src="https://picsum.photos/200"    alt="Profile Picture">
-                    <div class="actions">
-                        <button mat-fab extended id="followButton" (click)="toggleFollow()"     class="follow-button" color="white">
-                            <mat-icon>{{followButtonIcon}}</mat-icon>
-                            {{followButtonText}}
-                        </button>
+    <mat-sidenav-container>
+        <app-sidenav></app-sidenav>
+    </mat-sidenav-container>
+        <div #page class="nav-page-content">
+            <div class="container">
+                <div class="user-profile">
+                    <img class="banner" src="{{shownUser.bannerURL || 'https://www.digital-learning.fse.manchester.ac.uk/wp-content/themes/uom-theme/assets/images/default-banner.jpg'}}" alt="Profile Banner">
+                    <div class="user-info">
+                        <div class="pfp-actions">
+                            <img class="profile-picture" src="{{shownUser.profilePictureURL ||'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="Profile Picture">
+                            <div class="actions">
+                                <button mat-fab extended id="followButton" (click)="toggleFollow()" class="follow-button" color="white">
+                                <mat-icon>{{followButtonIcon}}</mat-icon>
+                                {{followButtonText}}
+                                </button>
+                                </div>
+                        </div>
+                        <div class="user-details">
+                            <h1 class="name">{{shownUser.displayName}}</h1>
+                            <p class="handler">&#64;{{shownUser.username}}</p>
+                            <p class="bio">
+                            {{shownUser.bio || shownUser.displayName + ' hasn\'t written a bio yet.'}}
+                            </p>
+                        </div>
+                        <div class="follows">
+                            <p><b>1M</b> Followers</p>
+                            <p><b>10</b> Following</p>
+                        </div>
                     </div>
+                    <mat-divider></mat-divider>
+                    <app-feed></app-feed>
                 </div>
-                <div class="user-details">
-                    <h1 class="name">John Doe</h1>
-                    <p class="handler">&#64;johndoe</p>
-                    <p class="bio">
-                        an absolute god. i am pretty and ugly at the same time. I do not    exist, because I am just a placeholder person. John Doe
-                    </p>
-                </div>
-                <div class="follows">
-                    <p><b>1M</b> Followers</p>
-                    <p><b>10</b> Following</p>
-                </div>
+            </div>
         </div>
-            <mat-divider></mat-divider>
-            <app-feed></app-feed>
-    </div>
-    <!--Rest of code goes above back button-->
-<mat-toolbar style="left:0;" color="primary" *ngIf="isMobile">
-    <button mat-icon-button (click)="goBack()">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
-</mat-toolbar>
+        <app-toolbar></app-toolbar>
+    <app-mobilenav></app-mobilenav>

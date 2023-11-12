@@ -1,12 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-
+import { User } from 'src/app/api/model/user';
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit{
-
+  loggedUser:User = JSON.parse(localStorage.getItem("user")!);
   isMobile = false;
 
   ngOnInit() {

@@ -1,9 +1,9 @@
 <mat-card style="background-color:rgba(0,0,0,0);">
     <mat-card-header>
         <div mat-card-avatar>
-            <img src="https://picsum.photos/200" alt="" style="border-radius: 50%; width: 2rem; height: 2rem; border: 2px solid black;">
+            <img src="{{loggedUser.profilePictureURL || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="" style="border-radius: 50%; width: 2rem; height: 2rem; border: 2px solid black;">
         </div>
-        <mat-card-title>John Doe,</mat-card-title>
+        <mat-card-title>{{loggedUser.displayName}},</mat-card-title>
         <mat-card-subtitle style="color: gray !important;">what's on your mind?</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>

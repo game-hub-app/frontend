@@ -12,17 +12,17 @@
         <mat-card-content>
             <div class="userInfo">
                 <div class="userImage">
-                    <img src="https://picsum.photos/200" alt="" style="border-radius: 50%; width: 2rem; height: 2rem; border: 1px solid black;">
+                    <img src="{{loggedUser.profilePictureURL || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="" style="border-radius: 50%; width: 2.5rem; height: 2.5rem; border: 1px solid black;">
                 </div>
                 <div class="userName">
-                    <b>John Doe</b>
-                    <p style="font-size:0.8rem;color:gray;">JohnDoe</p>
+                    <b style="font-size:1rem;">{{loggedUser.displayName}}</b>
+                    <p style="font-size:0.8rem;color:gray;">{{'@' + loggedUser.username}}</p>
                 </div>
                 <mat-divider></mat-divider>
             </div>
             <mat-form-field appearance="fill" color="primary" style="width:100%;">
-                <mat-label style="color:white;">Write your next post!</mat-label>
-                <textarea matInput style="color:white;" cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
+                <mat-label style="color:black;">Write your next post!</mat-label>
+                <textarea matInput style="color:black;" cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
                 cdkAutosizeMaxRows="20" cdkAutosizeMinRows="1"
                 maxlength="280"
                 ></textarea>

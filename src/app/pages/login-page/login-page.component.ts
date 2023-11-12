@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/api';
 import { LoginPageService } from 'src/app/services/login-page.service';
+import { UserService } from 'src/app/api';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +17,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private loginPageService: LoginPageService,
     private _authService: AuthService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -32,8 +34,14 @@ export class LoginPageComponent implements OnInit {
           password: this.loginForm.value.password,
         })
       );
-  
+
       // alert('Login success');
+        
+      this.userService.defaultHeaders = this.userService.defaultHeaders
+      .set('Authorization', 'Bearer ' + login);
+
+      const user = await firstValueFrom(this.userService.userProfileGet());
+      localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem('token', login);
       this.router.navigate(['/', 'feed']);
     } catch (error: any) {

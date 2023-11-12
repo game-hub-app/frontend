@@ -94,11 +94,6 @@
     size:crop;
 }
 
-mat-toolbar{
-    position:fixed;
-    top:0;
-}
-
 @media (min-width:580px)
 {
     .container{
