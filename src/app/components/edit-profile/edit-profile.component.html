@@ -11,7 +11,7 @@
         <div class="pictures">
             <div class="banner">
                 <div class="banner-background">
-                    <img src="{{loggedUser.bannerURL || 'https://game-hub-cdn.paiva.codes/placeholder-banner.jpg'}}" alt="">
+                    <img src="{{loggedUser.bannerURL || 'https://cdn.game-hub.pt/placeholder-banner.jpg'}}" alt="">
                 </div>
                 <input #bannerInput type="file" (change)="newPicture($event, true)"style="z-index:-1"
                 accept="image/*">
@@ -19,7 +19,7 @@
             </div>
             <div class="profile-picture">
                 <div class="profile-picture-background">
-                    <img src="{{loggedUser.profilePictureURL || 'https://game-hub-cdn.paiva.codes/placeholder-pfp.jpg'}}" alt="">
+                    <img src="{{loggedUser.profilePictureURL || 'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="">
                 </div>
                 <input #pfpInput type="file" (change)="newPicture($event, false)" style="z-index:-1"
                 accept="image/*">

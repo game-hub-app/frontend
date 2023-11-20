@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { User } from 'src/app/api/model/user';
-import { firstValueFrom } from 'rxjs';
-import { UserService } from 'src/app/api';
+import { Operation, UserService } from 'src/app/api';
+import { EditProfileService } from 'src/app/services/edit-profile.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/api';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private editService:EditProfileService) { }
 
   @Output() closeEdit = new EventEmitter<boolean>();
   loggedUser:User = null!;
@@ -48,6 +48,10 @@ export class EditProfileComponent {
     reader.readAsDataURL(image);
   }
 
+  saveChanges(){
+    this.editService.saveChanges(this.loggedUser, this.saveForm.value.username!, this.saveForm.value.displayName!, this.saveForm.value.bio!);
+  }
+
   checkMinLength(isUsername:boolean){
     if (isUsername){
       if(this.saveForm.value.username!.length < 4){
@@ -64,27 +68,5 @@ export class EditProfileComponent {
     }
   }
 
-  async saveChanges(){
-    this.saveUser = this.loggedUser;
-    let username = this.saveForm.get('username')!.value;
-    let displayName = this.saveForm.get('displayName')!.value;
-    let bio = this.saveForm.get('bio')!.value;
-
-    this.saveUser.username = username || this.loggedUser.username;
-    this.saveUser.displayName = displayName || this.loggedUser.displayName;
-    this.saveUser.bio = bio || this.loggedUser.bio;
-
-    try{
-      let userCreds = await firstValueFrom(this.userService.userIdGet(this.saveUser.id));
-      this.saveUser.hash = userCreds.hash;
-      this.saveUser.salt = userCreds.salt;
-
-      await firstValueFrom(this.userService.userIdPut(this.saveUser.id, this.saveUser));
-      let savedUser = await firstValueFrom(this.userService.userProfileUsernameGet(this.saveUser.username));
-      localStorage.setItem("user", JSON.stringify(savedUser));
-      location.reload();
-    } catch(error:any){
-      console.log(error.error);
-    }
-  }
+  
 }

@@ -7,10 +7,10 @@ ngOnInit();"></app-edit-profile>
         <div id="page" class="nav-page-content">
             <div class="container">
                 <div class="user-profile">
-                    <img class="banner" src="{{shownUser.bannerURL || 'https://game-hub-cdn.paiva.codes/placeholder-banner.jpg'}}" alt="Profile Banner">
+                    <img class="banner" src="{{shownUser.bannerURL || 'https://cdn.game-hub.pt/placeholder-banner.jpg'}}" alt="Profile Banner">
                     <div class="user-info">
                         <div class="pfp-actions">
-                            <img class="profile-picture" src="{{shownUser.profilePictureURL ||'https://game-hub-cdn.paiva.codes/placeholder-pfp.jpg'}}" alt="Profile Picture">
+                            <img class="profile-picture" src="{{shownUser.profilePictureURL ||'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="Profile Picture">
                             <div class="actions">
                                 <button *ngIf="isLoggedUser" mat-fab extended id="editProfileButton" (click)="editProfile = true; 
                                 page.classList.add('static-page')" class="follow-button" color="white">
