@@ -1,36 +1,78 @@
 <div class="container">
-    <mat-card style="background-color:transparent;display:flex;">
-        <mat-toolbar color="primary">
-        <div class="header">
-            <button mat-icon-button (click)="goBack()">
-                <mat-icon color="white">arrow_back</mat-icon>
-            </button>
-            <b style="margin:0; font-size:1rem;">Post</b>
+  <mat-card style="background-color: transparent; display: flex">
+    <mat-toolbar color="primary">
+      <div class="header">
+        <button mat-icon-button (click)="goBack()">
+          <mat-icon color="white">arrow_back</mat-icon>
+        </button>
+        <b style="margin: 0; font-size: 1rem">Post</b>
+      </div>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="userInfo">
+        <div class="userImage">
+          <img
+            src="{{
+              loggedUser.profilePictureURL ||
+                'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'
+            }}"
+            alt=""
+            style="
+              border-radius: 50%;
+              width: 2.5rem;
+              height: 2.5rem;
+              border: 1px solid black;
+            "
+          />
         </div>
-        </mat-toolbar>
+        <div class="userName">
+          <b style="font-size: 1rem">{{ loggedUser.displayName }}</b>
+          <p style="font-size: 0.8rem; color: gray">
+            {{ "@" + loggedUser.username }}
+          </p>
+        </div>
         <mat-divider></mat-divider>
-        <mat-card-content>
-            <div class="userInfo">
-                <div class="userImage">
-                    <img src="{{loggedUser.profilePictureURL || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="" style="border-radius: 50%; width: 2.5rem; height: 2.5rem; border: 1px solid black;">
-                </div>
-                <div class="userName">
-                    <b style="font-size:1rem;">{{loggedUser.displayName}}</b>
-                    <p style="font-size:0.8rem;color:gray;">{{'@' + loggedUser.username}}</p>
-                </div>
-                <mat-divider></mat-divider>
-            </div>
-            <mat-form-field appearance="fill" color="primary" style="width:100%;">
-                <mat-label style="color:black;">Write your next post!</mat-label>
-                <textarea matInput style="color:black;" cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
-                cdkAutosizeMaxRows="20" cdkAutosizeMinRows="1"
-                maxlength="280"
-                ></textarea>
-            </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions style="width:100%; bottom:0;">
-            <!--post button-->
-            <button mat-raised-button color="primary" style="right:0; margin-bottom:1rem; margin-right: 1rem; position: fixed; ">Post</button>
-        </mat-card-actions>
-    </mat-card>
+      </div>
+      <div [formGroup]="form">
+        <mat-form-field appearance="fill" color="primary" style="width: 100%">
+          <mat-label style="color: black">Write your next post!</mat-label>
+          <textarea
+            matInput
+            formControlName="content"
+            style="color: black"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMaxRows="20"
+            cdkAutosizeMinRows="1"
+            maxlength="280"
+          ></textarea>
+          <mat-hint align="end"
+            >{{ this.form.get("content")?.value.length ?? 0 }}/280</mat-hint
+          >
+        </mat-form-field>
+        <img
+          *ngIf="this.form.get('mediaURL')?.value"
+          [src]="this.form.get('mediaURL')?.value"
+          style="width: 100%"
+        />
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="icons">
+      <input
+        type="file"
+        class="file-input"
+        [disabled]="this.form.disabled"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        #fileUpload
+      />
+      <div class="file-upload">
+        <button mat-raised-button color="primary" (click)="fileUpload.click()" [disabled]="this.form.disabled">
+          <mat-icon>image</mat-icon>
+        </button>
+      </div>
+      <button mat-raised-button color="primary" (click)="createPost()" [disabled]="this.form.disabled">Post</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

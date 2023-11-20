@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { EditProfileMobileComponent } from './pages/mobile/edit-profile-mobile/edit-profile-mobile.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { EditProfileMobileComponent } from './pages/mobile/edit-profile-mobile/e
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatCardModule,
     MatListModule,
     HttpClientModule,
