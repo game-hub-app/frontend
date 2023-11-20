@@ -235,79 +235,6 @@ export class PostService {
   /**
    *
    *
-   * @param id
-   * @param body
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public postIdPut(
-    id: string,
-    body?: Post,
-    observe?: 'body',
-    reportProgress?: boolean
-  ): Observable<any>;
-  public postIdPut(
-    id: string,
-    body?: Post,
-    observe?: 'response',
-    reportProgress?: boolean
-  ): Observable<HttpResponse<any>>;
-  public postIdPut(
-    id: string,
-    body?: Post,
-    observe?: 'events',
-    reportProgress?: boolean
-  ): Observable<HttpEvent<any>>;
-  public postIdPut(
-    id: string,
-    body?: Post,
-    observe: any = 'body',
-    reportProgress: boolean = false
-  ): Observable<any> {
-    if (id === null || id === undefined) {
-      throw new Error(
-        'Required parameter id was null or undefined when calling postIdPut.'
-      );
-    }
-
-    let headers = this.defaultHeaders;
-
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = [];
-    const httpHeaderAcceptSelected: string | undefined =
-      this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = [
-      'application/json',
-      'text/json',
-      'application/_*+json',
-    ];
-    const httpContentTypeSelected: string | undefined =
-      this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected != undefined) {
-      headers = headers.set('Content-Type', httpContentTypeSelected);
-    }
-
-    return this.httpClient.request<any>(
-      'put',
-      `${this.basePath}/Post/${encodeURIComponent(String(id))}`,
-      {
-        body: body,
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
-  }
-
-  /**
-   *
-   *
    * @param body
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
@@ -348,6 +275,7 @@ export class PostService {
 
     // to determine the Content-Type header
     const consumes: string[] = [
+      'application/json-patch+json',
       'application/json',
       'text/json',
       'application/_*+json',

@@ -9,10 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { OperationType } from './operationType';
 
-export interface UserCommunities {
-  id: string;
-  communityId: string;
-  userId: string;
-  creationDate: Date;
+export interface Operation {
+  operationType?: OperationType;
+  path?: string;
+  op?: string;
+  from?: string;
+  value?: any;
 }

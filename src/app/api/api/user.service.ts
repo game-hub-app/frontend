@@ -22,6 +22,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
 
+import { Operation } from '../model/operation';
 import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -240,33 +241,33 @@ export class UserService {
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public userIdPut(
+  public userIdPatch(
     id: string,
-    body?: User,
+    body?: Array<Operation>,
     observe?: 'body',
     reportProgress?: boolean
   ): Observable<any>;
-  public userIdPut(
+  public userIdPatch(
     id: string,
-    body?: User,
+    body?: Array<Operation>,
     observe?: 'response',
     reportProgress?: boolean
   ): Observable<HttpResponse<any>>;
-  public userIdPut(
+  public userIdPatch(
     id: string,
-    body?: User,
+    body?: Array<Operation>,
     observe?: 'events',
     reportProgress?: boolean
   ): Observable<HttpEvent<any>>;
-  public userIdPut(
+  public userIdPatch(
     id: string,
-    body?: User,
+    body?: Array<Operation>,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling userIdPut.'
+        'Required parameter id was null or undefined when calling userIdPatch.'
       );
     }
 
@@ -282,6 +283,7 @@ export class UserService {
 
     // to determine the Content-Type header
     const consumes: string[] = [
+      'application/json-patch+json',
       'application/json',
       'text/json',
       'application/_*+json',
@@ -293,7 +295,7 @@ export class UserService {
     }
 
     return this.httpClient.request<any>(
-      'put',
+      'patch',
       `${this.basePath}/User/${encodeURIComponent(String(id))}`,
       {
         body: body,
@@ -303,68 +305,6 @@ export class UserService {
         reportProgress: reportProgress,
       }
     );
-  }
-
-  /**
-   *
-   *
-   * @param body
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public userPost(
-    body?: User,
-    observe?: 'body',
-    reportProgress?: boolean
-  ): Observable<User>;
-  public userPost(
-    body?: User,
-    observe?: 'response',
-    reportProgress?: boolean
-  ): Observable<HttpResponse<User>>;
-  public userPost(
-    body?: User,
-    observe?: 'events',
-    reportProgress?: boolean
-  ): Observable<HttpEvent<User>>;
-  public userPost(
-    body?: User,
-    observe: any = 'body',
-    reportProgress: boolean = false
-  ): Observable<any> {
-    let headers = this.defaultHeaders;
-
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = [
-      'text/plain',
-      'application/json',
-      'text/json',
-    ];
-    const httpHeaderAcceptSelected: string | undefined =
-      this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = [
-      'application/json',
-      'text/json',
-      'application/_*+json',
-    ];
-    const httpContentTypeSelected: string | undefined =
-      this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected != undefined) {
-      headers = headers.set('Content-Type', httpContentTypeSelected);
-    }
-
-    return this.httpClient.request<User>('post', `${this.basePath}/User`, {
-      body: body,
-      withCredentials: this.configuration.withCredentials,
-      headers: headers,
-      observe: observe,
-      reportProgress: reportProgress,
-    });
   }
 
   /**

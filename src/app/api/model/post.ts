@@ -16,5 +16,6 @@ export interface Post {
   postId?: string;
   communityId?: string;
   content: string;
+  mediaUrl?: string;
   creationDate: Date;
 }
