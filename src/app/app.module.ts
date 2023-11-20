@@ -30,6 +30,8 @@ import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.
 import { ApiModule, Configuration } from './api';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { EditProfileMobileComponent } from './pages/mobile/edit-profile-mobile/edit-profile-mobile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ToolbarComponent,
     MobilenavComponent,
     ProfileComponent,
+    EditProfileComponent,
+    EditProfileMobileComponent,
   ],
   imports: [
     BrowserModule,

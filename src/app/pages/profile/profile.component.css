@@ -20,8 +20,9 @@
     border-radius:20px;
     color:white;
     background-color:transparent;
-    display:flex;
+    display:flex !important;
     flex-direction: row;
+    align-items:center;
 }
 
 .Following{
@@ -84,14 +85,29 @@
     gap:1rem;
 }
 
+.static-page{
+    position:fixed;
+    overflow:hidden;
+}
+
+.edit-popup{
+    position:absolute;
+    z-index:999;
+    width:100%;
+    background-color:rgba(0,0,0,0.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
 .banner{
     width:100vw;
-    height:auto;
+    max-height:190px;
     max-width:580px;
     padding:0;
     border:0;
     top:0;
-    size:crop;
+    size: cover;
 }
 
 @media (min-width:580px)

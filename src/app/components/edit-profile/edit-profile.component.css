@@ -1,0 +1,123 @@
+.container{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content: center;
+    height:100vh;
+    margin:auto;
+}
+.main-page{
+    margin-left:4.8rem;
+    background-color: var(--lighter-background-color);
+    box-shadow: 0px 9px 20px 6px rgba(0,0,0,0.25);
+    max-width:580px;
+}
+
+.input-fields{
+    margin-left:1rem;
+    margin-right:1rem;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-between;
+    
+}
+.banner-background img{
+    width:580px;
+    max-height:190px;
+    size: cover;
+    aspect-ratio: 3 2;
+}
+.banner{
+    max-width:580px;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+mat-icon:hover{
+    cursor:pointer;
+}
+
+.banner mat-icon{
+    position:absolute;
+    bottom:0;
+    right:0;
+    margin:1rem;
+}
+
+.banner-background img{
+    opacity:0.5;
+}
+.profile{
+    margin-top:2rem;
+}
+.banner-background{
+    height:190px;
+    background-color:black;
+}
+
+.profile-picture-background img{ 
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    opacity:0.5;
+}
+.profile-picture-background{
+
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color:black;
+}
+.profile-picture{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    position:relative;
+    margin-top:-50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:1rem;
+}
+
+mat-icon{
+    opacity:0.7;
+}
+
+.profile-picture mat-icon{
+    position:absolute;
+    color:white;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    margin:1rem;
+    align-items:center;
+}
+
+.buttons a{
+    text-decoration:none;
+    color:gray;
+}
+
+.toolbar{
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.88);
+}
+
+.toolbar button{
+    position:absolute;
+    left:0;
+    margin-left:1rem;
+}
+
+.toolbar p{
+    margin:0;
+}

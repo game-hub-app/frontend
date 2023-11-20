@@ -17,8 +17,12 @@ export class ProfileComponent {
   shownUser:User = null!;
   followButtonText:String = "Follow";
   followButtonIcon:String = "person_add"
-
+  loggedUser:User = JSON.parse(localStorage.getItem("user")!);
   username: string = this.route.snapshot.paramMap.get('username')!;
+  editProfile: boolean = false;
+  isLoggedUser:boolean = false;
+
+  page: HTMLElement = document.getElementById('page')!;
 
   constructor(
     private _location: Location,
@@ -27,19 +31,28 @@ export class ProfileComponent {
     private router: Router
   ) { }
 
+  
   async ngOnInit(): Promise<void> {
-    try{
-      this.shownUser = await firstValueFrom(this.userService.userProfileUsernameGet(this.username));
-    }
-    catch(err){
-      this.router.navigate(['/']);
-    }
+    this.route.paramMap.subscribe(async params => {
+      this.username = params.get('username')!;
+      try{
+        this.shownUser = await firstValueFrom(this.userService.userProfileUsernameGet(this.username));
+      }
+      catch(err){
+        this.router.navigate(['/']);
+      }
 
-    console.log(this.shownUser);
+      this.page = document.getElementById('page')!;
+      if(this.shownUser.id == this.loggedUser.id){
+        this.isLoggedUser = true;
+      }
+    });
+
     if (window.innerWidth < 580) {
       this.isMobile = true;
     }
   }
+
 
   toggleFollow(){
     if(this.followButtonText=="Follow"){

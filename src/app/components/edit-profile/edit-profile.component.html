@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="main-page">
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="closeTab()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <div class="title">
+                <p>Edit Profile</p>
+            </div>
+        </mat-toolbar>
+        <div class="pictures">
+            <div class="banner">
+                <div class="banner-background">
+                    <img src="{{loggedUser.bannerURL || 'https://game-hub-cdn.paiva.codes/placeholder-banner.jpg'}}" alt="">
+                </div>
+                <input #bannerInput type="file" (change)="newPicture($event, true)"style="z-index:-1"
+                accept="image/*">
+                <mat-icon (click)="bannerInput.click()">mode</mat-icon>
+            </div>
+            <div class="profile-picture">
+                <div class="profile-picture-background">
+                    <img src="{{loggedUser.profilePictureURL || 'https://game-hub-cdn.paiva.codes/placeholder-pfp.jpg'}}" alt="">
+                </div>
+                <input #pfpInput type="file" (change)="newPicture($event, false)" style="z-index:-1"
+                accept="image/*">
+                <mat-icon (click)="pfpInput.click()">mode</mat-icon>
+            </div>
+        </div>
+        <div class="profile">
+            <form [formGroup]="saveForm">
+                <div class="input-fields">
+                    <p>Display Name</p>
+                    <mat-form-field style="width:50%;">
+                        <mat-label>Display Name</mat-label>
+                        <input matInput maxlength="30" minlength="6" (change)="checkMinLength(false)" placeholder="Display Name" value="{{loggedUser.displayName}}" formControlName="displayName">
+                    </mat-form-field>
+                </div>
+                <div class="input-fields">
+                    <p>Username</p>
+                    <mat-form-field style="width:50%;">
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" id="usernameField" minlength="4" (change)="checkMinLength(true)" maxlength="15" placeholder="Username" value="{{loggedUser.username}}" formControlName="username">
+                    </mat-form-field>
+                </div>
+                <div class="input-fields">
+                    <p>Biography</p>
+                    <mat-form-field style="width:50%;">
+                        <mat-label>Biography</mat-label>
+                        <textarea matInput maxlength=160 placeholder="Biography" value="{{loggedUser.bio}}" formControlName="bio"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+            <div class="buttons">
+                <button mat-raised-button color="accent" (click)="closeTab()" >Cancel</button>
+                <button mat-raised-button style="z-index:99 !important;" [disabled]="disableSave" color="primary" (click)="saveChanges()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

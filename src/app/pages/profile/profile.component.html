@@ -1,15 +1,23 @@
+<app-edit-profile class="edit-popup" *ngIf="editProfile" (closeEdit)="editProfile = $event; 
+page.classList.remove('static-page');
+ngOnInit();"></app-edit-profile>
     <mat-sidenav-container>
         <app-sidenav></app-sidenav>
     </mat-sidenav-container>
-        <div #page class="nav-page-content">
+        <div id="page" class="nav-page-content">
             <div class="container">
                 <div class="user-profile">
-                    <img class="banner" src="{{shownUser.bannerURL || 'https://www.digital-learning.fse.manchester.ac.uk/wp-content/themes/uom-theme/assets/images/default-banner.jpg'}}" alt="Profile Banner">
+                    <img class="banner" src="{{shownUser.bannerURL || 'https://game-hub-cdn.paiva.codes/placeholder-banner.jpg'}}" alt="Profile Banner">
                     <div class="user-info">
                         <div class="pfp-actions">
-                            <img class="profile-picture" src="{{shownUser.profilePictureURL ||'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="Profile Picture">
+                            <img class="profile-picture" src="{{shownUser.profilePictureURL ||'https://game-hub-cdn.paiva.codes/placeholder-pfp.jpg'}}" alt="Profile Picture">
                             <div class="actions">
-                                <button mat-fab extended id="followButton" (click)="toggleFollow()" class="follow-button" color="white">
+                                <button *ngIf="isLoggedUser" mat-fab extended id="editProfileButton" (click)="editProfile = true; 
+                                page.classList.add('static-page')" class="follow-button" color="white">
+                                <mat-icon>edit</mat-icon>
+                                Edit Profile
+                                </button>
+                                <button *ngIf="!isLoggedUser" mat-fab extended id="followButton" (click)="toggleFollow()" class="follow-button" color="white">
                                 <mat-icon>{{followButtonIcon}}</mat-icon>
                                 {{followButtonText}}
                                 </button>
