@@ -8,9 +8,10 @@
     </a>
   </div>
     <div class="user-info"> 
-      <span class="user-name" *ngIf="!isMobile" >{{loggedUser.displayName}}</span>
-      <a [routerLink]="'/users/' + loggedUser.username"  style="height:42px;">
-      <img class="user-image" src="{{loggedUser.profilePictureURL || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="user profile picture">
+      <span class="user-name" *ngIf="!isMobile" >{{username}}</span>
+      <a [routerLink]="routerLink" style="line-height:0 !important;color:white;text-decoration:none;">
+      <img *ngIf="profilePictureURL" class="user-image" src="{{profilePictureURL}}" alt="user profile picture">
+      <mat-icon class="material-symbols-outlined" style="font-size:32px!important;height:32px;width:32px;" *ngIf="!profilePictureURL">login</mat-icon>
       </a>
     </div>
   </mat-toolbar>

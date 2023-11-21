@@ -2,7 +2,7 @@
 page.classList.remove('static-page');
 ngOnInit();"></app-edit-profile>
     <mat-sidenav-container>
-        <app-sidenav></app-sidenav>
+        <app-sidenav *ngIf="!loggedUser"></app-sidenav>
     </mat-sidenav-container>
         <div id="page" class="nav-page-content">
             <div class="container">
@@ -36,9 +36,8 @@ ngOnInit();"></app-edit-profile>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
-                    <app-feed></app-feed>
                 </div>
             </div>
         </div>
         <app-toolbar></app-toolbar>
-    <app-mobilenav></app-mobilenav>
+    <app-mobilenav *ngIf="!loggedUser"></app-mobilenav>

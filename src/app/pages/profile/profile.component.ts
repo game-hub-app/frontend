@@ -17,7 +17,7 @@ export class ProfileComponent {
   shownUser:User = null!;
   followButtonText:String = "Follow";
   followButtonIcon:String = "person_add"
-  loggedUser:User = JSON.parse(localStorage.getItem("user")!);
+  loggedUser:User = JSON.parse(localStorage.getItem("user")??"{}");
   username: string = this.route.snapshot.paramMap.get('username')!;
   editProfile: boolean = false;
   isLoggedUser:boolean = false;
@@ -55,6 +55,10 @@ export class ProfileComponent {
 
 
   toggleFollow(){
+
+    if(!this.loggedUser){
+    }
+
     if(this.followButtonText=="Follow"){
       document.getElementById("followButton")!.classList.add("Following");
       this.followButtonIcon = "done"
