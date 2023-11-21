@@ -9,19 +9,22 @@ export class ToolbarComponent implements OnInit{
   isMobile = false;
   username = "";
   profilePictureURL = "";
-  routerLink = "";
+  routerLinkPicture = "";
+  routerLinkFeed = "";
 
   ngOnInit() {
     if(window.innerWidth < 650) {
       this.isMobile = true;
     }
     if(!localStorage.getItem("user")){
-      this.routerLink = "/";
+      this.routerLinkPicture = "/";
+      this.routerLinkFeed = "/";
     }else{
       let user:User = JSON.parse(localStorage.getItem("user")!);
       this.username = user.username;
       this.profilePictureURL = user.profilePictureURL || "https://cdn.game-hub.pt/placeholder-pfp.jpg";
-      this.routerLink = "/users/" + user.username;
+      this.routerLinkPicture = "/users/" + user.username;
+      this.routerLinkFeed = "/feed";
     }
   }
 

@@ -6,6 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { UserService } from 'src/app/api';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +29,8 @@ export class ProfileComponent {
     private _location: Location,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   
@@ -55,8 +57,13 @@ export class ProfileComponent {
 
 
   toggleFollow(){
-
-    if(!this.loggedUser){
+    console.log(this.loggedUser);
+    if(this.loggedUser.id == null){
+      console.log("hey");
+      this.snackBar.open("You need to be logged in to follow users!", "Close", {
+        duration: 5000,
+      });
+      return;
     }
 
     if(this.followButtonText=="Follow"){
