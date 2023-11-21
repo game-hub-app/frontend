@@ -18,4 +18,5 @@ export interface Post {
   content: string;
   mediaUrl?: string;
   creationDate: Date;
+  isLiked?: boolean;
 }

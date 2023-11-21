@@ -22,6 +22,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
 
+import { Like } from '../model/like';
 import { Post } from '../model/post';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -103,6 +104,68 @@ export class PostService {
     return this.httpClient.request<Array<Post>>(
       'get',
       `${this.basePath}/Post`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   *
+   *
+   * @param id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public postIdCommentsGet(
+    id: string,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<Post>>;
+  public postIdCommentsGet(
+    id: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Array<Post>>>;
+  public postIdCommentsGet(
+    id: string,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Array<Post>>>;
+  public postIdCommentsGet(
+    id: string,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling postIdCommentsGet.'
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      'text/plain',
+      'application/json',
+      'text/json',
+    ];
+    const httpHeaderAcceptSelected: string | undefined =
+      this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [];
+
+    return this.httpClient.request<Array<Post>>(
+      'get',
+      `${this.basePath}/Post/${encodeURIComponent(String(id))}/Comments`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
@@ -223,6 +286,68 @@ export class PostService {
     return this.httpClient.request<Post>(
       'get',
       `${this.basePath}/Post/${encodeURIComponent(String(id))}`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   *
+   *
+   * @param id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public postIdLikesGet(
+    id: string,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Array<Like>>;
+  public postIdLikesGet(
+    id: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Array<Like>>>;
+  public postIdLikesGet(
+    id: string,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Array<Like>>>;
+  public postIdLikesGet(
+    id: string,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling postIdLikesGet.'
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      'text/plain',
+      'application/json',
+      'text/json',
+    ];
+    const httpHeaderAcceptSelected: string | undefined =
+      this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [];
+
+    return this.httpClient.request<Array<Like>>(
+      'get',
+      `${this.basePath}/Post/${encodeURIComponent(String(id))}/Likes`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
