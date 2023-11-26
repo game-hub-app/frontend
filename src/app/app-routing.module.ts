@@ -1,47 +1,51 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StartPageComponent } from './pages/start-page/start-page.component';
-import { CommunityComponent } from './pages/community/community.component'
+import { CommunityComponent } from './pages/community/community.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-mobile.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PostDetailComponent } from './pages/post/post-detail/post-detail.component';
 
 const routes: Routes = [
   {
+    path: 'post/:id',
+    component: PostDetailComponent,
+  },
+  {
     path: 'users/:username',
-    component: ProfileComponent
+    component: ProfileComponent,
   },
   {
     path: 'new-post-mobile',
-    component: NewPostMobileComponent
+    component: NewPostMobileComponent,
   },
   {
     path: 'community',
-    component: CommunityComponent
+    component: CommunityComponent,
   },
-    {
-    path: "feed",
+  {
+    path: 'feed',
     component: StartPageComponent,
   },
   {
-    path: "register",
+    path: 'register',
     component: RegisterPageComponent,
   },
   {
-    path: "login",
+    path: 'login',
     component: LoginPageComponent,
   },
   {
-    path: "",
-    component: LandingPageComponent
-  }
-  
+    path: '',
+    component: LandingPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
