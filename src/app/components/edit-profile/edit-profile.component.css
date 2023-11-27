@@ -21,8 +21,8 @@
     display:flex;
     flex-direction: row;
     justify-content:space-between;
-    
 }
+
 .banner-background img{
     width:100vw;
     max-width:580px;
@@ -55,6 +55,7 @@ mat-icon:hover{
 }
 .profile{
     margin-top:2rem;
+    margin-bottom:3rem;
 }
 .banner-background{
     height:190px;
@@ -97,8 +98,15 @@ mat-icon{
 .buttons{
     display:flex;
     justify-content:space-between;
-    margin:1rem;
     align-items:center;
+    padding:1rem;
+}
+
+.buttonWrapper{
+    background-color: var(--lighter-background-color);
+    position:fixed;
+    width:100vw;
+    bottom:0;
 }
 
 .buttons a{
@@ -140,6 +148,7 @@ mat-icon{
         top:0;
         margin:0;
         width:100vw;
+        height: 100vh;
         box-shadow:none;
     }
 }
