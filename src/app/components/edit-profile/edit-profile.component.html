@@ -13,7 +13,7 @@
                 <div class="banner-background">
                     <img src="{{loggedUser.bannerURL || 'https://cdn.game-hub.pt/placeholder-banner.jpg'}}" alt="">
                 </div>
-                <input #bannerInput type="file" (change)="newPicture($event, true)"style="z-index:-1"
+                <input #bannerInput type="file" (change)="newPicture($event, true)"style="z-index:-1; visibility:hidden; position:absolute; right: -900;"
                 accept="image/*">
                 <mat-icon (click)="bannerInput.click()">mode</mat-icon>
             </div>
@@ -21,7 +21,7 @@
                 <div class="profile-picture-background">
                     <img src="{{loggedUser.profilePictureURL || 'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="">
                 </div>
-                <input #pfpInput type="file" (change)="newPicture($event, false)" style="z-index:-1"
+                <input #pfpInput type="file" (change)="newPicture($event, false)" style="z-index:-1;visibility:hidden; position:absolute; right: -900;"
                 accept="image/*">
                 <mat-icon (click)="pfpInput.click()">mode</mat-icon>
             </div>
