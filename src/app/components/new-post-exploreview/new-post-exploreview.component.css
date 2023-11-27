@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.userInfo {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mat-mdc-raised-button > .mat-icon {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.file-input {
+  display: none;
+}

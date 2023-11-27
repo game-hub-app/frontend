@@ -1,19 +1,76 @@
-<mat-card style="background-color:rgba(0,0,0,0);">
-    <mat-card-header>
-        <div mat-card-avatar>
-            <img src="{{loggedUser.profilePictureURL || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'}}" alt="" style="border-radius: 50%; width: 2rem; height: 2rem; border: 2px solid black;">
-        </div>
-        <mat-card-title>{{loggedUser.displayName}},</mat-card-title>
-        <mat-card-subtitle style="color: gray !important;">what's on your mind?</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <mat-form-field color="primary" appearance="fill" style="width:100%;">
-            <mat-label>Write your next post!</mat-label>
-            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
-            cdkAutosizeMaxRows="20" cdkAutosizeMinRows="1"
-            maxlength="280"
-            ></textarea>
-        </mat-form-field>
-        <button mat-raised-button color="primary" style="float:right;">Post</button>
-    </mat-card-content>
+<mat-card style="background-color: rgba(0, 0, 0, 0)">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img
+        src="{{
+          loggedUser.profilePictureURL ||
+            'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'
+        }}"
+        alt=""
+        style="
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          border: 2px solid black;
+        "
+      />
+    </div>
+    <mat-card-title>{{ loggedUser.displayName }},</mat-card-title>
+    <mat-card-subtitle style="color: gray !important"
+      >what's on your mind?</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <div [formGroup]="form">
+      <mat-form-field appearance="fill" color="primary" style="width: 100%">
+        <mat-label style="color: black">Write your next post!</mat-label>
+        <textarea
+          matInput
+          formControlName="content"
+          style="color: black"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMaxRows="20"
+          cdkAutosizeMinRows="1"
+          maxlength="280"
+        ></textarea>
+        <mat-hint align="end"
+          >{{ this.form.get("content")?.value.length ?? 0 }}/280</mat-hint
+        >
+      </mat-form-field>
+      <img
+        *ngIf="this.form.get('mediaURL')?.value"
+        [src]="this.form.get('mediaURL')?.value"
+        style="width: 100%"
+      />
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="icons">
+    <input
+      type="file"
+      class="file-input"
+      [disabled]="this.form.disabled"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      #fileUpload
+    />
+    <div class="file-upload">
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="fileUpload.click()"
+        [disabled]="this.form.disabled"
+      >
+        <mat-icon>image</mat-icon>
+      </button>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createPost()"
+      [disabled]="this.form.disabled"
+    >
+      Post
+    </button>
+  </mat-card-actions>
 </mat-card>
