@@ -353,6 +353,68 @@ export class PostService {
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
+  public postIdLikePost(
+    id: string,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<Like>;
+  public postIdLikePost(
+    id: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Like>>;
+  public postIdLikePost(
+    id: string,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Like>>;
+  public postIdLikePost(
+    id: string,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling postIdLikePost.'
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      'text/plain',
+      'application/json',
+      'text/json',
+    ];
+    const httpHeaderAcceptSelected: string | undefined =
+      this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [];
+
+    return this.httpClient.request<Like>(
+      'post',
+      `${this.basePath}/Post/${encodeURIComponent(String(id))}/Like`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   *
+   *
+   * @param id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
   public postIdLikesGet(
     id: string,
     observe?: 'body',

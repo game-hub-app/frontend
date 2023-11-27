@@ -1,0 +1,83 @@
+<div class="container">
+  <mat-card style="background-color: transparent; display: flex">
+    <mat-toolbar color="primary">
+      <div class="header">
+        <button mat-icon-button (click)="goBack()">
+          <mat-icon color="white">arrow_back</mat-icon>
+        </button>
+        <b style="margin: 0; font-size: 1rem">Post</b>
+      </div>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="userInfo">
+        <div class="user" (click)="goToAuthorProfile()">
+          <div class="userImage">
+            <img
+              src="{{
+                this.postAuthor?.profilePictureURL ||
+                  'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg'
+              }}"
+              alt=""
+              style="
+                border-radius: 50%;
+                width: 2.5rem;
+                height: 2.5rem;
+                border: 1px solid black;
+              "
+            />
+          </div>
+          <div class="userName">
+            <b style="font-size: 1rem">{{ this.postAuthor?.displayName }}</b>
+            <p style="font-size: 0.8rem; color: gray">
+              {{ "@" + this.postAuthor?.username }} ·
+              {{ this.post?.creationDate | dateAgo }}
+            </p>
+          </div>
+        </div>
+        <button
+          mat-button
+          color="white"
+          [matMenuTriggerFor]="menu"
+          *ngIf="postAuthor?.id == loggedInUser?.id"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit Post</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete Post</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div class="postContent">
+        <p style="font-size: 1rem">{{ this.post?.content }}</p>
+        <img
+          *ngIf="this.post?.mediaUrl"
+          src="{{ this.post?.mediaUrl }}"
+          alt=""
+        />
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions class="actions">
+      <button mat-button (click)="('comment')" color="white">
+        <mat-icon>comment</mat-icon>
+        <span>{{ this.postComments.length }}</span>
+      </button>
+      <button mat-button (click)="likePost()" color="white">
+        <mat-icon [ngClass]="this.post?.isLiked ? 'red-color' : ''"
+          >favorite</mat-icon
+        >
+        <span>{{ this.postLikes }}</span>
+      </button>
+      <button mat-button (click)="sharePost()" color="white">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

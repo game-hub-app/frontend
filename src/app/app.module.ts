@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { CommIconComponent } from './components/comm-icon/comm-icon.component';
 import { CommunityComponent } from './pages/community/community.component';
@@ -33,6 +34,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserProfilePreviewComponent } from './components/global/user-profile-preview/user-profile-preview.component';
+import { PostDetailComponent } from './pages/post/post-detail/post-detail.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { UserProfilePreviewComponent } from './components/global/user-profile-pr
     ProfileComponent,
     EditProfileComponent,
     UserProfilePreviewComponent,
+    PostDetailComponent,
+    DateAgoPipe,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,7 @@ import { UserProfilePreviewComponent } from './components/global/user-profile-pr
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
+    MatMenuModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
