@@ -5,12 +5,19 @@
   align-items: center;
 }
 
-.userInfo {
+.user {
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .mat-mdc-raised-button > .mat-icon {
@@ -30,7 +37,7 @@
 }
 
 .postContent {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: flex;
   align-content: center;
   flex-wrap: wrap;
@@ -45,4 +52,16 @@
 .red-color {
   color: red;
   fill: red;
+}
+
+.postContent img {
+  border-radius: 5px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-around;
 }
