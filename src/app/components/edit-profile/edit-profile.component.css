@@ -5,7 +5,9 @@
     justify-content: center;
     height:100vh;
     margin:auto;
+    width:100vw;
 }
+
 .main-page{
     margin-left:4.8rem;
     background-color: var(--lighter-background-color);
@@ -22,13 +24,15 @@
     
 }
 .banner-background img{
-    width:580px;
+    width:100vw;
+    max-width:580px;
     max-height:190px;
     size: cover;
     aspect-ratio: 3 2;
 }
 .banner{
     max-width:580px;
+    width:100vw;
     position: relative;
     display:flex;
     justify-content: center;
@@ -64,7 +68,6 @@ mat-icon:hover{
     opacity:0.5;
 }
 .profile-picture-background{
-
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -120,4 +123,23 @@ mat-icon{
 
 .toolbar p{
     margin:0;
+}
+
+@media(max-width:580px){
+    .container{
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        display:block;
+        margin:0;
+        overflow-x: hidden;
+    }
+    .main-page{
+        position:absolute;
+        top:0;
+        margin:0;
+        width:100vw;
+        box-shadow:none;
+    }
 }

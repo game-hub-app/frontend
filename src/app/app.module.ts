@@ -31,8 +31,8 @@ import { ApiModule, Configuration } from './api';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { EditProfileMobileComponent } from './pages/mobile/edit-profile-mobile/edit-profile-mobile.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UserProfilePreviewComponent } from './components/global/user-profile-preview/user-profile-preview.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MobilenavComponent,
     ProfileComponent,
     EditProfileComponent,
-    EditProfileMobileComponent,
+    UserProfilePreviewComponent,
   ],
   imports: [
     BrowserModule,

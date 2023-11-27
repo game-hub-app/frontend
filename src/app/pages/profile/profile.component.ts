@@ -57,9 +57,7 @@ export class ProfileComponent {
 
 
   toggleFollow(){
-    console.log(this.loggedUser);
     if(this.loggedUser.id == null){
-      console.log("hey");
       this.snackBar.open("You need to be logged in to follow users!", "Close", {
         duration: 5000,
       });

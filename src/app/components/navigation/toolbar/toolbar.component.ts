@@ -21,7 +21,7 @@ export class ToolbarComponent implements OnInit{
       this.routerLinkFeed = "/";
     }else{
       let user:User = JSON.parse(localStorage.getItem("user")!);
-      this.username = user.username;
+      this.username = user.displayName;
       this.profilePictureURL = user.profilePictureURL || "https://cdn.game-hub.pt/placeholder-pfp.jpg";
       this.routerLinkPicture = "/users/" + user.username;
       this.routerLinkFeed = "/feed";

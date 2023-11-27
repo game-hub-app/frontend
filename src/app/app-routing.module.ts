@@ -7,8 +7,13 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-mobile.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent
+  },
   {
     path: 'users/:username',
     component: ProfileComponent
