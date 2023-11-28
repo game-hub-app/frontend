@@ -44,7 +44,9 @@
     </mat-menu>
   </div>
   <div class="postContent" (click)="goToPost()">
-    <p style="font-size: 1rem">{{ this.post?.content }}</p>
+    <p style="font-size: 1rem; white-space: pre-line">
+      {{ this.post?.content }}
+    </p>
     <img *ngIf="this.post?.mediaUrl" src="{{ this.post?.mediaUrl }}" alt="" />
   </div>
   <mat-divider></mat-divider>

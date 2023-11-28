@@ -49,6 +49,7 @@
   padding: 1rem;
   border: 1px solid gray;
   border-radius: 20px;
+  white-space: pre-line;
 }
 
 .follows {

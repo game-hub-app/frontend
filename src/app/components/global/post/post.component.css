@@ -70,6 +70,7 @@
   gap: 1rem;
   align-items: center;
   justify-content: space-around;
+  z-index: -1;
 }
 
 .mdc-button {
