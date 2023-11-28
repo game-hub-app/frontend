@@ -27,7 +27,7 @@
                 </div>
                 <mat-list *ngIf="followingList.length != 0">
                     <mat-list-item *ngFor="let user of followingList">
-                        <app-user-profile-preview [followsLoggedUser]="checkIfFollowing(user.followingUserId)" [userId]="user.followingUserId" [userFollows]="checkUserFollows(user.followingUserId)"></app-user-profile-preview>
+                        <app-user-profile-preview [loggedUserFollowing]="loggedUserFollowing" [followsLoggedUser]="checkIfFollowing(user.followingUserId)" [userId]="user.followingUserId" [userFollows]="checkUserFollows(user.followingUserId)"></app-user-profile-preview>
                     </mat-list-item>
                 </mat-list>
             </mat-tab>

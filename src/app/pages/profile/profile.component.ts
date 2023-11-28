@@ -4,7 +4,7 @@ import { HostListener } from '@angular/core';
 import { User } from 'src/app/api/model/user';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from 'src/app/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ExtraOptions } from '@angular/router';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Follower, FollowerService } from 'src/app/api';
@@ -46,13 +46,17 @@ export class ProfileComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private followerService: FollowerService,
-    private followService: FollowService
-  ) { }
+    private followService: FollowService,
+  ) {
+  }
 
   
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(async params => {
       this.username = params.get('username')!;
+      this.isLoggedUser = false;
+      this.followList = false;
+      this.editProfile = false;
       try{
         this.shownUser = await firstValueFrom(this.userService.userProfileUsernameGet(this.username));
       }
@@ -65,20 +69,21 @@ export class ProfileComponent {
       }
       catch(err){
       }
-
       this.followerCount = this.followerList.length;
       this.followingCount = this.followingList.length;
       this.page = document.getElementById('page')!;
-
-      if(this.shownUser.id == this.loggedUser.id){
+      if(this.username == this.loggedUser.username){
         this.isLoggedUser = true;
       }else{
         this.loggedUserFollows = this.followerList.some(follower => follower.followerUserId == this.loggedUser.id);
-        console.log(this.loggedUserFollows);
         if(this.loggedUserFollows){
           document.getElementById("followButton")!.classList.add("Following");
           this.followButtonIcon = "done"
           this.followButtonText = "Following"
+        }else{
+          this.followButtonIcon = "person_add"
+          this.followButtonText = "Follow"
+          
         }
       }
     });

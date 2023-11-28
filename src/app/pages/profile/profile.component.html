@@ -1,7 +1,7 @@
 <app-edit-profile class="edit-popup" *ngIf="editProfile" (closeEdit)="editProfile = $event; 
 page.classList.remove('static-page');
 ngOnInit();"></app-edit-profile>
-<app-follow-list class="edit-popup" [followersList]="followerList" [followingList]="followingList" [displayName]="shownUser.username" [tabIndex]="followIndex" *ngIf="followList" (closeList)="followList = $event"></app-follow-list>
+<app-follow-list class="edit-popup" [followersList]="followerList" [followingList]="followingList" [displayName]="shownUser.displayName" [tabIndex]="followIndex" *ngIf="followList" (closeList)="followList = $event"></app-follow-list>
     <mat-sidenav-container>
         <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
     </mat-sidenav-container>

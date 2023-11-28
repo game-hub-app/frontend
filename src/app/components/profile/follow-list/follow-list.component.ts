@@ -12,7 +12,7 @@ export class FollowListComponent implements OnInit{
   @Input() followingList: Follower[] = [];
   @Input() followersList: Follower[] = [];
   @Input() tabIndex:number = 0;
-  @Input() displayName:String = "John Doe";
+  @Input() displayName:String = "";
   loggedUserFollowing:Follower[] = [];
   loggedUserFollowers:Follower[] = [];
   loggedUser:User = JSON.parse(localStorage.getItem("user")??"{}");

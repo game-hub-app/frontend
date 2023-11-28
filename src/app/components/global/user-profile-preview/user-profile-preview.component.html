@@ -2,7 +2,9 @@
     <div class="head-flex">
         <div class="image-split">
                 <div class="profile-picture">
-                    <img src="{{shownUser.profilePictureURL ||'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="Profile Picture">
+                    <a [routerLink]="pfpRouter" style="text-decoration:none;">
+                        <img src="{{shownUser.profilePictureURL ||'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="Profile Picture">
+                    </a>
                 </div>
                 <div class="user-info">
                     <div class="names">

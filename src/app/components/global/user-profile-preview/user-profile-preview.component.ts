@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User, UserService } from 'src/app/api';
+import { User, UserService, Follower} from 'src/app/api';
 import { firstValueFrom } from 'rxjs';
+import { FollowService } from 'src/app/services/follow.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-profile-preview',
@@ -12,26 +14,37 @@ export class UserProfilePreviewComponent implements OnInit{
   @Input() followsLoggedUser = true;
   @Input() userFollows = false;
   @Input() userId:string = "";
+  @Input() loggedUserFollowing:Follower[] = [];
 
   shownUser:User = null!;
   followButtonText:String = "Follow";
   followButtonIcon:String = "person_add";
   isLoggedUser:boolean = false;
+  pfpRouter = "";
 
-  toggleFollow(){
+  async toggleFollow(){
+    const loggedUser = JSON.parse(localStorage.getItem("user")??"{}");
     if(this.userFollows){
-      
-      this.followButtonText = "Follow";
-      this.followButtonIcon = "person_add"
+      this.loggedUserFollowing = await this.followService.unfollowUser(this.loggedUserFollowing, this.shownUser.id);
+      this.followButtonText = "Follow";      
+      this.followButtonIcon = "person_add";
+      this.snackBar.open("You unfollowed " + this.shownUser.displayName + "!", "Close", {
+        duration: 3000,
+      });
     }
     else{
+      const follow = await this.followService.followUser(loggedUser.id, this.shownUser.id);
+      this.loggedUserFollowing.push(follow);
       this.followButtonText = "Following";
       this.followButtonIcon = "done";
+      this.snackBar.open("Now following " + this.shownUser.displayName + "!", "Close", {
+        duration: 3000,
+      });
     }
     this.userFollows = !this.userFollows;
   }
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private followService:FollowService, private snackBar:MatSnackBar) { }
 
   async ngOnInit() {
     try{
@@ -39,12 +52,13 @@ export class UserProfilePreviewComponent implements OnInit{
       if(this.userId == JSON.parse(localStorage.getItem("user")??"{}").id){
         this.isLoggedUser = true;
       }
+      if(this.userFollows){
+        this.followButtonText = "Following";
+        this.followButtonIcon = "done";
+      }
     }catch(err)
     {
     }
-    if(this.userFollows){
-      this.followButtonText = "Following";
-      this.followButtonIcon = "done";
-    }
+    this.pfpRouter = "/users/" + this.shownUser.username;
   }
 }
