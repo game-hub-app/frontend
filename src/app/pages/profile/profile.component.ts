@@ -7,6 +7,8 @@ import { UserService } from 'src/app/api';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Follower, FollowerService } from 'src/app/api';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +24,11 @@ export class ProfileComponent {
   username: string = this.route.snapshot.paramMap.get('username')!;
   editProfile: boolean = false;
   isLoggedUser:boolean = false;
+  loggedUserFollows:boolean = false;
+  followerList:Follower[] = [];
+  followingList:Follower[] = [];
+  followerCount:number = 0;
+  followingCount:number = 0;
 
   page: HTMLElement = document.getElementById('page')!;
 
@@ -30,7 +37,8 @@ export class ProfileComponent {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private followerService: FollowerService
   ) { }
 
   
@@ -43,10 +51,27 @@ export class ProfileComponent {
       catch(err){
         this.router.navigate(['/']);
       }
+      try{
+      this.followerList = await firstValueFrom(this.userService.userIdFollowersGet(this.shownUser.id));
+      this.followingList = await firstValueFrom(this.userService.userIdFollowingGet(this.shownUser.id));
+      }
+      catch(err){
+      }
 
+      this.followerCount = this.followerList.length;
+      this.followingCount = this.followingList.length;
       this.page = document.getElementById('page')!;
+
       if(this.shownUser.id == this.loggedUser.id){
         this.isLoggedUser = true;
+      }else{
+        this.loggedUserFollows = this.followerList.some(follower => follower.followerUserId == this.loggedUser.id);
+        console.log(this.loggedUserFollows);
+        if(this.loggedUserFollows){
+          document.getElementById("followButton")!.classList.add("Following");
+          this.followButtonIcon = "done"
+          this.followButtonText = "Following"
+        }
       }
     });
 
@@ -56,22 +81,57 @@ export class ProfileComponent {
   }
 
 
-  toggleFollow(){
+  async toggleFollow(){
     if(this.loggedUser.id == null){
       this.snackBar.open("You need to be logged in to follow users!", "Close", {
         duration: 5000,
       });
       return;
     }
-
-    if(this.followButtonText=="Follow"){
-      document.getElementById("followButton")!.classList.add("Following");
-      this.followButtonIcon = "done"
-      this.followButtonText = "Following"
+    this.followerService.defaultHeaders = this.followerService.defaultHeaders.set("Authorization", "Bearer " + localStorage.getItem("token"));
+    if(!this.loggedUserFollows){
+      try{
+        const follow = await firstValueFrom(
+          this.followerService.followerPost({
+            id: Guid.create().toString(),
+            followerUserId: this.loggedUser.id,
+            followingUserId: this.shownUser.id,
+            creationDate: new Date()
+          })
+          );
+          console.log(follow);
+          this.loggedUserFollows = true;
+          this.followerList.push(follow);
+          document.getElementById("followButton")!.classList.add("Following");
+          this.followButtonIcon = "done"
+          this.followButtonText = "Following"
+          this.followerCount++;
+          this.snackBar.open("Now following " + this.shownUser.displayName + "!", "Close", {
+            duration: 3000,
+          });
+      }catch(err){
+          console.log(err);
+      }
     }else{
-      document.getElementById("followButton")!.classList.remove("Following");
-      this.followButtonIcon = "person_add"
-      this.followButtonText = "Follow"
+      try{
+        const unfollow = await firstValueFrom(
+          this.followerService.followerIdDelete(this.followerList.find(follower => follower.followerUserId == this.loggedUser.id)!.id)
+          );
+          console.log(unfollow);
+          this.loggedUserFollows = false;
+          this.followerList = this.followerList.filter(follower => follower.followerUserId != this.loggedUser.id);
+          document.getElementById("followButton")!.classList.remove("Following");
+          this.followButtonIcon = "person_add"
+          this.followButtonText = "Follow"
+          this.followerCount--;
+          this.snackBar.open("You unfollowed " + this.shownUser.displayName + "!", "Close", {
+            duration: 3000,
+          });
+      
+        }catch(err)
+        {
+          console.log(err);
+        }
     }
   }
 
