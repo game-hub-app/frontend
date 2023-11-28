@@ -1,145 +1,143 @@
-.mobileBack{
-    z-index:999;
-    position:sticky;
-    top:0;
-    left:0;
+.mobileBack {
+  z-index: 999;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
-.container{
-    max-width:580px;
-    background-color:rgba(0,0,0,0.4);
+.container {
+  max-width: 580px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
-.pfp-actions{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-}
-
-.follow-button{
-    border:1px solid white;
-    border-radius:20px;
-    color:white;
-    background-color:transparent;
-    display:flex !important;
-    flex-direction: row;
-    align-items:center;
+.pfp-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.Following{
-    background-color:white !important;
-    color:black !important;
+.follow-button {
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  background-color: transparent;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
 }
 
-.user-info{
-    display: flex;
-    flex-direction: column;
-    padding-left:1rem;
-    padding-right:1rem;
+.Following {
+  background-color: white !important;
+  color: black !important;
 }
 
-.profile-picture{
-    margin-top:-35px;
-    position:relative;
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    border:2px solid rgba(0,0,0,0.4);
+.user-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-.bio{
-    padding:1rem;
-    border:1px solid gray;
-    border-radius:20px;
+.profile-picture {
+  margin-top: -35px;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.4);
 }
 
-.follows{
-    display:flex;
-    flex-direction:row;
-    color:gray;
-    gap:1rem;
-}
-.follows b{
-    color:white;
+.bio {
+  padding: 1rem;
+  border: 1px solid gray;
+  border-radius: 20px;
 }
 
-.name{
-    margin-bottom:0;
-    font-size:1.5rem;
-    font-weight:500;
-    color:white;
-    padding:0;
+.follows {
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  gap: 1rem;
+}
+.follows b {
+  color: white;
 }
 
-.handler{
-    padding:0;
-    font-size:1rem;
-    font-weight:250;
-    color:gray;
-    margin-bottom:1rem;
+.name {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  padding: 0;
 }
 
-.container{
-    height:calc(100vh - 56px);
-    overflow:hidden;
+.handler {
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 250;
+  color: gray;
+  margin-bottom: 1rem;
 }
 
-.actions{
-    margin-top:1rem;
-    margin-right:1rem;
-    display:flex;
-    gap:1rem;
+.container {
+  height: calc(100vh - 56px);
 }
 
-.static-page{
-    position:fixed;
-    overflow:hidden;
+.actions {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
-.follow-click{
-    cursor:pointer;
+.static-page {
+  position: fixed;
+  overflow: hidden;
 }
 
-.edit-popup{
-    position:absolute;
-    z-index:999;
-    width:100%;
-    background-color:rgba(0,0,0,0.4);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.follow-click {
+  cursor: pointer;
 }
 
-.no-posts{
-    display:flex;
-    flex-direction:column;
-    margin-top:1rem;
-    align-items:center;
-    opacity: 0.5;
-    height: 6rem;
+.edit-popup {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.banner{
-    width:100vw;
-    max-height:190px;
-    max-width:580px;
-    padding:0;
-    border:0;
-    top:0;
-    size: cover;
+.no-posts {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  align-items: center;
+  opacity: 0.5;
+  height: 6rem;
 }
 
-.no-posts mat-icon{
-    font-size:50px;
-    width:50px;
-    height:50px;
-    margin-bottom:1rem;
+.banner {
+  width: 100vw;
+  max-height: 190px;
+  max-width: 580px;
+  padding: 0;
+  border: 0;
+  top: 0;
+  size: cover;
 }
 
-@media (min-width:580px)
-{
-    .container{
-        width:580px;
-        margin: 0 auto;
-        border-left:2px solid white;
-        border-right:2px solid white;
-    }
+.no-posts mat-icon {
+  font-size: 50px;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 580px) {
+  .container {
+    width: 580px;
+    margin: 0 auto;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+  }
 }

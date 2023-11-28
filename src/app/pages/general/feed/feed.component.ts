@@ -1,17 +1,25 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { Post, PostService } from 'src/app/api';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
+  styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
+  isMobile: boolean = false;
 
-  isMobile:boolean = false;
-  constructor() { }
+  posts: Post[] = [];
 
-  ngOnInit() {
+  constructor(private _postService: PostService) {}
+
+  async ngOnInit() {
     this.onResize();
+
+    var posts = await firstValueFrom(this._postService.postGet());
+
+    this.posts = posts.reverse();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -23,4 +31,3 @@ export class FeedComponent implements OnInit {
     }
   }
 }
-

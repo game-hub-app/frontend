@@ -1,7 +1,3 @@
 <app-new-post-exploreview *ngIf="!isMobile"></app-new-post-exploreview>
 <mat-divider *ngIf="!isMobile"></mat-divider>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview>
-<app-post-exploreview></app-post-exploreview> 
+<app-post *ngFor="let post of posts" [post]="post"> </app-post>
