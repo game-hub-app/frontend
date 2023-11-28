@@ -94,6 +94,10 @@
     overflow:hidden;
 }
 
+.follow-click{
+    cursor:pointer;
+}
+
 .edit-popup{
     position:absolute;
     z-index:999;

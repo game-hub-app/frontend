@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Follower, FollowerService } from 'src/app/api';
+import { FollowService } from 'src/app/services/follow.service';
 import { Guid } from 'guid-typescript';
 
 @Component({
@@ -16,19 +17,25 @@ import { Guid } from 'guid-typescript';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  username: string = this.route.snapshot.paramMap.get('username')!;
+  
   isMobile:Boolean = false;
+  
   shownUser:User = null!;
+  loggedUser:User = JSON.parse(localStorage.getItem("user")??"{}");
+  isLoggedUser:boolean = false;
+
   followButtonText:String = "Follow";
   followButtonIcon:String = "person_add"
-  loggedUser:User = JSON.parse(localStorage.getItem("user")??"{}");
-  username: string = this.route.snapshot.paramMap.get('username')!;
-  editProfile: boolean = false;
-  isLoggedUser:boolean = false;
   loggedUserFollows:boolean = false;
   followerList:Follower[] = [];
   followingList:Follower[] = [];
   followerCount:number = 0;
   followingCount:number = 0;
+  followIndex:number = 0;
+
+  followList:boolean = false;
+  editProfile: boolean = false;
 
   page: HTMLElement = document.getElementById('page')!;
 
@@ -38,7 +45,8 @@ export class ProfileComponent {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
-    private followerService: FollowerService
+    private followerService: FollowerService,
+    private followService: FollowService
   ) { }
 
   
@@ -80,6 +88,10 @@ export class ProfileComponent {
     }
   }
 
+  openFollowList(index:number){
+    this.followIndex = index;
+    this.followList = true;
+  }
 
   async toggleFollow(){
     if(this.loggedUser.id == null){
@@ -88,18 +100,9 @@ export class ProfileComponent {
       });
       return;
     }
-    this.followerService.defaultHeaders = this.followerService.defaultHeaders.set("Authorization", "Bearer " + localStorage.getItem("token"));
     if(!this.loggedUserFollows){
       try{
-        const follow = await firstValueFrom(
-          this.followerService.followerPost({
-            id: Guid.create().toString(),
-            followerUserId: this.loggedUser.id,
-            followingUserId: this.shownUser.id,
-            creationDate: new Date()
-          })
-          );
-          console.log(follow);
+          const follow = await this.followService.followUser(this.loggedUser.id, this.shownUser.id);
           this.loggedUserFollows = true;
           this.followerList.push(follow);
           document.getElementById("followButton")!.classList.add("Following");
@@ -114,12 +117,11 @@ export class ProfileComponent {
       }
     }else{
       try{
-        const unfollow = await firstValueFrom(
-          this.followerService.followerIdDelete(this.followerList.find(follower => follower.followerUserId == this.loggedUser.id)!.id)
-          );
-          console.log(unfollow);
+          console.log(this.followerList);
+          console.log(this.shownUser.id)
+          this.followerList = await this.followService.unfollowUser(this.followerList, this.shownUser.id);
           this.loggedUserFollows = false;
-          this.followerList = this.followerList.filter(follower => follower.followerUserId != this.loggedUser.id);
+          console.log(this.followerList);
           document.getElementById("followButton")!.classList.remove("Following");
           this.followButtonIcon = "person_add"
           this.followButtonText = "Follow"

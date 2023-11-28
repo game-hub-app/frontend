@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="page">
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="close()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <div class="title">
+                <p>{{ displayName }}</p>
+            </div>
+        </mat-toolbar>
+        <mat-tab-group [selectedIndex]="tabIndex" color="accent" class="tabs">
+            <mat-tab label="Followers">
+                <div class="no-follow" *ngIf="followersList.length == 0">
+                    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                    <p>{{ displayName }} doesn't have any followers.</p>
+                </div>
+                <mat-list *ngIf="followersList.length != 0">
+                    <mat-list-item *ngFor="let user of followersList">
+                        <app-user-profile-preview [followsLoggedUser]="checkIfFollowing(user.followerUserId)" [userId]="user.followerUserId" [userFollows]="checkUserFollows(user.followerUserId)"></app-user-profile-preview>
+                    </mat-list-item>
+                </mat-list>
+            </mat-tab>
+            <mat-tab label="Following">
+                <div class="no-follow" *ngIf="followingList.length == 0">
+                    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                    <p>{{ displayName }} isn't following anyone.</p>
+                </div>
+                <mat-list *ngIf="followingList.length != 0">
+                    <mat-list-item *ngFor="let user of followingList">
+                        <app-user-profile-preview [followsLoggedUser]="checkIfFollowing(user.followingUserId)" [userId]="user.followingUserId" [userFollows]="checkUserFollows(user.followingUserId)"></app-user-profile-preview>
+                    </mat-list-item>
+                </mat-list>
+            </mat-tab>
+        </mat-tab-group> 
+    </div>
+</div>

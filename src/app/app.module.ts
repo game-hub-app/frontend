@@ -31,11 +31,13 @@ import { MobilenavComponent } from './components/navigation/mobilenav/mobilenav.
 import { ApiModule, Configuration } from './api';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserProfilePreviewComponent } from './components/global/user-profile-preview/user-profile-preview.component';
 import { PostDetailComponent } from './pages/post/post-detail/post-detail.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { FollowListComponent } from './components/profile/follow-list/follow-list.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     UserProfilePreviewComponent,
     PostDetailComponent,
     DateAgoPipe,
+    FollowListComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     MatCardModule,
     MatListModule,
     HttpClientModule,
+    MatTabsModule,
     ApiModule.forRoot(() => {
       return new Configuration({
         basePath: 'https://game-hub-api.azurewebsites.net',
