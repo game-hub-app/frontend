@@ -1,32 +1,46 @@
 <div class="container">
-    <div class="head-flex">
-        <div class="image-split">
-                <div class="profile-picture">
-                    <a [routerLink]="pfpRouter" style="text-decoration:none;">
-                        <img src="{{shownUser.profilePictureURL ||'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="Profile Picture">
-                    </a>
-                </div>
-                <div class="user-info">
-                    <div class="names">
-                        <p class="name">{{shownUser.displayName}}</p>
-                        <div class="handler-follow">
-                            <p class="handler">&#64;{{shownUser.username}}</p>
-                            <p class = "follows" *ngIf="followsLoggedUser">Follows You</p>
-                        </div>
-                    </div>
-                </div>
+  <div class="head-flex">
+    <div class="image-split">
+      <div class="profile-picture">
+        <a [routerLink]="pfpRouter" style="text-decoration: none">
+          <img
+            src="{{
+              shownUser.profilePictureURL ||
+                'https://cdn.game-hub.pt/placeholder-pfp.jpg'
+            }}"
+            alt="Profile Picture"
+          />
+        </a>
+      </div>
+      <div class="user-info">
+        <div class="names">
+          <p class="name">{{ shownUser.displayName }}</p>
+          <div class="handler-follow">
+            <p class="handler">&#64;{{ shownUser.username }}</p>
+            <p class="follows" *ngIf="followsLoggedUser">Follows You</p>
+          </div>
         </div>
-        <div class="follow-button-wrapper">
-            <button *ngIf="!isLoggedUser" mat-fab extended id="followButton" (click)="toggleFollow()" class="follow-button" color="white">
-                <mat-icon>{{followButtonIcon}}</mat-icon>
-                {{followButtonText}}
-            </button>
-        </div>
+      </div>
     </div>
-    <div class="bio">
-        <p>
-            {{shownUser.bio ||''}}
-        </p>
+    <div class="follow-button-wrapper">
+      <button
+        *ngIf="!isLoggedUser"
+        mat-fab
+        extended
+        id="followButton"
+        (click)="toggleFollow()"
+        class="follow-button"
+        color="white"
+      >
+        <mat-icon>{{ followButtonIcon }}</mat-icon>
+        {{ followButtonText }}
+      </button>
     </div>
+  </div>
+  <div class="bio">
+    <p>
+      {{ shownUser.bio || "" }}
+    </p>
+  </div>
 </div>
 <mat-divider></mat-divider>

@@ -15,7 +15,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { CommIconComponent } from './components/comm-icon/comm-icon.component';
 import { CommunityComponent } from './pages/community/community.component';
-import { PostExploreviewComponent } from './components/post-exploreview/post-exploreview.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -37,8 +36,9 @@ import { UserProfilePreviewComponent } from './components/global/user-profile-pr
 import { PostDetailComponent } from './pages/post/post-detail/post-detail.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { FollowListComponent } from './components/profile/follow-list/follow-list.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { PostComponent } from './components/global/post/post.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     LoginPageComponent,
     CommIconComponent,
     CommunityComponent,
-    PostExploreviewComponent,
     NewPostExploreviewComponent,
     NewPostMobileComponent,
     FeedComponent,
@@ -62,6 +61,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     PostDetailComponent,
     DateAgoPipe,
     FollowListComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,51 +1,101 @@
-<app-edit-profile class="edit-popup" *ngIf="editProfile" (closeEdit)="editProfile = $event; 
-page.classList.remove('static-page');
-ngOnInit();"></app-edit-profile>
-<app-follow-list class="edit-popup" [followersList]="followerList" [followingList]="followingList" [displayName]="shownUser.displayName" [tabIndex]="followIndex" *ngIf="followList" (closeList)="followList = $event"></app-follow-list>
-    <mat-sidenav-container>
-        <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
-    </mat-sidenav-container>
-        <div id="page" class="nav-page-content">
-            <div class="container">
-                <div class="user-profile">
-                    <img class="banner" src="{{shownUser.bannerURL || 'https://cdn.game-hub.pt/placeholder-banner.jpg'}}" alt="Profile Banner">
-                    <div class="user-info">
-                        <div class="pfp-actions">
-                            <img class="profile-picture" src="{{shownUser.profilePictureURL ||'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="Profile Picture">
-                            <div class="actions">
-                                <button *ngIf="isLoggedUser" mat-fab extended id="editProfileButton" (click)="editProfile = true; 
-                                page.classList.add('static-page')" class="follow-button" color="white">
-                                <mat-icon>edit</mat-icon>
-                                Edit Profile
-                                </button>
-                                <button *ngIf="!isLoggedUser" mat-fab extended id="followButton" (click)="toggleFollow()" class="follow-button" color="white">
-                                <mat-icon>{{followButtonIcon}}</mat-icon>
-                                {{followButtonText}}
-                                </button>
-                                </div>
-                        </div>
-                        <div class="user-details">
-                            <h1 class="name">{{shownUser.displayName}}</h1>
-                            <p class="handler">&#64;{{shownUser.username}}</p>
-                            <p class="bio">
-                            {{shownUser.bio || shownUser.displayName + ' hasn\'t written a bio yet.'}}
-                            </p>
-                        </div>
-                        <div class="follows">
-                            <p class="follow-click" (click)="openFollowList(0)"><b>{{followerCount}}</b> Followers</p>
-                            <p class="follow-click" (click)="openFollowList(1)"><b>{{followingCount}}</b> Following</p>
-                        </div>
-                    </div>
-                    <mat-divider></mat-divider>
-
-                    <div class="no-posts">
-                        <mat-icon>
-                            sentiment_very_dissatisfied
-                        </mat-icon>
-                        <p>{{shownUser.displayName}} hasn't posted anything yet.</p>
-                    </div>
-                </div>
-            </div>
+<app-edit-profile
+  class="edit-popup"
+  *ngIf="editProfile"
+  (closeEdit)="
+    editProfile = $event; page.classList.remove('static-page'); ngOnInit()
+  "
+></app-edit-profile>
+<app-follow-list
+  class="edit-popup"
+  [followersList]="followerList"
+  [followingList]="followingList"
+  [displayName]="shownUser.displayName"
+  [tabIndex]="followIndex"
+  *ngIf="followList"
+  (closeList)="followList = $event"
+></app-follow-list>
+<mat-sidenav-container>
+  <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
+</mat-sidenav-container>
+<div id="page" class="nav-page-content">
+  <div class="container">
+    <div class="user-profile">
+      <img
+        class="banner"
+        src="{{
+          shownUser.bannerURL ||
+            'https://cdn.game-hub.pt/placeholder-banner.jpg'
+        }}"
+        alt="Profile Banner"
+      />
+      <div class="user-info">
+        <div class="pfp-actions">
+          <img
+            class="profile-picture"
+            src="{{
+              shownUser.profilePictureURL ||
+                'https://cdn.game-hub.pt/placeholder-pfp.jpg'
+            }}"
+            alt="Profile Picture"
+          />
+          <div class="actions">
+            <button
+              *ngIf="isLoggedUser"
+              mat-fab
+              extended
+              id="editProfileButton"
+              (click)="editProfile = true; page.classList.add('static-page')"
+              class="follow-button"
+              color="white"
+            >
+              <mat-icon>edit</mat-icon>
+              Edit Profile
+            </button>
+            <button
+              *ngIf="!isLoggedUser"
+              mat-fab
+              extended
+              id="followButton"
+              (click)="toggleFollow()"
+              class="follow-button"
+              color="white"
+            >
+              <mat-icon>{{ followButtonIcon }}</mat-icon>
+              {{ followButtonText }}
+            </button>
+          </div>
         </div>
-        <app-toolbar></app-toolbar>
-    <app-mobilenav *ngIf="!loggedUser"></app-mobilenav>
+        <div class="user-details">
+          <h1 class="name">{{ shownUser.displayName }}</h1>
+          <p class="handler">&#64;{{ shownUser.username }}</p>
+          <p class="bio">
+            {{
+              shownUser.bio ||
+                shownUser.displayName + " hasn't written a bio yet."
+            }}
+          </p>
+        </div>
+        <div class="follows">
+          <p class="follow-click" (click)="openFollowList(0)">
+            <b>{{ followerCount }}</b> Followers
+          </p>
+          <p class="follow-click" (click)="openFollowList(1)">
+            <b>{{ followingCount }}</b> Following
+          </p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <ng-container *ngIf="posts.length > 0">
+        <app-post *ngFor="let post of posts" [post]="post"> </app-post>
+      </ng-container>
+      <ng-container *ngIf="posts.length == 0">
+        <div class="no-posts">
+          <mat-icon> sentiment_very_dissatisfied </mat-icon>
+          <p>{{ shownUser.displayName }} hasn't posted anything yet.</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<app-toolbar></app-toolbar>
+<app-mobilenav *ngIf="!loggedUser"></app-mobilenav>

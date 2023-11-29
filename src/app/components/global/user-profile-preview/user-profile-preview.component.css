@@ -1,85 +1,86 @@
-.container{
-    padding:1rem;
-    background-color:rgba(0,0,0,0.4);
-    max-width: 580px;
+.container {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  max-width: 580px;
 }
 
-.handler-follow{
-    display:flex;
-    flex-direction:row;
-    gap:0.5rem;
-    align-items:flex-end;
+.handler-follow {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: flex-end;
 }
 
-.name{
-    color:rgba(255,255,255,0.9);
+.name {
+  color: rgba(255, 255, 255, 0.9);
 }
-.head-flex{
-    display:flex;
-    flex-direction:row;
-    justify-content: space-between;
-}
-
-.follow-button{
-    border:1px solid white;
-    border-radius:20px;
-    color:white;
-    background-color:transparent;
-    display:flex !important;
-    flex-direction: row;
-    align-items:center;
+.head-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.Following{
-    background-color:white !important;
-    color:black !important;
+.follow-button {
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  background-color: transparent;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
 }
 
-.follows{
-    padding:0 2px 0 2px;
-    background-color:darkgray;
-    border-radius:2px;
-    font-size:0.7rem;
+.Following {
+  background-color: white !important;
+  color: black !important;
 }
 
-.image-split{
-    display:flex;
-    flex-direction:row;
-    align-items:flex-start;
+.follows {
+  padding: 0 2px 0 2px;
+  background-color: darkgray;
+  border-radius: 2px;
+  font-size: 0.7rem;
 }
 
-.profile-picture{
-    width:50px;
-    height:50px;
+.image-split {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-.profile-picture img{
-    width:100%;
-    height:100%;
-    border-radius:50%;
+.profile-picture {
+  width: 50px;
+  height: 50px;
 }
 
-.user-info{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    margin-left:1rem;
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
-p{
-    margin:0;
-    padding:0;
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
 }
 
-.handler{
-    color:gray;
+p {
+  margin: 0;
+  padding: 0;
+  white-space: pre-line;
 }
 
-.bio{
-    margin-left:calc(50px + 1rem);
-    max-width:60vw;
+.handler {
+  color: gray;
 }
-.bio p{
-    text-wrap: wrap;
-    color:white;
+
+.bio {
+  margin-left: calc(50px + 1rem);
+  max-width: 60vw;
+}
+.bio p {
+  text-wrap: wrap;
+  color: white;
 }
