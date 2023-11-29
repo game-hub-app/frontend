@@ -38,6 +38,7 @@ import { PostDetailComponent } from './pages/post/post-detail/post-detail.compon
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { FollowListComponent } from './components/profile/follow-list/follow-list.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     HttpClientModule,
     MatTabsModule,
+    ImageCropperModule,
     ApiModule.forRoot(() => {
       return new Configuration({
         basePath: 'https://game-hub-api.azurewebsites.net',

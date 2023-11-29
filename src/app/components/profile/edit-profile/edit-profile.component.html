@@ -1,3 +1,34 @@
+<div class="cropper-wrapper" *ngIf="bannerChangedEvent">
+    <image-cropper class="cropper"
+    [imageChangedEvent]="bannerChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="58 / 19"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="cropper-buttons">
+        <button mat-raised-button color="warn" (click)="clearCropper()">Discard</button>
+        <button mat-raised-button color="primary"(click)="newPicture(true)">Save</button>
+    </div>
+</div>
+<div class="cropper-wrapper" *ngIf="pfpChangedEvent">
+    <image-cropper class="cropper"
+    [imageChangedEvent]="pfpChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="cropper-buttons">
+        <button mat-raised-button color="warn" (click)="clearCropper()">Discard</button>
+        <button mat-raised-button color="primary" (click)="newPicture(false)">Save</button>
+    </div>
+</div>
 <div class="container">
     <div class="main-page">
         <mat-toolbar color="primary" class="toolbar">
@@ -13,7 +44,7 @@
                 <div class="banner-background">
                     <img src="{{loggedUser.bannerURL || 'https://cdn.game-hub.pt/placeholder-banner.jpg'}}" alt="">
                 </div>
-                <input #bannerInput type="file" (change)="newPicture($event, true)"style="z-index:-1; visibility:hidden; position:absolute; right: -900;"
+                <input #bannerInput type="file" (change)="bannerChangeEvent($event)"style="z-index:-1; visibility:hidden; position:absolute; right: -900;"
                 accept="image/*">
                 <mat-icon (click)="bannerInput.click()">mode</mat-icon>
             </div>
@@ -21,13 +52,13 @@
                 <div class="profile-picture-background">
                     <img src="{{loggedUser.profilePictureURL || 'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="">
                 </div>
-                <input #pfpInput type="file" (change)="newPicture($event, false)" style="z-index:-1;visibility:hidden; position:absolute; right: -900;"
+                <input #pfpInput type="file" (change)="pfpChangeEvent($event)" style="z-index:-1;visibility:hidden; position:absolute; right: -900;"
                 accept="image/*">
                 <mat-icon (click)="pfpInput.click()">mode</mat-icon>
             </div>
         </div>
         <div class="profile">
-            <form [formGroup]="saveForm">
+            <form [formGroup]="saveForm" class="submit-form">
                 <div class="input-fields">
                     <p>Display Name</p>
                     <mat-form-field style="width:50%;">
@@ -50,12 +81,12 @@
                     </mat-form-field>
                 </div>
             </form>
-            <div class="buttonWrapper">
-                <mat-divider></mat-divider>
-                <div class="buttons">
-                    <button mat-raised-button color="accent" (click)="closeTab()" >Cancel</button>
-                    <button mat-raised-button style="z-index:99 !important;" [disabled]="disableSave" color="primary" (click)="saveChanges()">Save</button>
-                </div>
+        </div>
+        <div class="buttonWrapper">
+            <mat-divider></mat-divider>
+            <div class="buttons">
+                <button mat-raised-button color="accent" (click)="closeTab()" >Cancel</button>
+                <button mat-raised-button style="z-index:99 !important;" [disabled]="disableSave"color="primary" (click)="saveChanges()">Save</button>
             </div>
         </div>
     </div>

@@ -9,12 +9,17 @@
 }
 
 .main-page{
+    height:auto;
     margin-left:4.8rem;
     background-color: var(--lighter-background-color);
     box-shadow: 0px 9px 20px 6px rgba(0,0,0,0.25);
     max-width:580px;
+    overflow-x: hidden;
 }
 
+.submit-form{
+    height:fit-content;
+}
 .input-fields{
     margin-left:1rem;
     margin-right:1rem;
@@ -32,6 +37,8 @@
 .banner{
     max-width:580px;
     width:100vw;
+    height:auto;
+    max-height:190px;
     position: relative;
     display:flex;
     justify-content: center;
@@ -57,7 +64,8 @@ mat-icon:hover{
     margin-bottom:3rem;
 }
 .banner-background{
-    height:190px;
+    height:auto;
+    max-height:190px;
     background-color:black;
 }
 
@@ -103,9 +111,8 @@ mat-icon{
 
 .buttonWrapper{
     background-color: var(--lighter-background-color);
-    position:fixed;
     width:100vw;
-    bottom:0;
+    max-width:580px;
 }
 
 .buttons a{
@@ -116,6 +123,7 @@ mat-icon{
 .toolbar{
     position:relative;
     display: flex;
+    max-width: 580px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -128,10 +136,52 @@ mat-icon{
     margin-left:1rem;
 }
 
+.cropper{
+    width:100vw;
+    margin-left:4.8rem;
+    background-color:black;
+    max-width:580px;
+}
+
+.cropper-buttons{
+    margin-left:4.8rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background-color:white;
+    width:100vw;
+    padding:5px;
+    max-width: 580px;
+}
+
+.cropper-wrapper{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    z-index:999;
+    top:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background-color:rgba(0,0,0,0.8);
+}
+
 .toolbar p{
     margin:0;
 }
-
+@media(max-width:660px){
+    .main-page{
+        margin-left:0;
+    }
+    .cropper{
+        width:80vw;
+        margin-left:0;
+    }
+    .cropper-buttons{
+        width:80vw;
+        margin-left:0;
+    }
+}
 @media(max-width:580px){
     .container{
         position:absolute;
@@ -149,5 +199,24 @@ mat-icon{
         width:100vw;
         height: 100vh;
         box-shadow:none;
+    }
+
+    .cropper{
+        width:80vw;
+        margin:0;
+    }
+    .cropper-buttons{
+        width:80vw;
+        margin:0;
+    }
+
+    .submit-form{
+        height:fit-content;
+        margin-bottom:4rem;
+    }
+
+    .buttonWrapper{
+        position:fixed;
+        bottom:0;
     }
 }
