@@ -97,12 +97,18 @@ export class ProfileComponent {
       this.posts = posts.reverse();
     });
 
+    if (this.loggedUser.id == null) {
+      document.getElementById('followerClick')!.classList.remove('follow-click');
+      document.getElementById('followingClick')!.classList.remove('follow-click');
+    }
+
     if (window.innerWidth < 580) {
       this.isMobile = true;
     }
   }
 
   openFollowList(index: number) {
+    if (this.loggedUser.id == null) { return; } 
     this.followIndex = index;
     this.followList = true;
   }
