@@ -46,13 +46,4 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   opacity: 1;
-  background-image: repeating-radial-gradient(
-      circle at 0 0,
-      transparent 0,
-      var(--background-color) 40px
-    ),
-    repeating-linear-gradient(
-      var(--lighter-background-color-alpha),
-      var(--lighter-background-color)
-    );
 }

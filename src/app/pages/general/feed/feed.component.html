@@ -1,3 +1,5 @@
-<app-new-post-exploreview *ngIf="!isMobile"></app-new-post-exploreview>
-<mat-divider *ngIf="!isMobile"></mat-divider>
-<app-post *ngFor="let post of posts" [post]="post"> </app-post>
+
+<div class="post-wrapper">
+    <app-new-post-exploreview class="new-post" *ngIf="!isMobile"></app-new-post-exploreview>
+    <app-post class="post" *ngFor="let post of posts" [post]="post"> </app-post>
+</div>

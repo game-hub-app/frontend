@@ -37,10 +37,13 @@
 }
 
 .post {
-  display: flex;
+  border-left:1px white solid;
+  border-right:1px white solid;
+  padding:1rem;
+  max-width:580px;
+  margin:0 auto;
+  display:flexbox;
   flex-direction: column;
-  gap: 1rem;
-  padding: 16px;
 }
 
 .postContent {
@@ -50,9 +53,17 @@
   flex-direction: column;
 }
 
+@media (max-width:580px){
+  .post{
+    border:none;
+  }
+}
+
 .postContent img {
   width: 100%;
   height: auto;
+  border-image: round;
+  border-radius: 25px;
 }
 
 .red-color {
