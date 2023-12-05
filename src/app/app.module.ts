@@ -13,7 +13,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
-import { CommIconComponent } from './components/comm-icon/comm-icon.component';
 import { CommunityComponent } from './pages/community/community.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -47,7 +46,6 @@ import { PostComponent } from './components/global/post/post.component';
     LandingPageComponent,
     RegisterPageComponent,
     LoginPageComponent,
-    CommIconComponent,
     CommunityComponent,
     NewPostExploreviewComponent,
     NewPostMobileComponent,

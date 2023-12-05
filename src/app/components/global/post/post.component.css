@@ -36,14 +36,9 @@
 }
 
 .post {
-  border-left:1px white solid;
-  border-right:1px white solid;
   padding:1rem;
-  max-width:580px;
+  max-width:calc(580px - 2rem);
   width:100vw;
-  margin:0 auto;
-  display:flexbox;
-  flex-direction: column;
 }
 
 .postContent {
@@ -63,7 +58,6 @@
 .postContent img {
   width: 100%;
   height: auto;
-  border-image: round;
   border-radius: 25px;
 }
 

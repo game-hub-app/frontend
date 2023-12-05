@@ -5,6 +5,8 @@
   left: 0;
 }
 .container {
+  border-left:1px solid white;
+  border-right:1px solid white;
   max-width: 580px;
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -78,10 +80,6 @@
   margin-bottom: 1rem;
 }
 
-.container {
-  height: calc(100vh - 56px);
-}
-
 .actions {
   margin-top: 1rem;
   margin-right: 1rem;
@@ -138,7 +136,5 @@
   .container {
     width: 580px;
     margin: 0 auto;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
   }
 }

@@ -85,6 +85,7 @@
         </div>
       </div>
       <mat-divider></mat-divider>
+    </div>
       <ng-container *ngIf="posts.length > 0">
         <app-post *ngFor="let post of posts" [post]="post"> </app-post>
       </ng-container>
@@ -94,7 +95,6 @@
           <p>{{ shownUser.displayName }} hasn't posted anything yet.</p>
         </div>
       </ng-container>
-    </div>
   </div>
 </div>
 <app-toolbar></app-toolbar>
