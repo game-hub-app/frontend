@@ -64,3 +64,14 @@
   align-items: center;
   justify-content: space-around;
 }
+
+.post-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.post-border{
+  border-left:1px white solid;
+  border-right:1px white solid;
+}

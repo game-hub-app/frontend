@@ -13,6 +13,7 @@ export class NewPostMobileService {
       content: new FormControl('', [Validators.required]),
       mediaURL: new FormControl('', []),
       communityId: new FormControl(''),
+      postId: new FormControl(''),
       creationDate: new FormControl(new Date(), []),
     });
   }

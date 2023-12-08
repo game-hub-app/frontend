@@ -9,6 +9,13 @@
       </div>
     </mat-toolbar>
     <mat-divider></mat-divider>
-    <app-post [post]="post"></app-post>
+    <div class="post-wrapper">
+      <div class="post-border">
+        <app-post [post]="post" (refreshComment)="refreshComments()"></app-post>
+        <div class="comments" *ngIf="this.postComments.length != 0">
+          <app-post [post]="comment" *ngFor="let comment of postComments"></app-post>
+        </div>
+      </div>
+    </div>
   </mat-card>
 </div>

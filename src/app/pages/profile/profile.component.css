@@ -5,6 +5,7 @@
   left: 0;
 }
 .container {
+  margin: 0 auto;
   border-left:1px solid white;
   border-right:1px solid white;
   max-width: 580px;
@@ -132,9 +133,10 @@
   margin-bottom: 1rem;
 }
 
-@media (min-width: 580px) {
+@media (max-width: 580px) {
   .container {
-    width: 580px;
-    margin: 0 auto;
+    width: 100vw;
+    border:none;
+    margin:0;
   }
 }

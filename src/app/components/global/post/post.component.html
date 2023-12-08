@@ -23,6 +23,9 @@
           {{ this.post?.creationDate | dateAgo }}
         </p>
       </div>
+      <div *ngIf="this.post?.postId!=null" class="isReply">
+        <p>Replying to someone</p>
+      </div>
     </div>
     <button
       mat-button
@@ -51,9 +54,9 @@
   </div>
   <mat-divider></mat-divider>
   <div class="actions">
-    <button mat-button (click)="('comment')" color="white">
+    <button mat-button (click)="openNewComment()" color="white">
       <mat-icon>comment</mat-icon>
-      <span>{{ this.postComments.length }}</span>
+      <span>{{ this.postCommentsCount }}</span>
     </button>
     <button mat-button (click)="likePost()" color="white">
       <mat-icon [ngClass]="this.post?.isLiked ? 'red-color' : ''"
@@ -66,4 +69,64 @@
     </button>
   </div>
   <mat-divider></mat-divider>
+  <div class="add-comment" *ngIf="showNewComment">
+    <div class="basic-user-info">
+      <img src="{{ this.loggedInUser!.profilePictureURL  || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg' }}" alt="">
+      <div class="usernames-comment">
+        <b>{{ this.loggedInUser!.displayName }}</b>
+        <p style="color:gray;margin:0;">{{ "@" + this.loggedInUser!.username }}</p>
+      </div>
+    </div>
+    <div [formGroup]="form" style="margin-top:1rem">
+      <mat-form-field appearance="fill" color="primary" style="width: 100%">
+        <mat-label style="color: black">Write a comment on this post</mat-label>
+        <textarea
+          matInput
+          formControlName="content"
+          style="color: black"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMaxRows="20"
+          cdkAutosizeMinRows="1"
+          maxlength="280"
+        ></textarea>
+        <mat-hint align="end"
+          >{{ this.form.get("content")?.value.length ?? 0 }}/280</mat-hint
+        >
+      </mat-form-field>
+      <img
+        *ngIf="this.form.get('mediaURL')?.value"
+        [src]="this.form.get('mediaURL')?.value"
+        style="width: 100px;height:100px;"
+      />
+      <input
+      type="file"
+      class="file-input"
+      [disabled]="this.form.disabled"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      #fileUpload
+      />
+    </div>
+    <div class="actions-comment">
+      <div class="file-upload">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="fileUpload.click()"
+          [disabled]="this.form.disabled"
+        >
+          <mat-icon>image</mat-icon>
+        </button>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="createComment()"
+        [disabled]="this.form.disabled"
+      >
+        Post
+      </button>
+    </div>
+  </div>
 </div>
