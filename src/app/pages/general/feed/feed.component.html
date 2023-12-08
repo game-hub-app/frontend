@@ -1,5 +1,11 @@
-
 <div class="post-wrapper">
     <app-new-post-exploreview class="new-post" *ngIf="!isMobile"></app-new-post-exploreview>
-    <app-post class="post" *ngFor="let post of posts" [post]="post"> </app-post>
+    <mat-tab-group class="tab-border">
+        <mat-tab label="For You">
+            <app-post *ngFor="let post of posts" [post]="post"></app-post>
+        </mat-tab>
+        <mat-tab label="Following">
+            <app-post *ngFor="let post of followingPosts" [post]="post"></app-post>
+        </mat-tab>
+    </mat-tab-group>
 </div>

@@ -23,6 +23,9 @@ export class PostComponent implements OnChanges {
   loggedInUser: User | undefined;
   showNewComment: boolean = false;
   form: FormGroup;
+  parentPost: Post | undefined;
+  parentPostAuthor: User | undefined;
+  parentUsername: string | undefined;
 
   constructor(
     private _postService: PostService,
@@ -65,12 +68,27 @@ export class PostComponent implements OnChanges {
     );
 
     this.postCommentsCount = this.postComments.length || 0;
-    console.log(this.postCommentsCount);
     this.loggedInUser = await firstValueFrom(
       this._userService.userProfileGet()
     );
-  }
 
+    if (this.post?.postId != null || this.post?.postId != undefined) {
+      try {
+        this.parentPost = await firstValueFrom(
+          this._postService.postIdGet(this.post.postId)
+        );
+
+        this.parentPostAuthor = await firstValueFrom(
+          this._userService.userIdGet(this.parentPost.userId)
+        );
+        this.parentUsername = "Reply to: @" + this.parentPostAuthor.username;
+      } catch (error: any) {
+        this.parentPost = { id: "", userId: "", creationDate: new Date(), mediaUrl: "", content: "", postId: undefined, isLiked: false };
+        this.parentUsername = "Replied post was deleted";
+      }
+
+    }
+  }
   goToAuthorProfile() {
     if (!this.postAuthor) return;
 
@@ -101,7 +119,6 @@ export class PostComponent implements OnChanges {
     }
     if (window.location.href.includes('/post')){
       this.showNewComment = !this.showNewComment;
-      console.log(this.postComments);
     } else{
       this.router.navigate(['post', this.post?.id]);
     }
@@ -139,7 +156,6 @@ export class PostComponent implements OnChanges {
     try {
       
       const comment = await firstValueFrom(this._postService.postPost(this.form.value));
-      console.log(comment);
       
       this.postComments.push(comment);
       this.postCommentsCount++;
@@ -148,10 +164,13 @@ export class PostComponent implements OnChanges {
       this.snackBar.open('Post created successfully!', 'Close', {
         duration: 5000,
       });
-      this.refreshComment.emit(true);
+      if(window.location.href.includes('/post' + this.post?.id)){
+        this.refreshComment.emit(true);
+      }else{
+        this.location.go('/post/' + this.post?.id);
+      }
       this.form = this._newPostMobileService.buildForm();
       this.showNewComment = false;
-      // this.form.reset(); se comentar isto ajudar, o david vai me fazer 2 filhos - assinado: ver git blame
     } catch (error: any) {
       this.snackBar.open(error.error, 'Close', {
         duration: 5000,
@@ -168,7 +187,6 @@ export class PostComponent implements OnChanges {
       const reader = new FileReader();
       reader.onload = () => {
         this.form.patchValue({ mediaURL: reader.result as string });
-        console.log(this.form.value);
       };
       reader.readAsDataURL(file);
 
@@ -178,10 +196,25 @@ export class PostComponent implements OnChanges {
       // upload$.subscribe();
     }
   }
+  async deletePost() {
+    if (!this.post) return;
+
+    await firstValueFrom(this._postService.postIdDelete(this.post.id));
+
+    this.snackBar.open('Post deleted successfully!', 'Close', {
+      duration: 5000,
+    });
+    window.location.reload();
+  }
+
+  async goToParentPost() {
+    if (this.parentPost?.id == "" || this.parentPost?.id == '') return;
+
+    this.router.navigate(['post', this.parentPost?.id]);
+  }
 
   async goToPost() {
     if (!this.post) return;
-
     this.router.navigate(['post', this.post.id]);
   }
 }

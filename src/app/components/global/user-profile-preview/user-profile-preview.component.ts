@@ -16,7 +16,7 @@ export class UserProfilePreviewComponent implements OnInit{
   @Input() userId:string = "";
   @Input() loggedUserFollowing:Follower[] = [];
 
-  shownUser:User = null!;
+  shownUser:User = {} as User;
   followButtonText:String = "Follow";
   followButtonIcon:String = "person_add";
   isLoggedUser:boolean = false;

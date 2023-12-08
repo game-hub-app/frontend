@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { Post, PostService } from 'src/app/api';
+import { Post, PostService, User } from 'src/app/api';
 
 @Component({
   selector: 'app-feed',
@@ -11,6 +11,8 @@ export class FeedComponent implements OnInit {
   isMobile: boolean = false;
 
   posts: Post[] = [];
+  followingPosts: Post[] = [];
+  loggedInUser: User = JSON.parse(localStorage.getItem('user')??"{}");
 
   constructor(private _postService: PostService) {}
 
@@ -18,8 +20,15 @@ export class FeedComponent implements OnInit {
     this.onResize();
 
     var posts = await firstValueFrom(this._postService.postGet());
+    
+    this.posts = posts.filter(post => post.postId == null);
+    this.posts.reverse();
 
-    this.posts = posts.reverse();
+    var followingPosts = await firstValueFrom(this._postService.postFollowingGet());
+
+    this.followingPosts = followingPosts.filter(post => post.postId == null);
+    this.followingPosts.reverse();
+
   }
 
   @HostListener('window:resize', ['$event'])

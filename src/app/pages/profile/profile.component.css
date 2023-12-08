@@ -4,6 +4,12 @@
   top: 0;
   left: 0;
 }
+
+.tab-border{
+  position:relative;
+  z-index:0;
+}
+
 .container {
   margin: 0 auto;
   border-left:1px solid white;
@@ -25,6 +31,10 @@
   display: flex !important;
   flex-direction: row;
   align-items: center;
+}
+.action-button-label{
+  position:relative;
+  z-index:0 ;
 }
 
 .Following {
@@ -134,9 +144,19 @@
 }
 
 @media (max-width: 580px) {
-  .container {
-    width: 100vw;
+    .container {
+    width:100vw;
     border:none;
     margin:0;
   }
+.post-container{
+  width:calc(100vw - 2rem);
+  overflow:hidden;
+
+}
+}
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  --mat-tab-header-inactive-label-text-color: rgba(255,255,255,0.7);
+  --mat-tab-header-inactive-focus-label-text-color: white;
+  --mat-tab-header-inactive-hover-label-text-color: white;
 }

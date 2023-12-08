@@ -21,7 +21,7 @@ export class ProfileComponent {
 
   isMobile: Boolean = false;
 
-  shownUser: User = null!;
+  shownUser: User = {} as User;
   loggedUser: User = JSON.parse(localStorage.getItem('user') ?? '{}');
   isLoggedUser: boolean = false;
 
@@ -38,6 +38,8 @@ export class ProfileComponent {
   editProfile: boolean = false;
 
   posts: Post[] = [];
+  comments: Post[] = [];
+  media: Post[] = [];
 
   page: HTMLElement = document.getElementById('page')!;
 
@@ -93,8 +95,10 @@ export class ProfileComponent {
       let posts = await firstValueFrom(
         this.userService.userIdPostsGet(this.shownUser.id)
       );
-
-      this.posts = posts.reverse();
+      this.posts = posts.filter((post) => post.postId == null);
+      this.comments = posts.filter((post) => post.postId != null || post.postId != undefined);
+      this.media = this.posts.filter((post) => post.mediaUrl != null);
+      this.posts = this.posts.reverse();
     });
 
     if (this.loggedUser.id == null) {

@@ -23,9 +23,9 @@
           {{ this.post?.creationDate | dateAgo }}
         </p>
       </div>
-      <div *ngIf="this.post?.postId!=null" class="isReply">
-        <p>Replying to someone</p>
-      </div>
+    </div>
+    <div *ngIf="this.post?.postId!=null" class="isReply" (click)="goToParentPost()">
+      <p>{{parentUsername}}</p>
     </div>
     <button
       mat-button
@@ -40,7 +40,7 @@
         <mat-icon>edit</mat-icon>
         <span>Edit Post</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="deletePost()">
         <mat-icon>delete</mat-icon>
         <span>Delete Post</span>
       </button>
