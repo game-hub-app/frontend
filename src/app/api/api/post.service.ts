@@ -23,6 +23,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 import { Observable } from 'rxjs';
 
 import { Like } from '../model/like';
+import { Operation } from '../model/operation';
 import { Post } from '../model/post';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -462,6 +463,80 @@ export class PostService {
       'get',
       `${this.basePath}/Post/${encodeURIComponent(String(id))}/Likes`,
       {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   *
+   *
+   * @param id
+   * @param body
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public postIdPatch(
+    id: string,
+    body?: Array<Operation>,
+    observe?: 'body',
+    reportProgress?: boolean
+  ): Observable<any>;
+  public postIdPatch(
+    id: string,
+    body?: Array<Operation>,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<any>>;
+  public postIdPatch(
+    id: string,
+    body?: Array<Operation>,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<any>>;
+  public postIdPatch(
+    id: string,
+    body?: Array<Operation>,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling postIdPatch.'
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [];
+    const httpHeaderAcceptSelected: string | undefined =
+      this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [
+      'application/json-patch+json',
+      'application/json',
+      'text/json',
+      'application/_*+json',
+    ];
+    const httpContentTypeSelected: string | undefined =
+      this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
+
+    return this.httpClient.request<any>(
+      'patch',
+      `${this.basePath}/Post/${encodeURIComponent(String(id))}`,
+      {
+        body: body,
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
