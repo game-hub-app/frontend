@@ -1,5 +1,5 @@
 <div class="post-wrapper">
-    <app-new-post-exploreview class="new-post" *ngIf="!isMobile"></app-new-post-exploreview>
+    <app-new-post-exploreview class="new-post" *ngIf="!isMobile" (refreshPosts)="refreshPosts()"></app-new-post-exploreview>
     <mat-tab-group class="tab-border">
         <mat-tab label="For You">
             <app-post *ngFor="let post of posts" [post]="post"></app-post>

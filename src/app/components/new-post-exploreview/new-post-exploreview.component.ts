@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firstValueFrom } from 'rxjs';
@@ -12,6 +12,7 @@ import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
 })
 export class NewPostExploreviewComponent {
   loggedUser: User = JSON.parse(localStorage.getItem('user')!);
+  @Output() refreshPosts = new EventEmitter<boolean>();
 
   form: FormGroup;
 
@@ -45,10 +46,11 @@ export class NewPostExploreviewComponent {
       this._snackBar.open('Post created successfully!', 'Close', {
         duration: 5000,
       });
-
       this.form.enable();
 
-      this.form.reset();
+      this.refreshPosts.emit(true);
+      this.form = this._newPostMobileService.buildForm();
+      this.form.patchValue({ userId: this.loggedUser.id });
     } catch (error: any) {
       this._snackBar.open(error.error, 'Close', {
         duration: 5000,

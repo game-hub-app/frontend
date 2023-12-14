@@ -43,6 +43,7 @@ export class PostDetailComponent implements OnInit {
       );
       this.postComments = await firstValueFrom(this._postService.postIdCommentsGet(params.get('id')!)
       );
+      this.postComments.reverse();
     });
   }
 
@@ -50,6 +51,7 @@ export class PostDetailComponent implements OnInit {
     this._postService.postIdCommentsGet(this.post!.id).subscribe((data) => {
       this.postComments = data;
     });
+    this.postComments.reverse();
   }
 
   goBack() {

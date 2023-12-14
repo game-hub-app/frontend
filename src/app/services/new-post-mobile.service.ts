@@ -11,7 +11,7 @@ export class NewPostMobileService {
     return new FormGroup({
       userId: new FormControl('', []),
       content: new FormControl('', [Validators.required]),
-      mediaURL: new FormControl('', []),
+      mediaURL: new FormControl(null, []),
       communityId: new FormControl(''),
       postId: new FormControl(''),
       creationDate: new FormControl(new Date(), []),

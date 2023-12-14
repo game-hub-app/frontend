@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, windowWhen } from 'rxjs';
 import { Post, User, PostService, UserService } from 'src/app/api';
 import { Location } from '@angular/common';
 import { EventEmitter } from '@angular/core';
@@ -102,7 +102,7 @@ export class PostComponent implements OnChanges {
           );
           this.content!.nativeElement.innerHTML = this.content!.nativeElement.innerHTML.replace(
             username,
-            `<a style="color:#673ab7;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
+            `<a style="color:#ffd740;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
           )
         } catch (error: any) {
         }
@@ -191,12 +191,14 @@ export class PostComponent implements OnChanges {
       this.snackBar.open('Post created successfully!', 'Close', {
         duration: 5000,
       });
-      if(window.location.href.includes('/post' + this.post?.id)){
+      if(window.location.href.includes('/post')){
         this.refreshComment.emit(true);
       }else{
         this.location.go('/post/' + this.post?.id);
       }
+
       this.form = this._newPostMobileService.buildForm();
+      this.form.patchValue({ userId: this.loggedInUser!.id });
       this.showNewComment = false;
     } catch (error: any) {
       this.snackBar.open(error.error, 'Close', {

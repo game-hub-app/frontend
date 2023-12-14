@@ -24,6 +24,10 @@ export class FeedComponent implements OnInit {
     }
     this.onResize();
 
+    this.refreshPosts();
+  }
+
+  async refreshPosts(){
     var posts = await firstValueFrom(this._postService.postGet());
     
     this.posts = posts.filter(post => post.postId == null);
@@ -33,7 +37,6 @@ export class FeedComponent implements OnInit {
 
     this.followingPosts = followingPosts.filter(post => post.postId == null);
     this.followingPosts.reverse();
-
   }
 
   @HostListener('window:resize', ['$event'])
