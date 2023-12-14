@@ -66,7 +66,6 @@ export class NewPostExploreviewComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.form.patchValue({ mediaURL: reader.result as string });
-        console.log(this.form.value);
       };
       reader.readAsDataURL(file);
 

@@ -80,13 +80,14 @@
                         <textarea matInput maxlength=160 placeholder="Biography" value="{{loggedUser.bio}}" formControlName="bio"></textarea>
                     </mat-form-field>
                 </div>
+                <button style="float:right; margin-right:1rem;" mat-raised-button color="warn" (click)="openDeleteDialog()">Delete Account</button>
             </form>
         </div>
         <div class="buttonWrapper">
             <mat-divider></mat-divider>
             <div class="buttons">
                 <button mat-raised-button color="accent" (click)="closeTab()" >Cancel</button>
-                <button mat-raised-button style="z-index:99 !important;" [disabled]="disableSave"color="primary" (click)="saveChanges()">Save</button>
+                <button mat-raised-button style="z-index:99 !important;" [disabled]="disableSave" color="primary" (click)="saveChanges()">Save</button>
             </div>
         </div>
     </div>

@@ -150,14 +150,11 @@ export class ProfileComponent {
       }
     } else {
       try {
-        console.log(this.followerList);
-        console.log(this.shownUser.id);
         this.followerList = await this.followService.unfollowUser(
           this.followerList,
           this.shownUser.id
         );
         this.loggedUserFollows = false;
-        console.log(this.followerList);
         document.getElementById('followButton')!.classList.remove('Following');
         this.followButtonIcon = 'person_add';
         this.followButtonText = 'Follow';

@@ -38,6 +38,8 @@ import { FollowListComponent } from './components/profile/follow-list/follow-lis
 import { MatTabsModule } from '@angular/material/tabs';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PostComponent } from './components/global/post/post.component';
+import { DeleteAccountComponent } from './components/global/delete-account/delete-account.component';
+import { MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { PostComponent } from './components/global/post/post.component';
     DateAgoPipe,
     FollowListComponent,
     PostComponent,
+    DeleteAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,7 @@ import { PostComponent } from './components/global/post/post.component';
     HttpClientModule,
     MatTabsModule,
     ImageCropperModule,
+    MatDialogModule,
     ApiModule.forRoot(() => {
       return new Configuration({
         basePath: 'https://game-hub-api.azurewebsites.net',

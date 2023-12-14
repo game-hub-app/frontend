@@ -34,9 +34,6 @@ export class ToolbarComponent implements OnInit{
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.clear();
-    console.log("Logging off");
-    console.log("User: " + localStorage.getItem("user"));
-    console.log("Token: " + localStorage.getItem("token"));
     window.location.href = "/";
   }
 

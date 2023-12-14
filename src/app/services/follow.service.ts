@@ -24,8 +24,6 @@ export class FollowService {
   }
 
   async unfollowUser(followerList:Follower[], unfollowingUser:string):Promise<Follower[]>{
-    console.log(followerList);
-    console.log(unfollowingUser);
     this.followerService.defaultHeaders = this.followerService.defaultHeaders.set("Authorization", "Bearer " + localStorage.getItem("token"));
     await firstValueFrom(
       this.followerService.followerIdDelete(followerList.find(follower => follower.followingUserId == unfollowingUser)!.id)

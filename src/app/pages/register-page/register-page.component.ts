@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/api';
 import { RegisterPageService } from 'src/app/services/register-page.service';
+import { UserService } from 'src/app/api';
 
 @Component({
   selector: 'app-register-page',
@@ -14,7 +15,8 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(
     private registerPageService: RegisterPageService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -40,10 +42,6 @@ export class RegisterPageComponent implements OnInit {
         })
       );
 
-      console.log(register)
-
-      alert('Registration success. Logging in...');
-
       const login = await firstValueFrom(
         this._authService.authLoginPost({
           usernameOrEmail: this.registerForm.value.username,
@@ -51,9 +49,15 @@ export class RegisterPageComponent implements OnInit {
         })
       );
 
-      alert('Login success');
+      this.userService.defaultHeaders = this.userService.defaultHeaders
+      .set('Authorization', 'Bearer ' + login);
+
+      const user = await firstValueFrom(this.userService.userProfileGet());
 
       localStorage.setItem('token', login);
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.href = "/feed";
+      
     } catch (error: any) {
       this.registerForm.enable();
       alert(error.error);

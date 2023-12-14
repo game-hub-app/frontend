@@ -5,13 +5,15 @@ import { Operation, UserService } from 'src/app/api';
 import { EditProfileService } from 'src/app/services/edit-profile.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteAccountComponent } from '../../global/delete-account/delete-account.component';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent {
-  constructor(private userService: UserService, private editService:EditProfileService, private sanitizer:DomSanitizer) { }
+  constructor(private userService: UserService, private editService:EditProfileService, private sanitizer:DomSanitizer, private dialog:MatDialog) { }
 
   @Output() closeEdit = new EventEmitter<boolean>();
   loggedUser:User = null!;
@@ -30,6 +32,10 @@ export class EditProfileComponent {
     bio: new FormControl(''),
   });
   disableSave:boolean = false;
+
+  openDeleteDialog(){
+    this.dialog.open(DeleteAccountComponent);
+  }
 
   closeTab(){
     this.closeEdit.emit(false);
@@ -55,7 +61,6 @@ export class EditProfileComponent {
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.blob;
-    console.log(this.croppedImage);
   }
   imageLoaded(image: LoadedImage) {
       // show cropper
