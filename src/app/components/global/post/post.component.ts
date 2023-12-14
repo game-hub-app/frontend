@@ -100,13 +100,11 @@ export class PostComponent implements OnChanges {
           var user = await firstValueFrom(
             this._userService.userProfileUsernameGet(username.substring(1))
           );
-          console.log(this.content!.nativeElement.innerHTML);
           this.content!.nativeElement.innerHTML = this.content!.nativeElement.innerHTML.replace(
             username,
             `<a style="color:#673ab7;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
           )
         } catch (error: any) {
-          console.log(error);
         }
       });
     }
