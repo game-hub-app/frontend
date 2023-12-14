@@ -17,6 +17,7 @@ import { ViewportScroller } from '@angular/common';
 export class PostComponent implements OnChanges {
   @Input() post: Post | undefined;
   @Output() refreshComment = new EventEmitter<boolean>();
+  @ViewChild('content')content: ElementRef | undefined;
   postAuthor: User | undefined;
   postLikes: number = 0;
   postCommentsCount: number = 0;
@@ -91,7 +92,23 @@ export class PostComponent implements OnChanges {
         this.parentPost = { id: "", userId: "", creationDate: new Date(), mediaUrl: "", content: "", postId: undefined, isLiked: false };
         this.parentUsername = "Replied post was deleted";
       }
-
+    }
+    var usernames = this.post!.content.match(/@[A-Za-z0-9-_]*/g) || [];
+    if (usernames.length > 0) {
+      usernames.forEach(async (username) => {
+        try {
+          var user = await firstValueFrom(
+            this._userService.userProfileUsernameGet(username.substring(1))
+          );
+          console.log(this.content!.nativeElement.innerHTML);
+          this.content!.nativeElement.innerHTML = this.content!.nativeElement.innerHTML.replace(
+            username,
+            `<a style="color:#673ab7;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
+          )
+        } catch (error: any) {
+          console.log(error);
+        }
+      });
     }
   }
   goToAuthorProfile() {

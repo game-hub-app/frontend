@@ -12,6 +12,11 @@
   margin-bottom: 0rem;
 }
 
+.usernameLink{
+  color:--var(lighter-background-color);
+  text-decoration:none;
+}
+
 .userInfo {
   display: flex;
   flex-direction: row;
