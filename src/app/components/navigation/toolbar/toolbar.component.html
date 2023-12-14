@@ -7,11 +7,24 @@
       <span>GameHub</span>
     </a>
   </div>
-    <div class="user-info"> 
-      <span class="user-name" *ngIf="!isMobile" >{{username}}</span>
-      <a [routerLink]="routerLinkPicture" style="line-height:0 !important;color:white;text-decoration:none;">
-      <img *ngIf="profilePictureURL" class="user-image" src="{{profilePictureURL}}" alt="user profile picture">
-      <mat-icon class="material-symbols-outlined" style="font-size:32px!important;height:32px;width:32px;" *ngIf="!profilePictureURL">login</mat-icon>
+    <div class="user-info">
+      <div class="user-info" [matMenuTriggerFor]="menu" style="cursor:pointer;">
+        <span  class="user-name" *ngIf="!isMobile" >{{username}}</span>
+        <img *ngIf="profilePictureURL" class="user-image" src="{{profilePictureURL}}" alt="user profile picture">
+      </div> 
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="routerLinkPicture">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <mat-divider style="border-top-color: red; margin:5px;"></mat-divider>
+        <button mat-menu-item (click)="logOff()">
+          <mat-icon [ngStyle]="{'color':'red'}">logout</mat-icon>
+          <span style="color:red;">Log Off</span>
+        </button>
+      </mat-menu>
+      <a *ngIf="!profilePictureURL" [routerLink]="routerLinkPicture" style="line-height:0 !important;color:white;text-decoration:none;">
+      <mat-icon class="material-symbols-outlined" style="font-size:32px!important;height:32px;width:32px;" >login</mat-icon>
       </a>
     </div>
   </mat-toolbar>

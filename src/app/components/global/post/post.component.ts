@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-post',
@@ -27,13 +28,17 @@ export class PostComponent implements OnChanges {
   parentPostAuthor: User | undefined;
   parentUsername: string | undefined;
 
+  @ViewChild('addComment')
+  addComment: ElementRef | undefined;
+
   constructor(
     private _postService: PostService,
     private _userService: UserService,
     private snackBar: MatSnackBar,
     private router: Router,
     private _newPostMobileService: NewPostMobileService,
-    private location: Location
+    private location: Location,
+    private scroller: ViewportScroller
   ) {
     this.form = this._newPostMobileService.buildForm();
   }
@@ -119,9 +124,16 @@ export class PostComponent implements OnChanges {
     }
     if (window.location.href.includes('/post')){
       this.showNewComment = !this.showNewComment;
+      this.scrollToView();
     } else{
       this.router.navigate(['post', this.post?.id]);
     }
+  }
+
+  scrollToView() {
+    setTimeout(() => {
+      this.addComment?.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
   }
 
   async sharePost() {

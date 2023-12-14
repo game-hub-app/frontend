@@ -69,7 +69,7 @@
     </button>
   </div>
   <mat-divider></mat-divider>
-  <div class="add-comment" *ngIf="showNewComment">
+  <div class="add-comment" *ngIf="showNewComment" #addComment>
     <div class="basic-user-info">
       <img src="{{ this.loggedInUser!.profilePictureURL  || 'https://static.vecteezy.com/system/resources/previews/017/266/671/non_2x/black-and-white-logo-of-a-man-s-head-in-headphones-free-vector.jpg' }}" alt="">
       <div class="usernames-comment">

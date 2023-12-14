@@ -17,6 +17,11 @@ export class FeedComponent implements OnInit {
   constructor(private _postService: PostService) {}
 
   async ngOnInit() {
+    if (!localStorage.getItem('token')) {
+      console.log('No token found, redirecting to landing page.');
+      localStorage.clear();
+      window.location.href = '/';
+    }
     this.onResize();
 
     var posts = await firstValueFrom(this._postService.postGet());

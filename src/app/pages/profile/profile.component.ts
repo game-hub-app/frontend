@@ -95,10 +95,12 @@ export class ProfileComponent {
       let posts = await firstValueFrom(
         this.userService.userIdPostsGet(this.shownUser.id)
       );
+
+      posts.reverse();
+
       this.posts = posts.filter((post) => post.postId == null);
       this.comments = posts.filter((post) => post.postId != null || post.postId != undefined);
-      this.media = this.posts.filter((post) => post.mediaUrl != null);
-      this.posts = this.posts.reverse();
+      this.media = posts.filter((post) => post.mediaUrl != "");
     });
 
     if (this.loggedUser.id == null) {

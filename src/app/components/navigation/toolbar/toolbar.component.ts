@@ -12,6 +12,8 @@ export class ToolbarComponent implements OnInit{
   routerLinkPicture = "";
   routerLinkFeed = "";
 
+  constructor() { }
+
   ngOnInit() {
     if(window.innerWidth < 650) {
       this.isMobile = true;
@@ -26,6 +28,16 @@ export class ToolbarComponent implements OnInit{
       this.routerLinkPicture = "/users/" + user.username;
       this.routerLinkFeed = "/feed";
     }
+  }
+
+   logOff(){
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.clear();
+    console.log("Logging off");
+    console.log("User: " + localStorage.getItem("user"));
+    console.log("Token: " + localStorage.getItem("token"));
+    window.location.href = "/";
   }
 
   @HostListener('window:resize', ['$event'])
