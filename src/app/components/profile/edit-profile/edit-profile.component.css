@@ -141,6 +141,8 @@ mat-icon{
     margin-left:4.8rem;
     background-color:black;
     max-width:580px;
+    --cropper-outline-color:rgba(255,255,255,0.1);
+    --cropper-overlay-color:rgb(5,5,5);
 }
 
 .cropper-buttons{
@@ -148,7 +150,7 @@ mat-icon{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background-color:white;
+    background-color:var(--lighter-background-color);
     width:100vw;
     padding:5px;
     max-width: 580px;
