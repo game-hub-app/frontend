@@ -9,14 +9,21 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Community } from './community';
+import { Like } from './like';
+import { User } from './user';
 
 export interface Post {
   id: string;
   userId: string;
+  user?: User;
   postId?: string;
   communityId?: string;
+  community?: Community;
   content: string;
   mediaUrl?: string;
   creationDate: Date;
   isLiked?: boolean;
+  likes?: Array<Like>;
+  comments?: Array<Post>;
 }

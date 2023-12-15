@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom, windowWhen } from 'rxjs';
@@ -17,7 +25,7 @@ import { ViewportScroller } from '@angular/common';
 export class PostComponent implements OnChanges {
   @Input() post: Post | undefined;
   @Output() refreshComment = new EventEmitter<boolean>();
-  @ViewChild('content')content: ElementRef | undefined;
+  @ViewChild('content') content: ElementRef | undefined;
   postAuthor: User | undefined;
   postLikes: number = 0;
   postCommentsCount: number = 0;
@@ -59,24 +67,15 @@ export class PostComponent implements OnChanges {
       'Bearer ' + login
     );
 
-    this.postAuthor = await firstValueFrom(
-      this._userService.userIdGet(this.post.userId)
-    );
+    this.postAuthor = this.post.user;
 
-    var postLikes = await firstValueFrom(
-      this._postService.postIdLikesGet(this.post.id)
-    );
+    this.postLikes = this.post.likes?.length || 0;
 
-    this.postLikes = postLikes.length || 0;
-
-    this.postComments = await firstValueFrom(
-      this._postService.postIdCommentsGet(this.post.id)
-    );
+    this.postComments = this.post.comments || [];
 
     this.postCommentsCount = this.postComments.length || 0;
-    this.loggedInUser = await firstValueFrom(
-      this._userService.userProfileGet()
-    );
+
+    this.loggedInUser = JSON.parse(localStorage.getItem('user')!) as User;
 
     if (this.post?.postId != null || this.post?.postId != undefined) {
       try {
@@ -84,28 +83,38 @@ export class PostComponent implements OnChanges {
           this._postService.postIdGet(this.post.postId)
         );
 
-        this.parentPostAuthor = await firstValueFrom(
-          this._userService.userIdGet(this.parentPost.userId)
-        );
-        this.parentUsername = "Reply to: @" + this.parentPostAuthor.username;
+        this.parentPostAuthor = this.parentPost.user;
+
+        this.parentUsername = 'Reply to: @' + this.parentPostAuthor?.username;
       } catch (error: any) {
-        this.parentPost = { id: "", userId: "", creationDate: new Date(), mediaUrl: "", content: "", postId: undefined, isLiked: false };
-        this.parentUsername = "Replied post was deleted";
+        this.parentPost = {
+          id: '',
+          userId: '',
+          creationDate: new Date(),
+          mediaUrl: '',
+          content: '',
+          postId: undefined,
+          isLiked: false,
+        };
+        this.parentUsername = 'Replied post was deleted';
       }
     }
     var usernames = this.post!.content.match(/@[A-Za-z0-9-_]*/g) || [];
     if (usernames.length > 0) {
+      var users = await firstValueFrom(this._userService.userGet());
+
       usernames.forEach(async (username) => {
         try {
-          var user = await firstValueFrom(
-            this._userService.userProfileUsernameGet(username.substring(1))
-          );
-          this.content!.nativeElement.innerHTML = this.content!.nativeElement.innerHTML.replace(
-            username,
-            `<a style="color:#ffd740;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
-          )
-        } catch (error: any) {
-        }
+          var user = users.find((u) => u.username == username.replace('@', ''));
+
+          if (!user) return;
+
+          this.content!.nativeElement.innerHTML =
+            this.content!.nativeElement.innerHTML.replace(
+              username,
+              `<a style="color:#ffd740;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
+            );
+        } catch (error: any) {}
       });
     }
   }
@@ -130,17 +139,16 @@ export class PostComponent implements OnChanges {
   }
 
   openNewComment() {
-    if (!this.loggedInUser) 
-    {
+    if (!this.loggedInUser) {
       this.snackBar.open('You must be logged in to comment!', 'Close', {
         duration: 2000,
       });
       return;
     }
-    if (window.location.href.includes('/post')){
+    if (window.location.href.includes('/post')) {
       this.showNewComment = !this.showNewComment;
       this.scrollToView();
-    } else{
+    } else {
       this.router.navigate(['post', this.post?.id]);
     }
   }
@@ -179,11 +187,16 @@ export class PostComponent implements OnChanges {
       'Bearer ' + login
     );
 
-    this.form.patchValue({ creationDate: new Date(), postId: this.post!.id, userId: this.loggedInUser!.id });
+    this.form.patchValue({
+      creationDate: new Date(),
+      postId: this.post!.id,
+      userId: this.loggedInUser!.id,
+    });
     try {
-      
-      const comment = await firstValueFrom(this._postService.postPost(this.form.value));
-      
+      const comment = await firstValueFrom(
+        this._postService.postPost(this.form.value)
+      );
+
       this.postComments.push(comment);
       this.postCommentsCount++;
 
@@ -191,9 +204,9 @@ export class PostComponent implements OnChanges {
       this.snackBar.open('Post created successfully!', 'Close', {
         duration: 5000,
       });
-      if(window.location.href.includes('/post')){
+      if (window.location.href.includes('/post')) {
         this.refreshComment.emit(true);
-      }else{
+      } else {
         this.location.go('/post/' + this.post?.id);
       }
 
@@ -237,7 +250,7 @@ export class PostComponent implements OnChanges {
   }
 
   async goToParentPost() {
-    if (this.parentPost?.id == "" || this.parentPost?.id == '') return;
+    if (this.parentPost?.id == '' || this.parentPost?.id == '') return;
 
     this.router.navigate(['post', this.parentPost?.id]);
   }

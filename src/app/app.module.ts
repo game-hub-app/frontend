@@ -39,7 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PostComponent } from './components/global/post/post.component';
 import { DeleteAccountComponent } from './components/global/delete-account/delete-account.component';
-import { MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
