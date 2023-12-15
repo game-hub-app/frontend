@@ -96,16 +96,22 @@ export class ProfileComponent {
         this.userService.userIdPostsGet(this.shownUser.id)
       );
 
-      posts.reverse();
+      posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
 
       this.posts = posts.filter((post) => post.postId == null);
-      this.comments = posts.filter((post) => post.postId != null || post.postId != undefined);
-      this.media = posts.filter((post) => post.mediaUrl != "");
+      this.comments = posts.filter(
+        (post) => post.postId != null || post.postId != undefined
+      );
+      this.media = posts.filter((post) => post.mediaUrl != '');
     });
 
     if (this.loggedUser.id == null) {
-      document.getElementById('followerClick')!.classList.remove('follow-click');
-      document.getElementById('followingClick')!.classList.remove('follow-click');
+      document
+        .getElementById('followerClick')!
+        .classList.remove('follow-click');
+      document
+        .getElementById('followingClick')!
+        .classList.remove('follow-click');
     }
 
     if (window.innerWidth < 580) {
@@ -114,7 +120,9 @@ export class ProfileComponent {
   }
 
   openFollowList(index: number) {
-    if (this.loggedUser.id == null) { return; } 
+    if (this.loggedUser.id == null) {
+      return;
+    }
     this.followIndex = index;
     this.followList = true;
   }

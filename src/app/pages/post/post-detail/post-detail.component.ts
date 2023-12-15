@@ -41,17 +41,22 @@ export class PostDetailComponent implements OnInit {
       this.post = await firstValueFrom(
         this._postService.postIdGet(params.get('id')!)
       );
-      this.postComments = await firstValueFrom(this._postService.postIdCommentsGet(params.get('id')!)
+      this.postComments = await firstValueFrom(
+        this._postService.postIdCommentsGet(params.get('id')!)
       );
-      this.postComments.reverse();
+      this.postComments.sort((a, b) =>
+        a.creationDate < b.creationDate ? 1 : -1
+      );
     });
   }
 
-  refreshComments(){
+  refreshComments() {
     this._postService.postIdCommentsGet(this.post!.id).subscribe((data) => {
       this.postComments = data;
     });
-    this.postComments.reverse();
+    this.postComments.sort((a, b) =>
+      a.creationDate < b.creationDate ? 1 : -1
+    );
   }
 
   goBack() {

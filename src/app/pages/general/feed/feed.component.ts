@@ -12,7 +12,7 @@ export class FeedComponent implements OnInit {
 
   posts: Post[] = [];
   followingPosts: Post[] = [];
-  loggedInUser: User = JSON.parse(localStorage.getItem('user')??"{}");
+  loggedInUser: User = JSON.parse(localStorage.getItem('user') ?? '{}');
 
   constructor(private _postService: PostService) {}
 
@@ -27,16 +27,20 @@ export class FeedComponent implements OnInit {
     this.refreshPosts();
   }
 
-  async refreshPosts(){
+  async refreshPosts() {
     var posts = await firstValueFrom(this._postService.postGet());
-    
-    this.posts = posts.filter(post => post.postId == null);
-    this.posts.reverse();
 
-    var followingPosts = await firstValueFrom(this._postService.postFollowingGet());
+    this.posts = posts.filter((post) => post.postId == null);
+    this.posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
 
-    this.followingPosts = followingPosts.filter(post => post.postId == null);
-    this.followingPosts.reverse();
+    var followingPosts = await firstValueFrom(
+      this._postService.postFollowingGet()
+    );
+
+    this.followingPosts = followingPosts.filter((post) => post.postId == null);
+    this.followingPosts.sort((a, b) =>
+      a.creationDate < b.creationDate ? 1 : -1
+    );
   }
 
   @HostListener('window:resize', ['$event'])
