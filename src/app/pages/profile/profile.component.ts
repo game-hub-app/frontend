@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { HostListener } from '@angular/core';
 import { User } from 'src/app/api/model/user';
@@ -42,6 +42,8 @@ export class ProfileComponent {
   media: Post[] = [];
 
   page: HTMLElement = document.getElementById('page')!;
+
+  @ViewChild('bio') bioContent: ElementRef | undefined;
 
   constructor(
     private _location: Location,
@@ -103,6 +105,27 @@ export class ProfileComponent {
         (post) => post.postId != null || post.postId != undefined
       );
       this.media = posts.filter((post) => post.mediaUrl != '');
+
+      var usernames = this.shownUser.bio?.match(/@[A-Za-z0-9-_]*/g) || [];
+      if (usernames.length > 0) {
+        var users = await firstValueFrom(this.userService.userGet());
+
+        usernames.forEach(async (username) => {
+          try {
+            var user = users.find(
+              (u) => u.username == username.replace('@', '')
+            );
+
+            if (!user) return;
+
+            this.bioContent!.nativeElement.innerHTML =
+              this.bioContent!.nativeElement.innerHTML.replace(
+                username,
+                `<a style="color:#ffd740;text-decoration:none;" href="/users/${user.username}">${user.displayName}</a> `
+              );
+          } catch (error: any) {}
+        });
+      }
     });
 
     if (this.loggedUser.id == null) {

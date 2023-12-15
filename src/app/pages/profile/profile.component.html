@@ -49,9 +49,7 @@
               color="white"
             >
               <mat-icon>edit</mat-icon>
-              <span class="action-button-label">
-                Edit Profile
-              </span>
+              <span class="action-button-label"> Edit Profile </span>
             </button>
             <button
               *ngIf="!isLoggedUser"
@@ -70,7 +68,7 @@
         <div class="user-details">
           <h1 class="name">{{ shownUser.displayName }}</h1>
           <p class="handler">&#64;{{ shownUser.username }}</p>
-          <p class="bio">
+          <p class="bio" #bio>
             {{
               shownUser.bio ||
                 shownUser.displayName + " hasn't written a bio yet."
@@ -78,37 +76,50 @@
           </p>
         </div>
         <div class="follows">
-          <p id="followerClick" class="follow-click" (click)="openFollowList(0)">
+          <p
+            id="followerClick"
+            class="follow-click"
+            (click)="openFollowList(0)"
+          >
             <b>{{ followerCount }}</b> Followers
           </p>
-          <p id="followingClick" class="follow-click" (click)="openFollowList(1)">
+          <p
+            id="followingClick"
+            class="follow-click"
+            (click)="openFollowList(1)"
+          >
             <b>{{ followingCount }}</b> Following
           </p>
         </div>
       </div>
       <mat-divider></mat-divider>
     </div>
-      <ng-container class="post-container" *ngIf="posts.length > 0">
-        <div class="tab-border">
-          <mat-tab-group>
-            <mat-tab label="Posts">
-              <app-post class="post-view" *ngFor="let post of posts" [post]="post"> </app-post>
-            </mat-tab>
-            <mat-tab label="Comments">
-              <app-post *ngFor="let post of comments" [post]="post"> </app-post>
-            </mat-tab>
-            <mat-tab label="Media">
-              <app-post *ngFor="let post of media" [post]="post"> </app-post>
-            </mat-tab>
-          </mat-tab-group>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="posts.length == 0">
-        <div class="no-posts">
-          <mat-icon> sentiment_very_dissatisfied </mat-icon>
-          <p>{{ shownUser.displayName }} hasn't posted anything yet.</p>
-        </div>
-      </ng-container>
+    <ng-container class="post-container" *ngIf="posts.length > 0">
+      <div class="tab-border">
+        <mat-tab-group>
+          <mat-tab label="Posts">
+            <app-post
+              class="post-view"
+              *ngFor="let post of posts"
+              [post]="post"
+            >
+            </app-post>
+          </mat-tab>
+          <mat-tab label="Comments">
+            <app-post *ngFor="let post of comments" [post]="post"> </app-post>
+          </mat-tab>
+          <mat-tab label="Media">
+            <app-post *ngFor="let post of media" [post]="post"> </app-post>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="posts.length == 0">
+      <div class="no-posts">
+        <mat-icon> sentiment_very_dissatisfied </mat-icon>
+        <p>{{ shownUser.displayName }} hasn't posted anything yet.</p>
+      </div>
+    </ng-container>
   </div>
 </div>
 <app-toolbar></app-toolbar>
