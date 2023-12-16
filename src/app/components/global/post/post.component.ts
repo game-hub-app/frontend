@@ -99,10 +99,10 @@ export class PostComponent implements OnChanges {
         this.parentUsername = 'Replied post was deleted';
       }
     }
+
     var usernames = this.post!.content.match(/@[A-Za-z0-9-_]*/g) || [];
     if (usernames.length > 0) {
-      var users = await firstValueFrom(this._userService.userGet());
-
+      var users = await firstValueFrom(this._userService.userGet());    
       usernames.forEach(async (username) => {
         try {
           var user = users.find((u) => u.username == username.replace('@', ''));
@@ -116,6 +116,78 @@ export class PostComponent implements OnChanges {
             );
         } catch (error: any) {}
       });
+    }
+
+    var links = this.post.content.match(/https?:\/\/[^\s]+/g) || [];
+    if (links.length > 0) {
+      setTimeout(() => {
+        links.forEach(async (link) => {
+          try {
+            // If link is YouTube - append embed
+            if (link.includes('youtube.com/watch') || link.includes('youtu.be')) {
+              var videoId = link.split('v=')[1] || link.split('youtu.be/')[1];
+              if (this.content?.nativeElement) {
+                this.content.nativeElement.innerHTML =
+                  this.content.nativeElement.innerHTML.replace(
+                    link,
+                    `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                  );
+              }
+              return;
+            }
+
+            // If link is Spotify - append embed
+            if (link.includes('open.spotify.com')) {
+              // Check if it's a playlist, album, track, artist or user
+              var spotifyId = link.split('open.spotify.com/')[1];
+
+              var type = spotifyId.split('/')[0];
+
+              if (spotifyId.includes('playlist')) {
+                spotifyId = spotifyId.split('playlist/')[1];
+              } else if (spotifyId.includes('album')) {
+                spotifyId = spotifyId.split('album/')[1];
+              } else if (spotifyId.includes('track')) {
+                spotifyId = spotifyId.split('track/')[1];
+              } else if (spotifyId.includes('artist')) {
+                spotifyId = spotifyId.split('artist/')[1];
+              } else if (spotifyId.includes('episode')) {
+                spotifyId = spotifyId.split('episode/')[1];
+              } else {
+                // Not supported - fallback to default link
+                if (this.content?.nativeElement) {
+                  this.content.nativeElement.innerHTML =
+                    this.content.nativeElement.innerHTML.replace(
+                      link,
+                      `<a style="color:#ffd740;text-decoration:none;" href="${link}">${link}</a> `
+                    );
+                }
+                return;
+              }
+
+
+              if (this.content?.nativeElement) {
+                this.content.nativeElement.innerHTML =
+                  this.content.nativeElement.innerHTML.replace(
+                    link,
+                    `<iframe src="https://open.spotify.com/embed/${type}/${spotifyId}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+                  );
+              }
+              return;
+            }
+
+            if (this.content?.nativeElement) {
+              this.content.nativeElement.innerHTML =
+                this.content.nativeElement.innerHTML.replace(
+                  link,
+                  `<a style="color:#ffd740;text-decoration:none;" href="${link}">${link}</a> `
+                );
+            }
+          } catch (error: any) {
+            console.log(error);
+          }
+        });
+      }, 0);
     }
   }
   goToAuthorProfile() {
