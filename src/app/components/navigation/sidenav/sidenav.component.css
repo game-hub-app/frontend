@@ -1,22 +1,22 @@
 .sidenav {
   height: 100%;
-  background-color: #3f51b5;
-  width:75px;
-  display:flex;
+  background-color: #673ab7;
+  width: 75px;
+  display: flex;
 }
-  
-.icons{
+
+.icons {
   width: 50%;
   margin: 0 auto;
 }
 
-.bottom-icons{
+.bottom-icons {
   position: fixed;
   bottom: 0;
   text-align: center;
   width: 75px;
-  background-color: #3f51b5
+  background-color: #673ab7;
 }
-.message-icon{
+.create-community-icon {
   margin-top: 1.5rem;
 }

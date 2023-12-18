@@ -9,6 +9,7 @@ import { NewPostMobileComponent } from './pages/mobile/new-post-mobile/new-post-
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { PostDetailComponent } from './pages/post/post-detail/post-detail.component';
+import { CreateCommunityPageComponent } from './pages/create-community-page/create-community-page.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'new-post-mobile',
     component: NewPostMobileComponent,
+  },
+  {
+    path: 'create-community',
+    component: CreateCommunityPageComponent,
   },
   {
     path: 'community',
@@ -46,7 +51,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -40,6 +40,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { PostComponent } from './components/global/post/post.component';
 import { DeleteAccountComponent } from './components/global/delete-account/delete-account.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { CreateCommunityPageComponent } from './pages/create-community-page/create-community-page.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FollowListComponent,
     PostComponent,
     DeleteAccountComponent,
+    CreateCommunityPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     HttpClientModule,
     MatTabsModule,
+    MatStepperModule,
     ImageCropperModule,
     MatDialogModule,
     ApiModule.forRoot(() => {

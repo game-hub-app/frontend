@@ -1,18 +1,26 @@
-<mat-sidenav id="sidenav" #drawer class="sidenav" fixedInViewport
-    [attr.role]="'navigation'"
-    [mode]="this.isMobile ? 'push' : 'side'"
-    [opened]="!this.isMobile">
-    <mat-nav-list>
-      <div class="icons">
-    </div>  
+<mat-sidenav
+  id="sidenav"
+  #drawer
+  class="sidenav"
+  fixedInViewport
+  [attr.role]="'navigation'"
+  [mode]="this.isMobile ? 'push' : 'side'"
+  [opened]="!this.isMobile"
+>
+  <mat-nav-list>
+    <div class="icons"></div>
     <div class="bottom-icons">
       <mat-divider></mat-divider>
-      <div class="message-icon">
-        <a routerLink="/messages" routerLinkActive="active">
-          <mat-icon aria-label="Messaging icon" style="color: #ffffff; margin-bottom:1rem; width:auto;">chat</mat-icon>
+      <div class="create-community-icon">
+        <a routerLink="/create-community" routerLinkActive="active">
+          <mat-icon
+            aria-label="Create Community Icon"
+            style="color: #ffffff; margin-bottom: 1rem; width: auto"
+          >
+            add_circle
+          </mat-icon>
         </a>
       </div>
-      </div> 
-    </mat-nav-list>
-
-  </mat-sidenav>
+    </div>
+  </mat-nav-list>
+</mat-sidenav>
