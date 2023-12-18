@@ -7,18 +7,50 @@
         <!-- username or email -->
         <mat-form-field>
           <mat-label>Username or Email</mat-label>
-          <input matInput placeholder="Username or Email" formControlName="usernameOrEmail">
-          <mat-error *ngIf="loginForm.controls['usernameOrEmail'].invalid">{{getErrorMessage('usernameOrEmail')}}</mat-error>
+          <input
+            matInput
+            placeholder="Username or Email"
+            formControlName="usernameOrEmail"
+          />
+          <mat-error *ngIf="loginForm.controls['usernameOrEmail'].invalid">{{
+            getErrorMessage("usernameOrEmail")
+          }}</mat-error>
         </mat-form-field>
         <!-- password -->
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput type="password" placeholder="Password" formControlName="password">
-          <mat-error *ngIf="loginForm.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+            color="primary"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.controls['password'].invalid">{{
+            getErrorMessage("password")
+          }}</mat-error>
         </mat-form-field>
         <!-- submit -->
-        <br>
-        <button mat-raised-button color="primary" (click)="loginUser()" [disabled]="loginForm.invalid || loginForm.disabled">Login</button>
+        <br />
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="loginUser()"
+          [disabled]="loginForm.invalid || loginForm.disabled"
+        >
+          Login
+        </button>
       </form>
     </mat-card-content>
   </mat-card>

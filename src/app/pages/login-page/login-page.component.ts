@@ -14,6 +14,8 @@ import { UserService } from 'src/app/api';
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
 
+  hidePassword: boolean = true;
+
   constructor(
     private loginPageService: LoginPageService,
     private _authService: AuthService,
@@ -36,12 +38,14 @@ export class LoginPageComponent implements OnInit {
       );
 
       // alert('Login success');
-        
-      this.userService.defaultHeaders = this.userService.defaultHeaders
-      .set('Authorization', 'Bearer ' + login);
+
+      this.userService.defaultHeaders = this.userService.defaultHeaders.set(
+        'Authorization',
+        'Bearer ' + login
+      );
 
       const user = await firstValueFrom(this.userService.userProfileGet());
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', login);
       this.router.navigate(['/', 'feed']);
     } catch (error: any) {

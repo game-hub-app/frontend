@@ -13,6 +13,9 @@ import { UserService } from 'src/app/api';
 export class RegisterPageComponent implements OnInit {
   registerForm!: FormGroup;
 
+  hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
+
   constructor(
     private registerPageService: RegisterPageService,
     private _authService: AuthService,
@@ -26,7 +29,10 @@ export class RegisterPageComponent implements OnInit {
   async registerUser() {
     this.registerForm.disable();
 
-    if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
+    if (
+      this.registerForm.value.password !==
+      this.registerForm.value.confirmPassword
+    ) {
       alert('Passwords do not match');
       this.registerForm.enable();
       return;
@@ -49,15 +55,16 @@ export class RegisterPageComponent implements OnInit {
         })
       );
 
-      this.userService.defaultHeaders = this.userService.defaultHeaders
-      .set('Authorization', 'Bearer ' + login);
+      this.userService.defaultHeaders = this.userService.defaultHeaders.set(
+        'Authorization',
+        'Bearer ' + login
+      );
 
       const user = await firstValueFrom(this.userService.userProfileGet());
 
       localStorage.setItem('token', login);
-      localStorage.setItem("user", JSON.stringify(user));
-      window.location.href = "/feed";
-      
+      localStorage.setItem('user', JSON.stringify(user));
+      window.location.href = '/feed';
     } catch (error: any) {
       this.registerForm.enable();
       alert(error.error);

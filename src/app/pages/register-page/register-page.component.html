@@ -7,36 +7,91 @@
         <!-- display name -->
         <mat-form-field>
           <mat-label>Display Name</mat-label>
-          <input matInput placeholder="Display Name" formControlName="displayName">
-          <mat-error *ngIf="registerForm.controls['displayName'].invalid">{{getErrorMessage('displayName')}}</mat-error>
+          <input
+            matInput
+            placeholder="Display Name"
+            formControlName="displayName"
+          />
+          <mat-error *ngIf="registerForm.controls['displayName'].invalid">{{
+            getErrorMessage("displayName")
+          }}</mat-error>
         </mat-form-field>
         <!-- username -->
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Username" formControlName="username">
-          <mat-error *ngIf="registerForm.controls['username'].invalid">{{getErrorMessage('username')}}</mat-error>
+          <input matInput placeholder="Username" formControlName="username" />
+          <mat-error *ngIf="registerForm.controls['username'].invalid">{{
+            getErrorMessage("username")
+          }}</mat-error>
         </mat-form-field>
         <!-- email -->
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" formControlName="email">
-          <mat-error *ngIf="registerForm.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+          <input matInput placeholder="Email" formControlName="email" />
+          <mat-error *ngIf="registerForm.controls['email'].invalid">{{
+            getErrorMessage("email")
+          }}</mat-error>
         </mat-form-field>
         <!-- password -->
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput type="password" placeholder="Password" formControlName="password">
-          <mat-error *ngIf="registerForm.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+            color="primary"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="registerForm.controls['password'].invalid">{{
+            getErrorMessage("password")
+          }}</mat-error>
         </mat-form-field>
         <!-- confirm password -->
         <mat-form-field>
           <mat-label>Confirm Password</mat-label>
-          <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
-          <mat-error *ngIf="registerForm.controls['confirmPassword'].invalid">{{getErrorMessage('confirmPassword')}}</mat-error>
+          <input
+            matInput
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            placeholder="Confirm Password"
+            formControlName="confirmPassword"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hideConfirmPassword = !hideConfirmPassword"
+            [attr.aria-label]="'Hide confirm password'"
+            [attr.aria-pressed]="hideConfirmPassword"
+            color="primary"
+          >
+            <mat-icon>{{
+              hideConfirmPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="registerForm.controls['confirmPassword'].invalid">{{
+            getErrorMessage("confirmPassword")
+          }}</mat-error>
         </mat-form-field>
         <!-- submit -->
-        <br>
-        <button mat-raised-button color="primary" (click)="registerUser()" [disabled]="registerForm.invalid">Register</button>
+        <br />
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="registerUser()"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
       </form>
     </mat-card-content>
   </mat-card>
