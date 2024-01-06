@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { User } from 'src/app/api/model/user';
 import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
@@ -16,7 +16,7 @@ export class NewPostMobileComponent {
   loggedUser: User = JSON.parse(localStorage.getItem('user')!);
 
   @Input() communityId?: string;
-
+  @ViewChild('fileUpload') fileInput: ElementRef | undefined;
   form: FormGroup;
 
   constructor(
@@ -65,6 +65,13 @@ export class NewPostMobileComponent {
     }
   }
 
+  resetImage(){
+    this.form.get('mediaURL')?.setValue(null);
+    if(this.fileInput){
+      this.fileInput.nativeElement.value = "";
+    }
+
+  }
   goBack() {
     this._location.back();
   }

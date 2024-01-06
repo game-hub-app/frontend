@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { Post, PostService, User } from 'src/app/api';
+import { Post, PostService, User, UserService, Follower } from 'src/app/api';
 
 @Component({
   selector: 'app-feed',
@@ -14,7 +14,10 @@ export class FeedComponent implements OnInit {
   followingPosts: Post[] = [];
   loggedInUser: User = JSON.parse(localStorage.getItem('user') ?? '{}');
 
-  constructor(private _postService: PostService) {}
+  constructor(
+    private _postService: PostService,
+    private _userService: UserService
+    ) {}
 
   async ngOnInit() {
     if (!localStorage.getItem('token')) {
@@ -33,9 +36,11 @@ export class FeedComponent implements OnInit {
     this.posts = posts.filter((post) => post.postId == null);
     this.posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
 
-    var followingPosts = await firstValueFrom(
-      this._postService.postFollowingGet()
+    let userFollowingList = await firstValueFrom(
+      this._userService.userIdFollowingGet(this.loggedInUser.id)
     );
+
+    var followingPosts = posts.filter(post => userFollowingList.some(following => following.followingUserId == post.userId));
 
     this.followingPosts = followingPosts.filter((post) => post.postId == null);
     this.followingPosts.sort((a, b) =>

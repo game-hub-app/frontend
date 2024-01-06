@@ -42,6 +42,7 @@ import { DeleteAccountComponent } from './components/global/delete-account/delet
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CreateCommunityPageComponent } from './pages/create-community-page/create-community-page.component';
+import { EditPostComponent } from './components/global/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CreateCommunityPageComponent } from './pages/create-community-page/crea
     PostComponent,
     DeleteAccountComponent,
     CreateCommunityPageComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,

@@ -101,10 +101,12 @@ export class ProfileComponent {
       posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
 
       this.posts = posts.filter((post) => post.postId == null);
+
       this.comments = posts.filter(
         (post) => post.postId != null || post.postId != undefined
       );
-      this.media = posts.filter((post) => post.mediaUrl != '');
+      
+      this.media = posts.filter((post) => post.mediaUrl != null && post.mediaUrl != "");
 
       var usernames = this.shownUser.bio?.match(/@[A-Za-z0-9-_]*/g) || [];
       if (usernames.length > 0) {

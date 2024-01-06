@@ -51,11 +51,16 @@
             >{{ this.form.get("content")?.value.length ?? 0 }}/280</mat-hint
           >
         </mat-form-field>
-        <img
+        <div class="img-exists" *ngIf="this.form.get('mediaURL')?.value">
+          <img
           *ngIf="this.form.get('mediaURL')?.value"
           [src]="this.form.get('mediaURL')?.value"
           style="width: 100%"
-        />
+          />
+          <div class="image-exists-icon" *ngIf="this.form.get('mediaURL')?.value" (click)="resetImage()">
+            <mat-icon>image</mat-icon>
+          </div>
+        </div>
       </div>
     </mat-card-content>
     <mat-card-actions class="icons">

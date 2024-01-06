@@ -1,34 +1,39 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { firstValueFrom } from 'rxjs';
-import { PostService } from 'src/app/api';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { User } from 'src/app/api/model/user';
 import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
+import { FormGroup } from '@angular/forms';
+import { PostService } from 'src/app/api';
+import { firstValueFrom } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
-  selector: 'app-new-post-exploreview',
-  templateUrl: './new-post-exploreview.component.html',
-  styleUrls: ['./new-post-exploreview.component.css'],
+  selector: 'app-edit-post',
+  templateUrl: './edit-post.component.html',
+  styleUrls: ['./edit-post.component.css']
 })
-export class NewPostExploreviewComponent {
-  loggedUser: User = JSON.parse(localStorage.getItem('user')!);
-  @Output() refreshPosts = new EventEmitter<boolean>();
+export class EditPostComponent {
 
+  loggedUser: any = JSON.parse(localStorage.getItem('user')!);
+
+  @Input() communityId?: string;
   @ViewChild('fileUpload') fileInput: ElementRef | undefined;
-
   form: FormGroup;
 
   constructor(
+    private _location: Location,
     private _newPostMobileService: NewPostMobileService,
-    private _snackBar: MatSnackBar,
-    private _postService: PostService
+    private _postService: PostService,
+    private _snackBar: MatSnackBar
   ) {
     this.form = this._newPostMobileService.buildForm();
 
+    if (this.communityId) {
+      this.form.patchValue({ communityId: this.communityId });
+    }
+
     this.form.patchValue({ userId: this.loggedUser.id });
   }
-
-  ngOnInit(): void {}
 
   async createPost() {
     this.form.disable();
@@ -43,17 +48,15 @@ export class NewPostExploreviewComponent {
     this.form.patchValue({ creationDate: new Date() });
 
     try {
-      await firstValueFrom(this._postService.postPost(this.form.value));
+      var post = await firstValueFrom(
+        this._postService.postPost(this.form.value)
+      );
 
       this._snackBar.open('Post created successfully!', 'Close', {
         duration: 5000,
       });
-      this.form.enable();
 
-      this.refreshPosts.emit(true);
-      this.resetImage();
-      this.form = this._newPostMobileService.buildForm();
-      this.form.patchValue({ userId: this.loggedUser.id });
+      this.goBack();
     } catch (error: any) {
       this._snackBar.open(error.error, 'Close', {
         duration: 5000,
@@ -69,6 +72,8 @@ export class NewPostExploreviewComponent {
       this.fileInput.nativeElement.value = "";
     }
 
+  }
+  goBack() {
   }
 
   onFileSelected(event: any) {
@@ -88,4 +93,11 @@ export class NewPostExploreviewComponent {
       // upload$.subscribe();
     }
   }
+
+  savePost() {
+  }
+  cancel() {
+    
+  }
+
 }
