@@ -21,6 +21,24 @@
   padding-bottom: 1rem;
 }
 
+.stepper{
+  background-color: var(--background-color);
+}
+
+.mat-mdc-button:disabled{
+  color:gray;
+  background-color: var(--lighter-background-color);
+}
+
+.mat-mdc-button:not(:disabled){
+  color:var(--text-color);
+  background-color:#673ab7;
+}
+
+span{
+  color:white;
+}
+
 mat-icon {
   opacity: 0.7;
 }

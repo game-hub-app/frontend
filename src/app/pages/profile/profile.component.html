@@ -90,6 +90,10 @@
           >
             <b>{{ followingCount }}</b> Following
           </p>
+          <div class="joinDate">
+            <mat-icon>calendar_today</mat-icon>
+            <p>{{ shownUser.creationDate| date: 'mediumDate' }}</p>
+          </div>
         </div>
       </div>
       <mat-divider></mat-divider>

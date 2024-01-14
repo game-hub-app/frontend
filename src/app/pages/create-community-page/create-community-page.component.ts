@@ -110,56 +110,48 @@ export class CreateCommunityPageComponent implements OnInit {
       return;
     }
   }
-
   bannerChangeEvent(event: any): void {
-    if (this.bannerInput!.nativeElement.files == '') {
-      return;
-    }
+    if (this.bannerInput!.nativeElement.files == ""){ return; }
     this.imageType = event.target.files[0].type;
     this.bannerChangedEvent = event;
   }
   iconChangeEvent(event: any): void {
-    if (this.iconInput!.nativeElement.files == '') {
-      return;
-    }
+    if (this.iconInput!.nativeElement.files == ""){ return; }
     this.iconChangedEvent = event;
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.blob;
   }
   imageLoaded(image: LoadedImage) {
-    // show cropper
+      // show cropper
   }
   cropperReady() {
-    // cropper ready
+      // cropper ready
   }
   loadImageFailed() {
-    // show message
+      // show message
   }
-
-  clearCropper() {
+  
+  clearCropper(){
     this.croppedImage = '';
     this.bannerChangedEvent = '';
     this.iconChangedEvent = '';
-    this.bannerInput!.nativeElement.value = '';
-    this.iconInput!.nativeElement.value = '';
+    this.bannerInput!.nativeElement.value = "";
+    this.iconInput!.nativeElement.value = "";
   }
 
-  newPicture(banner: boolean) {
+  newPicture(banner:boolean){
     const file = this.croppedImage;
     const reader = new FileReader();
     reader.onload = () => {
-      if (!banner) {
-        this.createCommunityForm
-          .get('iconURL')
-          ?.patchValue(reader.result as string);
-      } else {
-        this.createCommunityForm
-          .get('bannerURL')
-          ?.patchValue(reader.result as string);
+      if(!banner){
+        this.createCommunityForm.get('iconURL')?.patchValue(reader.result as string);
+      }else{
+        this.createCommunityForm.get('bannerURL')?.patchValue(reader.result as string);
       }
       this.clearCropper();
-    };
+    }
     reader.readAsDataURL(file);
   }
+
 }

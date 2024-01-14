@@ -160,3 +160,26 @@
   --mat-tab-header-inactive-focus-label-text-color: white;
   --mat-tab-header-inactive-hover-label-text-color: white;
 }
+
+.joinDate{
+  display:flex;
+  flex-direction:row;
+  text-align:start;
+}
+
+.follows p{
+  margin:0;
+}
+
+.joinDate .mat-icon{
+  vertical-align: middle;
+  font-size:1rem;
+  align-self:center;
+  text-align:center;
+}
+
+.joinDate p{
+  margin: 0;
+  font-size:1rem;
+  color:gray;
+}

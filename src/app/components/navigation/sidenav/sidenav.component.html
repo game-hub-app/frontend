@@ -7,8 +7,15 @@
   [mode]="this.isMobile ? 'push' : 'side'"
   [opened]="!this.isMobile"
 >
-  <mat-nav-list>
-    <div class="icons"></div>
+  <mat-nav-list style="margin-top:0;">
+    <div class="icons">
+      <div class="community-header">
+        <mat-icon style="color:white;">groups</mat-icon>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="community-list">
+      </div>
+    </div>
     <div class="bottom-icons">
       <mat-divider></mat-divider>
       <div class="create-community-icon">

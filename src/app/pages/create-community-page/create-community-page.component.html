@@ -43,9 +43,13 @@
   <app-sidenav></app-sidenav>
 </mat-sidenav-container>
 <div #page class="nav-page-content">
-  <mat-stepper #stepper>
+  <mat-stepper #stepper class="stepper" orientation="vertical">
     <mat-step [formGroup]="this.createCommunityForm">
-      <ng-template matStepLabel>Step 1: Community Name</ng-template>
+      <ng-template matStepLabel>
+        <span>
+          Community Name
+        </span>
+      </ng-template>
       <mat-form-field>
         <mat-label>Community Name</mat-label>
         <input matInput placeholder="Community Name" formControlName="name" />
@@ -64,7 +68,11 @@
       </div>
     </mat-step>
     <mat-step [formGroup]="this.createCommunityForm">
-      <ng-template matStepLabel>Step 2: Community Description</ng-template>
+      <ng-template matStepLabel>
+      <span>
+        Community Description
+      </span>
+      </ng-template>
       <mat-form-field>
         <mat-label>Community Description</mat-label>
         <textarea
@@ -87,14 +95,18 @@
       </div>
     </mat-step>
     <mat-step [formGroup]="this.createCommunityForm">
-      <ng-template matStepLabel>Step 3: Community Icon</ng-template>
+      <ng-template matStepLabel>
+      <span>
+        Community Icon
+      </span>
+      </ng-template>
       <mat-label>Community Icon</mat-label>
       <div class="icon">
         <div class="icon-background">
           <img
             src="{{
               createCommunityForm.get('iconURL')?.value ||
-                'https://cdn.game-hub.pt/placeholder-icon.jpg'
+                'https://cdn.game-hub.pt/placeholder-pfp.jpg'
             }}"
             alt=""
           />
@@ -124,7 +136,11 @@
       </div>
     </mat-step>
     <mat-step [formGroup]="this.createCommunityForm">
-      <ng-template matStepLabel>Step 4: Community Banner</ng-template>
+      <ng-template matStepLabel>
+        <span>
+          Community Banner
+        </span>
+      </ng-template>
       <mat-label>Community Banner</mat-label>
       <div class="banner">
         <div class="banner-background">

@@ -24,6 +24,7 @@
             [type]="hidePassword ? 'password' : 'text'"
             placeholder="Password"
             formControlName="password"
+            onkeydown="if (event.keyCode == 13) document.getElementById('loginButton').click();"
           />
           <button
             mat-icon-button
@@ -44,6 +45,7 @@
         <!-- submit -->
         <br />
         <button
+          id="loginButton"
           mat-raised-button
           color="primary"
           (click)="loginUser()"
