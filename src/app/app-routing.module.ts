@@ -29,7 +29,7 @@ const routes: Routes = [
     component: CreateCommunityPageComponent,
   },
   {
-    path: 'community',
+    path: 'community/:id',
     component: CommunityComponent,
   },
   {

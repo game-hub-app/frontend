@@ -1,0 +1,166 @@
+.container {
+    margin: 0 auto;
+    border-left:1px solid white;
+    border-right:1px solid white;
+    max-width: 580px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+.icon-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .join-button {
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    background-color: transparent;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+  }
+  .action-button-label{
+    position:relative;
+    z-index:0 ;
+  }
+  
+  .Joined {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  .community-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .profile-picture {
+    margin-top: -35px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+  }
+  
+  .description {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 20px;
+    white-space: pre-line;
+  }
+  
+  .members {
+    display: flex;
+    flex-direction: row;
+    color: gray;
+    gap: 1rem;
+  }
+  .members b {
+    color: white;
+  }
+  
+  .name {
+    margin:0.5rem 0 0.5rem 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    padding: 0;
+  }
+  
+  .actions {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .static-page {
+    position: fixed;
+    overflow: hidden;
+  }
+  
+  .member-click {
+    cursor: pointer;
+  }
+  
+  .edit-popup {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .no-posts {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    align-items: center;
+    opacity: 0.5;
+    height: 6rem;
+  }
+  
+  .banner {
+    width: 100vw;
+    max-height: 190px;
+    max-width: 580px;
+    padding: 0;
+    border: 0;
+    top: 0;
+    size: cover;
+  }
+  
+  .no-posts mat-icon {
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 580px) {
+      .container {
+      width:100vw;
+      border:none;
+      margin:0;
+    }
+
+  .post-container{
+    width:calc(100vw - 2rem);
+    overflow:hidden;
+  }
+
+  }
+  .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+    --mat-tab-header-inactive-label-text-color: rgba(255,255,255,0.7);
+    --mat-tab-header-inactive-focus-label-text-color: white;
+    --mat-tab-header-inactive-hover-label-text-color: white;
+  }
+  
+  .joinDate{
+    display:flex;
+    flex-direction:row;
+    text-align:start;
+  }
+  
+  .members p{
+    margin:0;
+  }
+  
+  .joinDate .mat-icon{
+    vertical-align: middle;
+    font-size:1rem;
+    align-self:center;
+    text-align:center;
+  }
+  
+  .joinDate p{
+    margin: 0;
+    font-size:1rem;
+    color:gray;
+  }

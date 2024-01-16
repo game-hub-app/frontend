@@ -1,4 +1,82 @@
-<div class="page">
-    <div class="community-details">
+<mat-sidenav-container>
+    <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
+  </mat-sidenav-container>
+<div class="nav-page-content">
+    <div class="container">
+        <div class="community-details">
+        <div class="community-profile">
+            <img
+              class="banner"
+              src="{{
+                community.bannerURL ||
+                  'https://cdn.game-hub.pt/placeholder-banner.jpg'
+              }}"
+              alt="Community Banner"
+            />
+            <div class="community-info">
+              <div class="icon-actions">
+                <img
+                  class="profile-picture"
+                  src="{{
+                    community.iconURL ||
+                      'https://cdn.game-hub.pt/placeholder-pfp.jpg'
+                  }}"
+                  alt="Community Icon"
+                />
+                <div class="actions">
+                  <button
+                    *ngIf="isCommunityOwner"
+                    mat-fab
+                    extended
+                    id="editCommunityButton"
+                    (click)="editCommunity()"
+                    class="join-button"
+                    color="white"
+                  >
+                    <mat-icon>edit</mat-icon>
+                    <span class="action-button-label"> Edit Community </span>
+                  </button>
+                  <button
+                    *ngIf="!isCommunityOwner"
+                    mat-fab
+                    extended
+                    id="joinButton"
+                    (click)="toggleJoin()"
+                    class="join-button"
+                    color="white"
+                  >
+                    <mat-icon>{{ joinButtonIcon }}</mat-icon>
+                    {{ joinButtonText }}
+                  </button>
+                </div>
+              </div>
+              <div class="community-details">
+                <h1 class="name">{{ community.name }}</h1>
+                <p class="description" #bio>
+                  {{
+                    community.description ||
+                      community.name + " doesn't have a description yet!"
+                  }}
+                </p>
+              </div>
+              <div class="members">
+                <p
+                  id="memberClick"
+                  class="member-click"
+                  (click)="openMemberList()"
+                >
+                  <b>{{ memberCount }}</b> Members
+                </p>
+                <div class="joinDate">
+                  <mat-icon>calendar_today</mat-icon>
+                  <p>{{ community.creationDate| date: 'mediumDate' }}</p>
+                </div>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+        </div>
     </div>
 </div>
+<app-toolbar></app-toolbar>
+<app-mobilenav *ngIf="!loggedUser"></app-mobilenav>
