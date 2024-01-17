@@ -15,6 +15,10 @@
         <mat-divider></mat-divider>
       </div>
       <div class="community-list">
+        <div class="community-icon" *ngFor="let community of userCommunities">
+            <img [routerLink]="['/community', community.id]" src="{{community.iconURL}}" alt="{{community.name + ' icon'}}" class="communityIcon">
+            <mat-divider></mat-divider>
+        </div>
       </div>
     </div>
     <div class="bottom-icons">

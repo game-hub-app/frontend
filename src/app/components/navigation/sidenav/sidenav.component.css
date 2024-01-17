@@ -17,6 +17,15 @@
   overflow-y:scroll;
 }
 
+.communityIcon{
+  width:45px;
+  height:45px;
+  margin:13.5px;
+  border-radius:50%;
+  border:var(--accent-color) 1px solid;
+  overflow:hidden;
+}
+
 .community-header mat-icon{
   margin:15px 25px;
 }
