@@ -29,8 +29,6 @@ export class FeedComponent implements OnInit {
     this.onResize();
 
     await this.refreshPosts();
-
-    document.getElementById('loadingStop')?.classList.add('finish');
     this.isLoading = false;
   }
 
