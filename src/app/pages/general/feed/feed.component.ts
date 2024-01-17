@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewInit, ViewChild } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Post, PostService, User, UserService, Follower } from 'src/app/api';
 
@@ -13,6 +13,7 @@ export class FeedComponent implements OnInit {
   posts: Post[] = [];
   followingPosts: Post[] = [];
   loggedInUser: User = JSON.parse(localStorage.getItem('user') ?? '{}');
+  isLoading:boolean = true;
 
   constructor(
     private _postService: PostService,
@@ -27,7 +28,10 @@ export class FeedComponent implements OnInit {
     }
     this.onResize();
 
-    this.refreshPosts();
+    await this.refreshPosts();
+
+    document.getElementById('loadingStop')?.classList.add('finish');
+    this.isLoading = false;
   }
 
   async refreshPosts() {

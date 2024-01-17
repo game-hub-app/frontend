@@ -1,7 +1,15 @@
+<app-edit-community
+  class="edit-popup"
+  *ngIf="editCommunity"
+  [community]="community"
+  (closeEdit)="
+    editCommunity = $event; page.classList.remove('static-page'); ngOnInit()
+  "
+></app-edit-community>
 <mat-sidenav-container>
     <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
   </mat-sidenav-container>
-<div class="nav-page-content">
+<div id="page" class="nav-page-content">
     <div class="container">
         <div class="community-details">
         <div class="community-profile">
@@ -29,7 +37,7 @@
                     mat-fab
                     extended
                     id="editCommunityButton"
-                    (click)="editCommunity()"
+                    (click)="editCommunity = true; page.classList.add('static-page')"
                     class="join-button"
                     color="white"
                   >

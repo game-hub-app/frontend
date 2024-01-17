@@ -43,6 +43,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CreateCommunityPageComponent } from './pages/create-community-page/create-community-page.component';
 import { EditPostComponent } from './components/global/edit-post/edit-post.component';
+import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EditCommunityComponent } from './components/community/edit-community/edit-community.component';
+import { MemberListComponent } from './components/community/member-list/member-list.component';
+import { DeleteCommunityComponent } from './components/global/delete-community/delete-community.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,9 @@ import { EditPostComponent } from './components/global/edit-post/edit-post.compo
     DeleteAccountComponent,
     CreateCommunityPageComponent,
     EditPostComponent,
+    EditCommunityComponent,
+    MemberListComponent,
+    DeleteCommunityComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +96,7 @@ import { EditPostComponent } from './components/global/edit-post/edit-post.compo
     MatStepperModule,
     ImageCropperModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     ApiModule.forRoot(() => {
       return new Configuration({
         basePath: 'https://game-hub-api.azurewebsites.net',

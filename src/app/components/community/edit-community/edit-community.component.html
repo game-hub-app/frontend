@@ -1,0 +1,90 @@
+<div class="spinnerBox" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="cropper-wrapper" *ngIf="bannerChangedEvent">
+    <image-cropper class="cropper"
+    [imageChangedEvent]="bannerChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="58 / 19"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="cropper-buttons">
+        <button mat-raised-button color="warn" (click)="clearCropper()">Discard</button>
+        <button mat-raised-button color="primary"(click)="newPicture(true)">Save</button>
+    </div>
+</div>
+<div class="cropper-wrapper" *ngIf="iconChangedEvent">
+    <image-cropper class="cropper"
+    [imageChangedEvent]="iconChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="cropper-buttons">
+        <button mat-raised-button color="warn" (click)="clearCropper()">Discard</button>
+        <button mat-raised-button color="primary" (click)="newPicture(false)">Save</button>
+    </div>
+</div>
+<div class="container">
+    <div class="main-page">
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="closeTab()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <div class="title">
+                <p>Edit Community</p>
+            </div>
+        </mat-toolbar>
+        <div class="pictures">
+            <div class="banner">
+                <div class="banner-background">
+                    <img src="{{community.bannerURL || 'https://cdn.game-hub.pt/placeholder-banner.jpg'}}" alt="">
+                </div>
+                <input #bannerInput type="file" (change)="bannerChangeEvent($event)"style="z-index:-1; visibility:hidden; position:absolute; right: -900;"
+                accept="image/*">
+                <mat-icon (click)="bannerInput.click()">mode</mat-icon>
+            </div>
+            <div class="profile-picture">
+                <div class="profile-picture-background">
+                    <img src="{{community.iconURL || 'https://cdn.game-hub.pt/placeholder-pfp.jpg'}}" alt="">
+                </div>
+                <input #pfpInput type="file" (change)="iconChangeEvent($event)" style="z-index:-1;visibility:hidden; position:absolute; right: -900;"
+                accept="image/*">
+                <mat-icon (click)="pfpInput.click()">mode</mat-icon>
+            </div>
+        </div>
+        <div class="profile">
+            <form [formGroup]="saveForm" class="submit-form">
+                <div class="input-fields">
+                    <p>Community Name</p>
+                    <mat-form-field style="width:50%;">
+                        <mat-label>Community Name</mat-label>
+                        <input matInput maxlength="30" minlength="6" (change)="checkMinLength(false)" placeholder="Community Name" value="{{community.name}}" formControlName="name">
+                    </mat-form-field>
+                </div>
+                <div class="input-fields">
+                    <p>Description</p>
+                    <mat-form-field style="width:50%;">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput maxlength=160 placeholder="Description" value="{{community.description}}" formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <button style="float:right; margin-right:1rem;" mat-raised-button color="warn" (click)="openDeleteDialog()">Delete Community</button>
+            </form>
+        </div>
+        <div class="buttonWrapper">
+            <mat-divider></mat-divider>
+            <div class="buttons">
+                <button mat-raised-button color="accent" (click)="closeTab()" >Cancel</button>
+                <button mat-raised-button style="z-index:99 !important;" [disabled]="disableSave" color="primary" (click)="saveChanges()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
