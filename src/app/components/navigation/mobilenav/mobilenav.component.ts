@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Output } from '@angular/core';
+import { Component, HostListener, OnInit, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-mobilenav',
@@ -17,6 +17,8 @@ export class MobilenavComponent implements OnInit{
 
   //send toggle status to sidenav
   @Output() toggle = false;
+
+  @Input() addPost: boolean = false;
 
   toggleNav() {
     this.toggle = !this.toggle;

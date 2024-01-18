@@ -38,9 +38,14 @@ export class PostDetailComponent implements OnInit {
     );
 
     this.route.paramMap.subscribe(async (params) => {
-      this.post = await firstValueFrom(
-        this._postService.postIdGet(params.get('id')!)
-      );
+      try{
+
+        this.post = await firstValueFrom(
+          this._postService.postIdGet(params.get('id')!)
+          );
+      }catch(err){
+        this._location.back();
+      }
       this.postComments = await firstValueFrom(
         this._postService.postIdCommentsGet(params.get('id')!)
       );

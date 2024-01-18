@@ -47,6 +47,7 @@ import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/
 import { EditCommunityComponent } from './components/community/edit-community/edit-community.component';
 import { MemberListComponent } from './components/community/member-list/member-list.component';
 import { DeleteCommunityComponent } from './components/global/delete-community/delete-community.component';
+import { CommunityListMobileComponent } from './pages/mobile/community-list-mobile/community-list-mobile.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DeleteCommunityComponent } from './components/global/delete-community/d
     EditCommunityComponent,
     MemberListComponent,
     DeleteCommunityComponent,
+    CommunityListMobileComponent
   ],
   imports: [
     BrowserModule,

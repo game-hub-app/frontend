@@ -127,4 +127,4 @@
   </div>
 </div>
 <app-toolbar></app-toolbar>
-<app-mobilenav *ngIf="!loggedUser"></app-mobilenav>
+<app-mobilenav *ngIf="loggedUser.id != undefined"></app-mobilenav>

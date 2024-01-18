@@ -14,7 +14,8 @@
 
 .community-list{
   width:100%;
-  overflow-y:scroll;
+  overflow: hidden;
+  overflow-y:auto;
 }
 
 .communityIcon{
@@ -30,7 +31,7 @@
   margin:15px 25px;
 }
 
-.icons {
+.icons{
   width: 100%;
   align-items:center;
   display:flex;
@@ -45,6 +46,19 @@
   width: 75px;
   background-color: #673ab7;
 }
+
 .create-community-icon {
-  margin-top: 1.5rem;
+  width:74px;
+  height:74px;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.search{
+  width: 74px;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

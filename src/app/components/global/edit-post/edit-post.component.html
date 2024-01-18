@@ -1,6 +1,16 @@
+
 <div class="container">
+  <div class="top-bar">
+    <div class="back-button">
+      <button mat-icon-button color="white" (click)="goBack()">
+        <mat-icon >arrow_back</mat-icon>
+      </button>
+    </div>
+    <div class="title">
+      <h1>Edit Post</h1>
+    </div>
+  </div>
   <div class="main-page">
-    <h1>Edit Post</h1>
     <mat-divider></mat-divider>
     <div class="user-info">
       <img
@@ -37,13 +47,13 @@
                 >{{ this.form.get("content")?.value.length ?? 0 }}/280</mat-hint
               >
             </mat-form-field>
-            <div class="img-exists" *ngIf="this.form.get('mediaURL')?.value">
+            <div class="img-exists" *ngIf="this.form.get('mediaUrl')?.value">
               <img
-              *ngIf="this.form.get('mediaURL')?.value"
-              [src]="this.form.get('mediaURL')?.value"
+              *ngIf="this.form.get('mediaUrl')?.value"
+              [src]="this.form.get('mediaUrl')?.value"
               style="width: 100%"
               />
-              <div class="image-exists-icon" *ngIf="this.form.get('mediaURL')?.value" (click)="resetImage()">
+              <div class="image-exists-icon" *ngIf="this.form.get('mediaUrl')?.value" (click)="resetImage()">
                 <mat-icon>image</mat-icon>
               </div>
             </div>
@@ -65,8 +75,8 @@
       </button>
     </div>
     <div class="save-cancel-buttons">
-        <button mat-raised-button color="primary" (click)="savePost()">Save</button>
-        <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="editPost()">Save</button>
+        <button mat-raised-button color="warn" (click)="goBack()">Cancel</button>
     </div>
     </div>
   </div>

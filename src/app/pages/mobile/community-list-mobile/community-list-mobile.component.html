@@ -1,0 +1,26 @@
+<div class="page-loading" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+<div class="nav-page-content">
+    <div class="community-showcase" *ngFor="let community of communityList" [routerLink]="['/community/' + community.id]">
+            <div class="icon">
+                <img src="{{community.iconURL}}" alt="community-icon">
+            </div>
+            <div class="info">
+                <h2>{{community.name}}</h2>
+                <p>{{community.description}}</p>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+</div>
+<div class="create-community">
+    <button 
+    id="post" 
+    mat-fab 
+    style="margin:1rem;" color="accent" 
+    routerLink="/create-community">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<app-toolbar></app-toolbar>
+<app-mobilenav></app-mobilenav>

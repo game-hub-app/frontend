@@ -27,19 +27,7 @@
 }
 
 
-.page-loading{
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:999999;
-    width:100%;
-    height:calc(100vh - 64px);
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    background-color:rgba(0,0,0,0.8);
-    overflow:hidden;
-}
+
 
 .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
     --mat-tab-header-inactive-label-text-color: rgba(255,255,255,0.7);

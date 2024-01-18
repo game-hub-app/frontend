@@ -10,11 +10,21 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { PostDetailComponent } from './pages/post/post-detail/post-detail.component';
 import { CreateCommunityPageComponent } from './pages/create-community-page/create-community-page.component';
+import { EditPostComponent } from './components/global/edit-post/edit-post.component';
+import { CommunityListMobileComponent } from './pages/mobile/community-list-mobile/community-list-mobile.component';
 
 const routes: Routes = [
   {
     path: 'post/:id',
     component: PostDetailComponent,
+  },
+  {
+    path: 'community-list',
+    component: CommunityListMobileComponent,
+  },
+  {
+    path: 'edit-post/:id',
+    component: EditPostComponent,
   },
   {
     path: 'users/:username',

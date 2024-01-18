@@ -1,14 +1,14 @@
 <div class="bottom-nav" *ngIf="isMobile">
-    <button id="post" mat-fab style="margin:1rem; float: right;" color="primary" routerLink="/new-post-mobile">
+    <button *ngIf="addPost" id="post" mat-fab style="margin:1rem; float: right;" color="primary" routerLink="/new-post-mobile">
       <mat-icon>add</mat-icon>
     </button>
       <mat-toolbar color="accent" style="border-top:1px black solid;">
         <span class="spacer"></span>
-        <a mat-icon-button routerLink="/messages" routerLinkActive="active">
-            <mat-icon>chat</mat-icon>
+        <a mat-icon-button routerLink="/feed" routerLinkActive="active">
+            <mat-icon>home</mat-icon>
           </a>
           <span class="spacer"></span>
-          <a mat-icon-button routerLink="/community" routerLinkActive="active">
+          <a mat-icon-button routerLink="/community-list" routerLinkActive="active">
             <mat-icon>people</mat-icon>
           </a>
           <span class="spacer"></span>

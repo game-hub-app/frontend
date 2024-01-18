@@ -1,5 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
+.page-loading{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:999999;
+  width:100%;
+  height:calc(100vh - 64px);
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  background-color:rgba(0,0,0,0.8);
+  overflow:hidden;
+}
+
 .nav-page-content{
   top:4rem;
   margin-left:75px;

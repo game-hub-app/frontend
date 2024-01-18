@@ -19,20 +19,24 @@
             <img [routerLink]="['/community', community.id]" src="{{community.iconURL}}" alt="{{community.name + ' icon'}}" class="communityIcon">
             <mat-divider></mat-divider>
         </div>
+        <div class="create-community-icon">
+          <a routerLink="/create-community" routerLinkActive="active">
+            <mat-icon
+              aria-label="Create Community Icon"
+              style="color: #ffffff; width: auto"
+            >
+              add_circle
+            </mat-icon>
+          </a>
+        </div>
+        <mat-divider></mat-divider>
       </div>
     </div>
     <div class="bottom-icons">
       <mat-divider></mat-divider>
-      <div class="create-community-icon">
-        <a routerLink="/create-community" routerLinkActive="active">
-          <mat-icon
-            aria-label="Create Community Icon"
-            style="color: #ffffff; margin-bottom: 1rem; width: auto"
-          >
-            add_circle
-          </mat-icon>
-        </a>
-      </div>
+        <div class="search">
+          <mat-icon style="color:white;">search</mat-icon>
+        </div>
     </div>
   </mat-nav-list>
 </mat-sidenav>
