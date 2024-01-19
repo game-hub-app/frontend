@@ -23,6 +23,7 @@
 
 .stepper{
   background-color: var(--background-color);
+  margin-bottom:4rem;
 }
 
 .mat-mdc-button:disabled{
@@ -49,14 +50,15 @@ mat-icon {
 }
 
 .banner-background img {
-  width: 100vw;
+  width: 80vw;
   max-width: 580px;
   max-height: 190px;
   size: cover;
 }
+
 .banner {
   max-width: 580px;
-  width: 100vw;
+  width: 80vw;
   height: auto;
   max-height: 190px;
   position: relative;

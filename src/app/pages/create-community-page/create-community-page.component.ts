@@ -26,7 +26,7 @@ export class CreateCommunityPageComponent implements OnInit {
 
   @ViewChild('bannerInput') bannerInput: ElementRef | undefined;
   @ViewChild('iconInput') iconInput: ElementRef | undefined;
-  @ViewChild('finishButton') finishButton: ElementRef | undefined;
+  submittingForm:boolean = false;
 
   loggedInUser: any = JSON.parse(localStorage.getItem('user') ?? '{}');
 
@@ -75,7 +75,7 @@ export class CreateCommunityPageComponent implements OnInit {
     if (this.createCommunityForm.invalid) {
       return;
     }
-    this.finishButton!.nativeElement.disabled = true;
+    this.submittingForm = true;
     this.createCommunityForm.disable();
     var communityObject = this.createCommunityForm.value as Community;
 
@@ -108,7 +108,7 @@ export class CreateCommunityPageComponent implements OnInit {
     } catch (error: any) {
       alert(error.error);
       this.createCommunityForm.enable();
-      this.finishButton!.nativeElement.disabled = false;
+      this.submittingForm = false;
       return;
     }
   }

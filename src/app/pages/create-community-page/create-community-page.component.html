@@ -174,7 +174,7 @@
           #finishButton
           mat-button
           (click)="createCommunity()"
-          [disabled]="createCommunityForm.invalid"
+          [disabled]="createCommunityForm.invalid || submittingForm"
         >
           Finish
         </button>
@@ -183,4 +183,4 @@
   </mat-stepper>
 </div>
 <app-toolbar></app-toolbar>
-<app-mobilenav></app-mobilenav>
+<app-mobilenav style="position:absolute; z-index:10;"></app-mobilenav>
