@@ -110,6 +110,10 @@
               </mat-tab>
               <mat-tab label="Media">
                 <app-post *ngFor="let post of media" [post]="post"> </app-post>
+                <div class="no-posts" *ngIf="media.length == 0">
+                  <mat-icon> sentiment_very_dissatisfied </mat-icon>
+                  <p>{{ community.name }} doesn't have any media yet.</p>
+                </div>
               </mat-tab>
             </mat-tab-group>
           </div>
@@ -123,4 +127,4 @@
     </div>
 </div>
 <app-toolbar></app-toolbar>
-<app-mobilenav *ngIf="loggedUser.id != undefined" [addPost]="true" [communityId]="communityId"></app-mobilenav>
+<app-mobilenav style="position:absolute; z-index:9;" *ngIf="loggedUser.id != undefined" [addPost]="true" [communityId]="communityId"></app-mobilenav>

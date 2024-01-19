@@ -19,7 +19,7 @@
     overflow-y:hidden;
     background-color:#121212;
   }
-  
+
   .join-button {
     border: 1px solid white;
     border-radius: 20px;
@@ -139,13 +139,21 @@
       border:none;
       margin:0;
     }
+    .post-container{
+      margin-bottom:2rem;
+    }
 
   .post-container{
     width:calc(100vw - 2rem);
     overflow:hidden;
-  }
 
   }
+  }
+
+  .tab-border{
+    padding-bottom:4rem;
+  }
+
   .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
     --mat-tab-header-inactive-label-text-color: rgba(255,255,255,0.7);
     --mat-tab-header-inactive-focus-label-text-color: white;

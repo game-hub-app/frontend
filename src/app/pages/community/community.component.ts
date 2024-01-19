@@ -66,18 +66,18 @@ export class CommunityComponent implements OnInit{
 
         this.loggedUserIsMember = this.memberList.some(uc => uc.userId == this.loggedUser.id);
 
-        // this.posts = await firstValueFrom(
-        //   this.communityService.communityIdPostsGet(this.community.id)
-        // );
-        // this.posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
+        this.posts = await firstValueFrom(
+          this.communityService.communityIdPostsGet(this.community.id)
+        );
+        this.posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
 
-        // if (this.posts.length == 0){
-        //   this.loadingPosts = false;
+        if (this.posts.length == 0){
+          this.loadingPosts = false;
            this.noPosts = true;
-        // }
-
-        //this.posts = this.posts.filter(post => post.postId == undefined || post.postId == null);
-        //this.media = this.posts.filter(post => post.mediaUrl != undefined);
+        }
+        console.log(this.posts);
+        this.posts = this.posts.filter(post => post.postId == undefined || post.postId == null);
+        this.media = this.posts.filter(post => post.mediaUrl != undefined);
 
         this.loadingPosts = false;
         } catch (err) {

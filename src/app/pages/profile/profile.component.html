@@ -114,9 +114,17 @@
           </mat-tab>
           <mat-tab label="Comments">
             <app-post *ngFor="let post of comments" [post]="post"> </app-post>
+            <div class="no-posts" *ngIf="comments.length == 0">
+              <mat-icon> sentiment_very_dissatisfied </mat-icon>
+              <p>{{ shownUser.displayName }} doesn't have any media yet.</p>
+            </div>
           </mat-tab>
           <mat-tab label="Media">
             <app-post *ngFor="let post of media" [post]="post"> </app-post>
+            <div class="no-posts" *ngIf="media.length == 0">
+              <mat-icon> sentiment_very_dissatisfied </mat-icon>
+              <p>{{ shownUser.displayName }} doesn't have any media yet.</p>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </div>
