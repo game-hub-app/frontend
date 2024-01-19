@@ -10,6 +10,15 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .post-loader{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:8rem;
+    overflow-y:hidden;
+    background-color:#121212;
+  }
   
   .join-button {
     border: 1px solid white;
@@ -81,6 +90,7 @@
   .static-page {
     position: fixed;
     overflow: hidden;
+    max-height:100vh;
   }
   
   .member-click {

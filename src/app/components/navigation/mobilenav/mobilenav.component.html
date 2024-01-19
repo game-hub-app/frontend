@@ -1,5 +1,7 @@
 <div class="bottom-nav" *ngIf="isMobile">
-    <button *ngIf="addPost" id="post" mat-fab style="margin:1rem; float: right;" color="primary" routerLink="/new-post-mobile">
+    <button *ngIf="addPost" id="post" mat-fab style="margin:1rem; float: right;" color="primary" [routerLink]="['/new-post-mobile']"
+    [queryParams]="{communityId: communityId}"
+    >
       <mat-icon>add</mat-icon>
     </button>
       <mat-toolbar color="accent" style="border-top:1px black solid;">

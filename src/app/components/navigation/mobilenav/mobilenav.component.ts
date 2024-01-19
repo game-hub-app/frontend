@@ -19,6 +19,7 @@ export class MobilenavComponent implements OnInit{
   @Output() toggle = false;
 
   @Input() addPost: boolean = false;
+  @Input() communityId: string | undefined = undefined;
 
   toggleNav() {
     this.toggle = !this.toggle;

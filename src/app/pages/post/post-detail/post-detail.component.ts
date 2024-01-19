@@ -17,6 +17,7 @@ export class PostDetailComponent implements OnInit {
   postComments: Post[] = [];
   loggedInUser: User | undefined;
 
+  isLoading: boolean = true;
   constructor(
     private _postService: PostService,
     private _userService: UserService,
@@ -53,6 +54,7 @@ export class PostDetailComponent implements OnInit {
         a.creationDate < b.creationDate ? 1 : -1
       );
     });
+    this.isLoading = false;
   }
 
   refreshComments() {

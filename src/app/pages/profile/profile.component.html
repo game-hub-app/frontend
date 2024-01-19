@@ -98,7 +98,10 @@
       </div>
       <mat-divider></mat-divider>
     </div>
-    <ng-container class="post-container" *ngIf="posts.length > 0">
+    <div class="post-loader" *ngIf="loadingPosts">
+      <mat-spinner [diameter]="75"></mat-spinner>
+    </div>
+    <ng-container class="post-container" *ngIf="posts.length > 0 && !loadingPosts">
       <div class="tab-border">
         <mat-tab-group>
           <mat-tab label="Posts">
@@ -118,7 +121,7 @@
         </mat-tab-group>
       </div>
     </ng-container>
-    <ng-container *ngIf="posts.length == 0">
+    <ng-container *ngIf="noPosts">
       <div class="no-posts">
         <mat-icon> sentiment_very_dissatisfied </mat-icon>
         <p>{{ shownUser.displayName }} hasn't posted anything yet.</p>

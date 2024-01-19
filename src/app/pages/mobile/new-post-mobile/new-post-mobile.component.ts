@@ -3,9 +3,10 @@ import { Location } from '@angular/common';
 import { User } from 'src/app/api/model/user';
 import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
 import { FormGroup } from '@angular/forms';
-import { PostService } from 'src/app/api';
+import { PostService, Community, CommunityService } from 'src/app/api';
 import { firstValueFrom } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-post-mobile',
@@ -15,23 +16,29 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class NewPostMobileComponent {
   loggedUser: User = JSON.parse(localStorage.getItem('user')!);
 
-  @Input() communityId?: string;
   @ViewChild('fileUpload') fileInput: ElementRef | undefined;
   form: FormGroup;
-
+  community:Community | undefined = undefined;
   constructor(
     private _location: Location,
     private _newPostMobileService: NewPostMobileService,
     private _postService: PostService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _route: ActivatedRoute,
+    private _communityService: CommunityService
   ) {
     this.form = this._newPostMobileService.buildForm();
 
-    if (this.communityId) {
-      this.form.patchValue({ communityId: this.communityId });
-    }
-
     this.form.patchValue({ userId: this.loggedUser.id });
+  }
+
+  async ngOnInit(): Promise<void> {
+    this._route.queryParams.subscribe(async (params) => {
+      if (params['communityId'] != undefined){
+      this.form.patchValue({ communityId: params['communityId'] });
+      this.community = await firstValueFrom(this._communityService.communityIdGet(params['communityId']));
+      }
+    });
   }
 
   async createPost() {

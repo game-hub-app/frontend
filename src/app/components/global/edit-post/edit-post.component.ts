@@ -46,8 +46,6 @@ export class EditPostComponent implements OnInit{
         this.goBack();
       }
       this.form.patchValue(post);
-      console.log(this.form.value);
-
     });
   }
 
@@ -73,7 +71,7 @@ export class EditPostComponent implements OnInit{
         this._postService.postIdPatch(this.id, operation)
       );
 
-      this._snackBar.open('Post created successfully!', 'Close', {
+      this._snackBar.open('Post edited successfully!', 'Close', {
         duration: 5000,
       });
 
@@ -105,7 +103,8 @@ export class EditPostComponent implements OnInit{
       // Convert to base64
       const reader = new FileReader();
       reader.onload = () => {
-        this.form.patchValue({ mediaURL: reader.result as string });
+        this.form.patchValue({ mediaUrl: reader.result as string });
+        console.log(this.form.value)
       };
       reader.readAsDataURL(file);
     }

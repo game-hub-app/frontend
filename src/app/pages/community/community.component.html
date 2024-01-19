@@ -6,6 +6,12 @@
     editCommunity = $event; page.classList.remove('static-page'); ngOnInit()
   "
 ></app-edit-community>
+<app-member-list
+  class="edit-popup"
+  [memberIdList]="memberList"
+  *ngIf="viewList"
+  (closeList)="viewList = $event; page.classList.remove('static-page')"
+></app-member-list>
 <mat-sidenav-container>
     <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
   </mat-sidenav-container>
@@ -79,12 +85,42 @@
                   <mat-icon>calendar_today</mat-icon>
                   <p>{{ community.creationDate| date: 'mediumDate' }}</p>
                 </div>
+                <div class="joinDate" [routerLink]="['/users/' + communityOwner.username]">
+                  <mat-icon style="color:var(--accent-color)!important;">military_tech</mat-icon>
+                  <p style="color:var(--accent-color) !important;">{{ communityOwner.displayName }}</p>
+                </div>
               </div>
             </div>
-            <mat-divider></mat-divider>
           </div>
         </div>
+        <app-new-post-exploreview [communityId]="communityId" *ngIf="!isMobile"></app-new-post-exploreview>
+        <div class="post-loader" *ngIf="loadingPosts">
+          <mat-spinner [diameter]="75"></mat-spinner>
+        </div>
+        <ng-container class="post-container" *ngIf="posts.length > 0 && !loadingPosts">
+          <div class="tab-border">
+            <mat-tab-group>
+              <mat-tab label="Posts">
+                <app-post
+                  class="post-view"
+                  *ngFor="let post of posts"
+                  [post]="post"
+                >
+                </app-post>
+              </mat-tab>
+              <mat-tab label="Media">
+                <app-post *ngFor="let post of media" [post]="post"> </app-post>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="noPosts">
+          <div class="no-posts">
+            <mat-icon> sentiment_very_dissatisfied </mat-icon>
+            <p>{{ community.name }} doesn't have any posts yet.</p>
+          </div>
+        </ng-container>
     </div>
 </div>
 <app-toolbar></app-toolbar>
-<app-mobilenav *ngIf="!loggedUser"></app-mobilenav>
+<app-mobilenav *ngIf="loggedUser.id != undefined" [addPost]="true" [communityId]="communityId"></app-mobilenav>

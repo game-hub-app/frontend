@@ -114,3 +114,23 @@
   justify-content: space-between;
   margin:left 1rem right 1rem;
 }
+
+.communityInfo{
+  display:flex;
+  flex-direction:row;
+  gap:1rem;
+  margin-bottom:0.5rem;
+  align-items:center;
+}
+
+.communityInfo img{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+}
+
+.communityInfo p{
+  font-size:0.75rem;
+  color:whitesmoke;
+  margin:0;
+}

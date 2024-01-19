@@ -99,7 +99,6 @@ export class PostComponent implements OnChanges {
         this.parentUsername = 'Replied post was deleted';
       }
     }
-
     var usernames = this.post!.content.match(/@[A-Za-z0-9-_]*/g) || [];
     if (usernames.length > 0) {
       var users = await firstValueFrom(this._userService.userGet());    

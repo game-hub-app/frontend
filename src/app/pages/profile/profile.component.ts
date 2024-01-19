@@ -41,6 +41,9 @@ export class ProfileComponent {
   comments: Post[] = [];
   media: Post[] = [];
 
+  loadingPosts: boolean = true;
+  noPosts:boolean = false;
+
   page: HTMLElement = document.getElementById('page')!;
 
   @ViewChild('bio') bioContent: ElementRef | undefined;
@@ -100,6 +103,10 @@ export class ProfileComponent {
 
       posts.sort((a, b) => (a.creationDate < b.creationDate ? 1 : -1));
 
+      if (posts.length == 0){
+        this.loadingPosts = false;
+        this.noPosts = true;
+      }
       this.posts = posts.filter((post) => post.postId == null);
 
       this.comments = posts.filter(
@@ -128,6 +135,7 @@ export class ProfileComponent {
           } catch (error: any) {}
         });
       }
+      this.loadingPosts = false;
     });
 
     if (this.loggedUser.id == null) {

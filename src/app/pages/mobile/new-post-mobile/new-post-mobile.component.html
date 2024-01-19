@@ -9,6 +9,10 @@
       </div>
     </mat-toolbar>
     <mat-divider></mat-divider>
+    <div class="communityInfo" *ngIf="community">
+      <img src="{{community.iconURL}}" alt="">
+      <p>Posting in: {{community.name}}</p>
+    </div>
     <mat-card-content>
       <div class="userInfo">
         <div class="userImage">

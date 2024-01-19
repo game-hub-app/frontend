@@ -1,1 +1,17 @@
-<p>member-list works!</p>
+<div class="container">
+    <div class="page">
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="close()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <div class="title">
+                <p>Members</p>
+            </div>
+        </mat-toolbar>
+                <mat-list>
+                    <mat-list-item *ngFor="let user of memberList">
+                        <app-user-profile-preview [followsLoggedUser]="checkIfFollowing(user.id)" [userId]="user.id" [userFollows]="checkUserFollows(user.id)"></app-user-profile-preview>
+                    </mat-list-item>
+                </mat-list>
+    </div>
+</div>

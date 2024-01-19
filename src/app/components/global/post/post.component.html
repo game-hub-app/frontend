@@ -1,4 +1,8 @@
 <div class="post">
+  <div class="communityInfo" *ngIf="post?.community != undefined" [routerLink] = "['/community/' + post?.communityId]">
+    <img src="{{post?.community?.iconURL}}" alt="">
+    <p>Posted in {{post?.community?.name}}</p>
+  </div>
   <div class="userInfo">
     <div class="user" (click)="goToAuthorProfile()">
       <div class="userImage">

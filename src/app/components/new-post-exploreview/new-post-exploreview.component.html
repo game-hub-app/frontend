@@ -1,4 +1,8 @@
 <mat-card class="new-post-card">
+  <div class="communityInfo" *ngIf="community">
+      <img src="{{community.iconURL}}" alt="">
+      <p>Posting in: {{community.name}}</p>
+  </div>
   <mat-card-header>
     <div mat-card-avatar>
       <img

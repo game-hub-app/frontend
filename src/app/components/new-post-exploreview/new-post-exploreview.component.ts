@@ -1,8 +1,8 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firstValueFrom } from 'rxjs';
-import { PostService } from 'src/app/api';
+import { Community, PostService, CommunityService } from 'src/app/api';
 import { User } from 'src/app/api/model/user';
 import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
 @Component({
@@ -13,22 +13,33 @@ import { NewPostMobileService } from 'src/app/services/new-post-mobile.service';
 export class NewPostExploreviewComponent {
   loggedUser: User = JSON.parse(localStorage.getItem('user')!);
   @Output() refreshPosts = new EventEmitter<boolean>();
-
+  @Input() communityId:string | undefined = undefined;
   @ViewChild('fileUpload') fileInput: ElementRef | undefined;
+  community:Community | undefined = undefined;
 
   form: FormGroup;
 
   constructor(
     private _newPostMobileService: NewPostMobileService,
     private _snackBar: MatSnackBar,
-    private _postService: PostService
+    private _postService: PostService,
+    private _communityService: CommunityService
   ) {
     this.form = this._newPostMobileService.buildForm();
 
     this.form.patchValue({ userId: this.loggedUser.id });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    if(this.communityId){
+      try{
+        this.community = await firstValueFrom(this._communityService.communityIdGet(this.communityId));
+        this.form.patchValue({ communityId: this.communityId });
+      }catch(err){
+        console.log(err);
+      }
+    }
+  }
 
   async createPost() {
     this.form.disable();
