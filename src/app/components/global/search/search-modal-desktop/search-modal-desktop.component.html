@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="searchBox">
+        <div class="searchInput">
+            <input matInput #searchChild type="text">
+        </div>
+        <button #searchIcon id="search-button" placeholder="Search for users, posts, communities..." [disabled]=" disableSearch" color="accent" mat-icon-button [routerLink]="['/search']" (click)="closeModal()" [queryParams]="{query:searchChild!.value}">
+            <mat-icon id="searchIcon">search</mat-icon>
+        </button>
+    </div>
+</div>

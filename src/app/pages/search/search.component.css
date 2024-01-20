@@ -1,0 +1,81 @@
+.top-title{
+    margin-bottom:0;
+    padding:1rem;
+    color:var(--accent-color);
+}
+
+.searchBox{
+    margin:1rem 0;
+    height:3rem;
+    width:50vw;
+    display:flex;
+    flex-direction:row;
+}
+
+.searchInput{
+    width:100%;
+    height:100%;
+    background-color:transparent;
+    overflow:hidden;
+    align-items:center;
+    display:flex;
+}
+
+.search-results{
+    width:100vw;
+    max-width:580px;
+}
+
+.searchInput input{
+    width:48vw;
+    align-self:center;
+    height:2rem;
+    font-size:1.2rem;
+    border:#673AB7 2px solid;
+    border-radius:5px;
+}
+
+.no-results{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.searchBox button{
+    z-index:2;
+    margin-left:-3rem;
+    height:100%;
+}
+.top-filter{
+    background-color:var(--lighter-background-color);
+}
+
+.container{
+    width:100vw;
+    max-width:580px;
+    border-left:1px solid white;
+    border-right:1px solid white;
+    background-color:var(--lighter-background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab-change{
+    color:#673AB7;
+    padding-left:1rem;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+    --mat-tab-header-inactive-label-text-color: rgba(255,255,255,0.7);
+    --mat-tab-header-inactive-focus-label-text-color: white;
+    --mat-tab-header-inactive-hover-label-text-color: white;
+  }
+.nav-page-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}

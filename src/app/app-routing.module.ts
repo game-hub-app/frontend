@@ -12,8 +12,13 @@ import { PostDetailComponent } from './pages/post/post-detail/post-detail.compon
 import { CreateCommunityPageComponent } from './pages/create-community-page/create-community-page.component';
 import { EditPostComponent } from './components/global/edit-post/edit-post.component';
 import { CommunityListMobileComponent } from './pages/mobile/community-list-mobile/community-list-mobile.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
+  {
+    path: 'search',
+    component:SearchComponent,
+  },
   {
     path: 'post/:id',
     component: PostDetailComponent,

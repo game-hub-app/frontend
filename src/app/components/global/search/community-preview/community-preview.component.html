@@ -1,0 +1,11 @@
+
+<div class="community-showcase"[routerLink]="['/community/' + community.id]">
+    <div class="icon">
+        <img src="{{community.iconURL}}" alt="community-icon">
+    </div>
+    <div class="info">
+        <h2>{{community.name}}</h2>
+        <p>{{community.description}}</p>
+    </div>
+    <mat-divider></mat-divider>
+</div>

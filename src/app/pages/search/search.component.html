@@ -1,0 +1,132 @@
+
+<mat-sidenav-container>
+    <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
+  </mat-sidenav-container>
+<div class="nav-page-content">
+    <div class="container">
+        <div class="searchBox">
+            <div class="searchInput">
+                <input matInput [value]="searchTerm" #searchChild type="text">
+            </div>
+                <button id="search-button" [disabled]=" disableSearch" color="accent" mat-icon-button (click)="search(false)">
+                    <mat-icon id="searchIcon">search</mat-icon>
+                </button>
+        </div>
+        <div class="page-loading" *ngIf="isLoading">
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+        </div>
+        <div class="search-results">
+            <mat-tab-group [selectedIndex]="tabIndex">
+                <mat-tab label="Top">
+                    <div class="top-filter" *ngIf="userResults.length != 0">
+                        <h1 class="top-title">Users</h1>
+                        <mat-divider></mat-divider>
+                        <app-profile-preview
+                            [user]="userResults[0]"
+                        >
+                        </app-profile-preview>
+                        <mat-divider *ngIf="userResults.length >1"></mat-divider>
+                        <app-profile-preview
+                            *ngIf="userResults.length > 1"
+                            [user]="userResults[1]"
+                        >
+                        </app-profile-preview>
+                        <mat-divider *ngIf="userResults.length >2"></mat-divider>
+                        <app-profile-preview
+                            *ngIf="userResults.length > 2"
+                            [user]="userResults[2]"
+                        >
+                        </app-profile-preview>
+                        <p class="tab-change" (click)="changeTab(1)">See more...</p>
+                        <mat-divider></mat-divider>
+                    </div>
+                    <div class="top-filter" *ngIf="postResults.length != 0">
+                        <h1 class="top-title">Posts</h1>
+                        <mat-divider></mat-divider>
+                        <app-post
+                            [post]="postResults[0]"
+                        >
+                        </app-post>
+                        <mat-divider *ngIf="postResults.length >1"></mat-divider>
+                        <app-post
+                            *ngIf="postResults.length > 1"
+                            [post]="postResults[1]"
+                        >
+                        </app-post>
+                        <mat-divider *ngIf="postResults.length >2"></mat-divider>
+                        <app-post
+                            *ngIf="postResults.length > 2"
+                            [post]="postResults[2]"
+                        >
+                        </app-post>
+                        <p class="tab-change" (click)="changeTab(2)">See more...</p>
+                        <mat-divider></mat-divider>
+                    </div>
+                    <div class="top-filter" *ngIf="communityResults.length != 0">
+                        <h1 class="top-title">Communities</h1>
+                        <mat-divider></mat-divider>
+                        <app-community-preview
+                            [community]="communityResults[0]"
+                        >
+                        </app-community-preview>
+                        <mat-divider *ngIf="communityResults.length >1"></mat-divider>
+                        <app-community-preview
+                            *ngIf="communityResults.length > 1"
+                            [community]="communityResults[1]"
+                        >
+                        </app-community-preview>
+                        <mat-divider *ngIf="communityResults.length >2"></mat-divider>
+                        <app-community-preview
+                            *ngIf="communityResults.length > 2"
+                            [community]="communityResults[2]"
+                        >
+                        </app-community-preview>
+                        <p class="tab-change" (click)="changeTab(3)">See more...</p>
+                    </div>
+                    <div class="no-results" *ngIf="userResults.length == 0 && postResults.length == 0 && communityResults.length == 0">
+                        <mat-icon style="font-size:3rem;width:auto;height:auto;">sentiment_dissatisfied</mat-icon>
+                        <h1>No results found</h1>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Users">
+                    <div *ngIf="userResults.length != 0">
+                        <app-profile-preview
+                            *ngFor="let user of userResults"
+                            [user]="user"
+                        ></app-profile-preview>
+                    </div>
+                    <div class="no-results" *ngIf="userResults.length == 0">
+                        <mat-icon style="font-size:3rem;width:auto;height:auto;">sentiment_dissatisfied</mat-icon>
+                        <h1>No users found</h1>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Posts">
+                    <div *ngIf="postResults.length != 0">
+                        <app-post
+                            *ngFor="let post of postResults"
+                            [post]="post"
+                        ></app-post>
+                    </div>
+                    <div class="no-results" *ngIf="postResults.length == 0">
+                        <mat-icon style="font-size:3rem;width:auto;height:auto;">sentiment_dissatisfied</mat-icon>
+                        <h1>No posts found</h1>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Communities">
+                    <div *ngIf="communityResults.length != 0">
+                        <app-community-preview
+                            *ngFor="let community of communityResults"
+                            [community]="community"
+                        ></app-community-preview>
+                    </div>
+                    <div class="no-results" *ngIf="communityResults.length == 0">
+                        <mat-icon style="font-size:3rem;width:auto;height:auto;">sentiment_dissatisfied</mat-icon>
+                        <h1>No communities found</h1>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
+<app-toolbar></app-toolbar>
+<app-mobilenav *ngIf="loggedUser.id != undefined"></app-mobilenav>

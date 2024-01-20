@@ -48,6 +48,10 @@ import { EditCommunityComponent } from './components/community/edit-community/ed
 import { MemberListComponent } from './components/community/member-list/member-list.component';
 import { DeleteCommunityComponent } from './components/global/delete-community/delete-community.component';
 import { CommunityListMobileComponent } from './pages/mobile/community-list-mobile/community-list-mobile.component';
+import { CommunityPreviewComponent } from './components/global/search/community-preview/community-preview.component';
+import { ProfilePreviewComponent } from './components/global/search/profile-preview/profile-preview.component';
+import { SearchModalDesktopComponent } from './components/global/search/search-modal-desktop/search-modal-desktop.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +80,11 @@ import { CommunityListMobileComponent } from './pages/mobile/community-list-mobi
     EditCommunityComponent,
     MemberListComponent,
     DeleteCommunityComponent,
-    CommunityListMobileComponent
+    CommunityListMobileComponent,
+    CommunityPreviewComponent,
+    ProfilePreviewComponent,
+    SearchModalDesktopComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

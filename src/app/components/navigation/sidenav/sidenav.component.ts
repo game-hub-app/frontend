@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Community, CommunityService, User, UserCommunitiesService, UserService } from 'src/app/api';
+import { MatDialog } from '@angular/material/dialog';
+import { SearchModalDesktopComponent } from '../../global/search/search-modal-desktop/search-modal-desktop.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,7 +15,8 @@ export class SidenavComponent implements OnInit{
   constructor(
     private _communityService: CommunityService,
     private _userCommunityService: UserCommunitiesService,
-    private _userService: UserService
+    private _userService: UserService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -50,5 +53,7 @@ export class SidenavComponent implements OnInit{
       this.isMobile = false;
     }
   }
-
+  openSearch(){
+    this.dialog.open(SearchModalDesktopComponent);
+  }
 }

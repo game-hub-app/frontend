@@ -1,0 +1,40 @@
+.container{
+    width:70vw;
+    height:3rem;
+    background-color:transparent;
+}
+
+.top-filter{
+    background-color:var(--background-color);
+}
+
+.searchBox{
+    height:100%;
+}
+
+.searchInput{
+    width:100%;
+    height:100%;
+    background-color:transparent;
+    overflow:hidden;
+}
+.searchInput input{
+    width:100%;
+    height:100%;
+    border:none;
+    outline:none;
+    font-size:1.5rem;
+}
+
+
+.searchBox button{
+    position:absolute;
+    height:100%;
+    right:0;
+    top:0;
+    z-index:1;
+}
+
+.minimum-text{
+    color:gray !important;
+}

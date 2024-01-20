@@ -1,0 +1,11 @@
+
+<div class="profile-showcase"[routerLink]="['/users/' + user.username]">
+    <div class="pfp">
+        <img src="{{user.profilePictureURL}}" alt="community-icon">
+    </div>
+    <div class="info">
+        <h2>{{user.displayName}}</h2>
+        <p>@{{user.username}}</p>
+    </div>
+    <mat-divider></mat-divider>
+</div>
