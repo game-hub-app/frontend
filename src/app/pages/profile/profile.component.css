@@ -164,6 +164,12 @@
 
 }
 }
+
+.noSideBar{
+  width:100vw !important;
+  margin:0 !important;
+}
+
 .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
   --mat-tab-header-inactive-label-text-color: rgba(255,255,255,0.7);
   --mat-tab-header-inactive-focus-label-text-color: white;

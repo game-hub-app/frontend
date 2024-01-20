@@ -26,8 +26,9 @@ export class NewPostExploreviewComponent {
     private _communityService: CommunityService
   ) {
     this.form = this._newPostMobileService.buildForm();
-
-    this.form.patchValue({ userId: this.loggedUser.id });
+    if (this.loggedUser != null){
+      this.form.patchValue({ userId: this.loggedUser.id });
+    }
   }
 
   async ngOnInit(): Promise<void> {

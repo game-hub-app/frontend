@@ -1,7 +1,7 @@
 
-<mat-sidenav-container>
-    <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
-  </mat-sidenav-container>
+<mat-sidenav-container *ngIf="loggedUser.id != undefined">
+    <app-sidenav *ngIf="loggedUser.id != undefined" ></app-sidenav>
+</mat-sidenav-container>
 <div class="nav-page-content">
     <div class="container">
         <div class="searchBox">

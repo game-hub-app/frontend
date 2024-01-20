@@ -11,6 +11,11 @@
     justify-content: space-between;
   }
 
+  .noSideBar{
+    width:100vw !important;
+    margin:0 !important;
+  }
+
   .post-loader{
     display:flex;
     justify-content:center;

@@ -14,7 +14,7 @@
   *ngIf="followList"
   (closeList)="followList = $event"
 ></app-follow-list>
-<mat-sidenav-container>
+<mat-sidenav-container *ngIf="loggedUser.id != null">
   <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
 </mat-sidenav-container>
 <div id="page" class="nav-page-content">

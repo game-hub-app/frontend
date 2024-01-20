@@ -28,7 +28,7 @@ export class CommunityComponent implements OnInit{
   media:Post[] = [];
   noPosts:boolean = false;
   communityOwner:User = {} as User;
-
+  displayNewPost:boolean = false;
   viewList:boolean = false;
   isMobile: boolean = window.innerWidth <= 580;
 
@@ -51,6 +51,11 @@ export class CommunityComponent implements OnInit{
     this.route.paramMap.subscribe(async (params) => {
       this.communityId = params.get('id')!;
       this.isCommunityOwner = false;
+      if (!this.isMobile){
+        if (this.loggedUser.id != undefined){ this.displayNewPost = true; }else{
+          document.getElementById('page')?.classList.add('noSideBar');
+        }
+      }
       
       this.memberList = [];
       try {
@@ -99,6 +104,12 @@ export class CommunityComponent implements OnInit{
   }
 
   toggleJoin(){
+    if (this.loggedUser.id == undefined){
+      this._snackBar.open('You must be logged in to join a community!', 'Close', {
+        duration: 5000,
+      });
+      return;
+    }
     if(this.loggedUserIsMember){
       this.leaveCommunity();
     } else {

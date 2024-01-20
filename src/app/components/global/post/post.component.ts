@@ -196,6 +196,12 @@ export class PostComponent implements OnChanges {
   }
 
   async likePost() {
+    if (!this.loggedInUser){
+      this.snackBar.open('You must be logged in to like a post!', 'Close', {
+        duration: 2000,
+      });
+      return;
+    }
     if (!this.post) return;
 
     await firstValueFrom(this._postService.postIdLikePost(this.post.id));

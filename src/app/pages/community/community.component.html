@@ -12,9 +12,9 @@
   *ngIf="viewList"
   (closeList)="viewList = $event; page.classList.remove('static-page')"
 ></app-member-list>
-<mat-sidenav-container>
-    <app-sidenav *ngIf="loggedUser != null"></app-sidenav>
-  </mat-sidenav-container>
+<mat-sidenav-container *ngIf="loggedUser.id != undefined">
+  <app-sidenav *ngIf="loggedUser.id != undefined" ></app-sidenav>
+</mat-sidenav-container>
 <div id="page" class="nav-page-content">
     <div class="container">
         <div class="community-details">
@@ -93,7 +93,7 @@
             </div>
           </div>
         </div>
-        <app-new-post-exploreview [communityId]="communityId" *ngIf="!isMobile"></app-new-post-exploreview>
+        <app-new-post-exploreview [communityId]="communityId" *ngIf="displayNewPost"></app-new-post-exploreview>
         <div class="post-loader" *ngIf="loadingPosts">
           <mat-spinner [diameter]="75"></mat-spinner>
         </div>

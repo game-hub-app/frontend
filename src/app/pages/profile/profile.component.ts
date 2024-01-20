@@ -145,6 +145,9 @@ export class ProfileComponent {
       document
         .getElementById('followingClick')!
         .classList.remove('follow-click');
+      document
+        .getElementById('page')!
+        .classList.add('noSideBar');
     }
 
     if (window.innerWidth < 580) {

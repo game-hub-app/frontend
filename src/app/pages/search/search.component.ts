@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User, Community, Post } from 'src/app/api';
+import { TokenVerificationService } from 'src/app/services/token-verification.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -22,8 +23,16 @@ export class SearchComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private _search:SearchService
-    ) {}
+    private _search:SearchService,
+    private tokenVerify:TokenVerificationService
+    ) {    
+      this.tokenVerify.verifyToken().then((res) => {
+        if(!res){
+          localStorage.clear();
+          window.location.href = '/login';
+        }
+      });
+    }
 
   ngAfterViewInit() {
     this.searchChild!.nativeElement.addEventListener("keyup", this.handleSearchInput);
@@ -60,9 +69,6 @@ export class SearchComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    if (this.loggedUser.id == undefined){
-      window.location.href = '/login';
-    }
 
     this.route.queryParams.subscribe(params => {
       if (params['query'] != undefined){
